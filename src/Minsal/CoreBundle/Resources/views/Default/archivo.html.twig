@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}Manejador de archivos de consumo{% endblock %}
+{% block subtitle %}seleccione la operaciona realizar{% endblock %}
+{% block body %}
+
+<section id="download">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Bajar archivo de registro</h3>
+              </div><!-- /.box-header -->
+              <div class="box-body">
+                <a href="{{ asset('files/') }}registro.ods" class="btn btn-info">
+					<i class="fa fa-cloud-download"></i> Registro de consumo por colector diario
+				</a>
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Subir archivo de consumos mensuales</h3>
+              </div><!-- /.box-header -->
+              <div class="box-body">
+				<div class="form-group">
+                  <label for="exampleInputFile">Seleccionar archivo</label>
+                  <input id="exampleInputFile" type="file">
+
+                  <p class="help-block">Solo se admiten archivos ods, NO xls.</p>
+                </div>
+                <a href="#" class="btn btn-info">
+					<i class="fa fa-cloud-upload"></i> Registro de consumo por colector diario
+				</a>
+              </div><!-- /.box-body -->
+            </div><!-- /.box -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </section>
+{% endblock %}

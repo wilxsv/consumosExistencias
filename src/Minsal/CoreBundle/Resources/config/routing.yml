@@ -1,3 +1,12 @@
 minsal_core_homepage:
     path:     /
     defaults: { _controller: MinsalCoreBundle:Default:index }
+minsal_core_registro_index:
+    path:     /registro/index
+    defaults: { _controller: MinsalCoreBundle:Default:registro }
+minsal_core_registro_manual:
+    path:     /registro/manual
+    defaults: { _controller: MinsalCoreBundle:Default:manual }
+minsal_core_registro_archivo:
+    path:     /registro/archivo
+    defaults: { _controller: MinsalCoreBundle:Default:archivo }
