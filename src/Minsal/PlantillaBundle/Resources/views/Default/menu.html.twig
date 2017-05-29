@@ -5,6 +5,30 @@
         <li><a href="{{ path('minsal_core_registro_index') }}"><i class="fa fa-edit"></i> <span>Registrar consumo</span></a></li>
         <li><a href="{{ path('minsal_core_registro_manual') }}"><i class="fa fa-circle-o text-yellow"></i> <span>Manual</span></a></li>
         <li><a href="{{ path('minsal_core_registro_archivo') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Archivo</span></a></li>
+        <li><a href="{{ path('movimiento_index') }}"><i class="fa fa-circle-o text-grey"></i> <span>Movimientos</span></a></li>
+        <li><a href="{{ path('consumo_index') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Consumos</span></a></li>
+        <li><a href="{{ path('existencias_index') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Existencias</span></a></li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i> <span>Tablas sin mantenimiento</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ path('establecimiento_index') }}">+  Establecimientos</a></li>
+            <li><a href="{{ path('mecanismo_index') }}">+  Mecanismo</a></li>
+            <li><a href="{{ path('insumo_index') }}">+  Suministros</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-folder"></i> <span>Tablas mantenimiento</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ path('componente_index') }}">+  Componente</a></li>
+            <li><a href="{{ path('componente_index') }}">+  Cuadro básico * Establecimiento</a></li>
+            <li><a href="{{ path('tipo_movimiento_index') }}">+  Tipo movimiento</a></li>
+          </ul>
+        </li>
+        <li><a href="#"><i class="fa fa-book"></i> <span>Documentación</span></a></li>
 <!-- 
         <li class="treeview">
           <a href="#">
@@ -14,8 +38,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li><a href="../../index.html">+  Dashboard v1</a></li>
+            <li><a href="../../index2.html">+  Dashboard v2</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -27,10 +51,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+            <li><a href="../layout/top-nav.html">+  Top Navigation</a></li>
+            <li><a href="../layout/boxed.html">+  Boxed</a></li>
+            <li><a href="../layout/fixed.html">+  Fixed</a></li>
+            <li><a href="../layout/collapsed-sidebar.html">+  Collapsed Sidebar</a></li>
           </ul>
         </li>
         <li>
@@ -50,10 +74,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            <li><a href="../charts/chartjs.html">+  ChartJS</a></li>
+            <li><a href="../charts/morris.html">+  Morris</a></li>
+            <li><a href="../charts/flot.html">+  Flot</a></li>
+            <li><a href="../charts/inline.html">+  Inline charts</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -65,12 +89,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+            <li><a href="../UI/general.html">+  General</a></li>
+            <li><a href="../UI/icons.html">+  Icons</a></li>
+            <li><a href="../UI/buttons.html">+  Buttons</a></li>
+            <li><a href="../UI/sliders.html">+  Sliders</a></li>
+            <li><a href="../UI/timeline.html">+  Timeline</a></li>
+            <li><a href="../UI/modals.html">+  Modals</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -81,9 +105,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+            <li><a href="../forms/general.html">+  General Elements</a></li>
+            <li><a href="../forms/advanced.html">+  Advanced Elements</a></li>
+            <li><a href="../forms/editors.html">+  Editors</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -94,8 +118,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+            <li><a href="../tables/simple.html">+  Simple tables</a></li>
+            <li><a href="../tables/data.html">+  Data tables</a></li>
           </ul>
         </li>
         <li>
@@ -125,15 +149,15 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-            <li><a href="404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li class="active"><a href="blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+            <li><a href="invoice.html">+  Invoice</a></li>
+            <li><a href="profile.html">+  Profile</a></li>
+            <li><a href="login.html">+  Login</a></li>
+            <li><a href="register.html">+  Register</a></li>
+            <li><a href="lockscreen.html">+  Lockscreen</a></li>
+            <li><a href="404.html">+  404 Error</a></li>
+            <li><a href="500.html">+  500 Error</a></li>
+            <li class="active"><a href="blank.html">+  Blank Page</a></li>
+            <li><a href="pace.html">+  Pace Page</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -144,29 +168,29 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+            <li><a href="#">+  Level One</a></li>
             <li>
-              <a href="#"><i class="fa fa-circle-o"></i> Level One
+              <a href="#">+  Level One
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                <li><a href="#">+  Level Two</a></li>
                 <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                  <a href="#">+  Level Two
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                    <li><a href="#">+  Level Three</a></li>
+                    <li><a href="#">+  Level Three</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+            <li><a href="#">+  Level One</a></li>
           </ul>
         </li>
         <li><a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>

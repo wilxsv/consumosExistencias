@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctlmovimientos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fechamovimiento</th>
+                <th>Tipomovimiento</th>
+                <th>Cantidad</th>
+                <th>Fecharegistromovimiento</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ctlMovimiento in ctlMovimientos %}
+            <tr>
+                <td><a href="{{ path('movimiento_show', { 'id': ctlMovimiento.id }) }}">{{ ctlMovimiento.id }}</a></td>
+                <td>{% if ctlMovimiento.fechaMovimiento %}{{ ctlMovimiento.fechaMovimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ ctlMovimiento.tipoMovimiento }}</td>
+                <td>{{ ctlMovimiento.cantidad }}</td>
+                <td>{% if ctlMovimiento.fechaRegistroMovimiento %}{{ ctlMovimiento.fechaRegistroMovimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('movimiento_show', { 'id': ctlMovimiento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('movimiento_edit', { 'id': ctlMovimiento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('movimiento_new') }}">Create a new ctlMovimiento</a>
+        </li>
+    </ul>
+{% endblock %}

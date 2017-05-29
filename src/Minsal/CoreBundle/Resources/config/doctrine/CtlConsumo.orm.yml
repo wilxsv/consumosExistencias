@@ -1,0 +1,69 @@
+Minsal\CoreBundle\Entity\CtlConsumo:
+    type: entity
+    table: ctl_consumo
+    indexes:
+        IDX_285219DCD05C792B:
+            columns:
+                - ctl_insumoid
+        IDX_285219DC7B62918:
+            columns:
+                - ctl_establecimientoid
+        IDX_285219DC46F39AED:
+            columns:
+                - ctl_mecanismoid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        fechaConsumo:
+            type: datetime
+            nullable: false
+            column: fecha_consumo
+        cantidadConsumo:
+            type: bigint
+            nullable: false
+            unsigned: false
+            column: cantidad_consumo
+        registroSchema:
+            type: datetime
+            nullable: false
+            column: registro_schema
+        userId:
+            type: bigint
+            nullable: false
+            unsigned: false
+            column: user_id
+    manyToOne:
+        ctlInsumoid:
+            targetEntity: CtlInsumo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_insumoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ctlEstablecimientoid:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_establecimientoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ctlMecanismoid:
+            targetEntity: CtlMecanismo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_mecanismoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

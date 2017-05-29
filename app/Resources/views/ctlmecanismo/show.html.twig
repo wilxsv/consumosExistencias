@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctlmecanismo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ctlMecanismo.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombremecanismo</th>
+                <td>{{ ctlMecanismo.nombreMecanismo }}</td>
+            </tr>
+            <tr>
+                <th>Manualmecanismo</th>
+                <td>{{ ctlMecanismo.manualMecanismo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mecanismo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('mecanismo_edit', { 'id': ctlMecanismo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

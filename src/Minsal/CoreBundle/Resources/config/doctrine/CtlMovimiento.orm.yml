@@ -1,0 +1,80 @@
+Minsal\CoreBundle\Entity\CtlMovimiento:
+    type: entity
+    table: ctl_movimiento
+    indexes:
+        IDX_B621B5407B62918:
+            columns:
+                - ctl_establecimientoid
+        IDX_B621B540B264D8:
+            columns:
+                - establecimiento_origen_id
+        IDX_B621B5403CEA1C61:
+            columns:
+                - ctl_tipo_movimientoid
+        IDX_B621B540D05C792B:
+            columns:
+                - ctl_insumoid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        fechaMovimiento:
+            type: datetime
+            nullable: false
+            column: fecha_movimiento
+        tipoMovimiento:
+            type: bigint
+            nullable: false
+            unsigned: false
+            column: tipo_movimiento
+        cantidad:
+            type: bigint
+            nullable: false
+            unsigned: false
+        fechaRegistroMovimiento:
+            type: datetime
+            nullable: false
+            column: fecha_registro_movimiento
+    manyToOne:
+        ctlEstablecimientoid:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_establecimientoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        establecimientoOrigen:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                establecimiento_origen_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ctlTipoMovimientoid:
+            targetEntity: CtlTipoMovimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_tipo_movimientoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ctlInsumoid:
+            targetEntity: CtlInsumo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_insumoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

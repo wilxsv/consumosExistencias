@@ -1,0 +1,24 @@
+tipo_movimiento_index:
+    path:     /
+    defaults: { _controller: "MinsalCoreBundle:CtlTipoMovimiento:index" }
+    methods:  GET
+
+tipo_movimiento_show:
+    path:     /{id}/show
+    defaults: { _controller: "MinsalCoreBundle:CtlTipoMovimiento:show" }
+    methods:  GET
+
+tipo_movimiento_new:
+    path:     /new
+    defaults: { _controller: "MinsalCoreBundle:CtlTipoMovimiento:new" }
+    methods:  [GET, POST]
+
+tipo_movimiento_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MinsalCoreBundle:CtlTipoMovimiento:edit" }
+    methods:  [GET, POST]
+
+tipo_movimiento_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MinsalCoreBundle:CtlTipoMovimiento:delete" }
+    methods:  DELETE

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctldepartamentos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombredepartamento</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ctlDepartamento in ctlDepartamentos %}
+            <tr>
+                <td><a href="{{ path('departamento_show', { 'id': ctlDepartamento.id }) }}">{{ ctlDepartamento.id }}</a></td>
+                <td>{{ ctlDepartamento.nombreDepartamento }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('departamento_show', { 'id': ctlDepartamento.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

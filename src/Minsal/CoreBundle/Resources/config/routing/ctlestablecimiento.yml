@@ -1,0 +1,24 @@
+establecimiento_index:
+    path:     /
+    defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:index" }
+    methods:  GET
+
+establecimiento_show:
+    path:     /{id}/show
+    defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:show" }
+    methods:  GET
+
+establecimiento_new:
+    path:     /new
+    defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:new" }
+    methods:  [GET, POST]
+
+establecimiento_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:edit" }
+    methods:  [GET, POST]
+
+establecimiento_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:delete" }
+    methods:  DELETE

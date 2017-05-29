@@ -1,0 +1,75 @@
+Minsal\CoreBundle\Entity\CtlInsumo:
+    type: entity
+    table: ctl_insumo
+    uniqueConstraints:
+        ctl_insumo_nombre_largo_key:
+            columns:
+                - nombre_largo
+    id:
+        id:
+            type: bigint
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        codigoNu:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: codigo_nu
+        codigoSinab:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            column: codigo_sinab
+        codigoEcri:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: codigo_ecri
+        codigoAtc:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: codigo_atc
+        listadoOficial:
+            type: boolean
+            nullable: false
+            column: listado_oficial
+        nombreLargo:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            column: nombre_largo
+    manyToMany:
+        componente:
+            targetEntity: CtlComponente
+            cascade: {  }
+            mappedBy: insumo
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        ctlEstablecimientoid:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: ctlInsumoid
+            joinTable:
+                name: ctl_cuadro_basico
+                joinColumns:
+                    -
+                        name: ctl_insumoid
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: ctl_establecimientoid
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

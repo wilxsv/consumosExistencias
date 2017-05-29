@@ -1,0 +1,12 @@
+insumo_index:
+    path:     /
+    defaults: { _controller: "MinsalCoreBundle:CtlInsumo:index" }
+    methods:  GET
+
+insumo_show:
+    path:     /{id}/show
+    defaults: { _controller: "MinsalCoreBundle:CtlInsumo:show" }
+    methods:  GET
+
+
+

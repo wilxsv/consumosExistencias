@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctlmecanismos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombremecanismo</th>
+                <th>Manualmecanismo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ctlMecanismo in ctlMecanismos %}
+            <tr>
+                <td><a href="{{ path('mecanismo_show', { 'id': ctlMecanismo.id }) }}">{{ ctlMecanismo.id }}</a></td>
+                <td>{{ ctlMecanismo.nombreMecanismo }}</td>
+                <td>{{ ctlMecanismo.manualMecanismo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('mecanismo_show', { 'id': ctlMecanismo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('mecanismo_edit', { 'id': ctlMecanismo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mecanismo_new') }}">Create a new ctlMecanismo</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctltipomovimientos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombremovimiento</th>
+                <th>Descripcionmovmiento</th>
+                <th>Agregamovimiento</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ctlTipoMovimiento in ctlTipoMovimientos %}
+            <tr>
+                <td><a href="{{ path('tipo_movimiento_show', { 'id': ctlTipoMovimiento.id }) }}">{{ ctlTipoMovimiento.id }}</a></td>
+                <td>{{ ctlTipoMovimiento.nombreMovimiento }}</td>
+                <td>{{ ctlTipoMovimiento.descripcionMovmiento }}</td>
+                <td>{{ ctlTipoMovimiento.agregaMovimiento }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tipo_movimiento_show', { 'id': ctlTipoMovimiento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tipo_movimiento_edit', { 'id': ctlTipoMovimiento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tipo_movimiento_new') }}">Create a new ctlTipoMovimiento</a>
+        </li>
+    </ul>
+{% endblock %}

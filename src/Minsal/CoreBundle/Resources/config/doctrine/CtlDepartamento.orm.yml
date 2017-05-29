@@ -1,0 +1,23 @@
+Minsal\CoreBundle\Entity\CtlDepartamento:
+    type: entity
+    table: ctl_departamento
+    uniqueConstraints:
+        ctl_departamento_nombre_departamento_key:
+            columns:
+                - nombre_departamento
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombreDepartamento:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: nombre_departamento
+    lifecycleCallbacks: {  }

@@ -1,0 +1,72 @@
+Minsal\CoreBundle\Entity\CtlAcceso:
+    type: entity
+    table: ctl_acceso
+    indexes:
+        IDX_8566BFCE55258FE8:
+            columns:
+                - acceso_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombreAcceso:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            column: nombre_acceso
+        pathAcceso:
+            type: string
+            nullable: false
+            length: 250
+            fixed: false
+            column: path_acceso
+        publicAcceso:
+            type: boolean
+            nullable: false
+            default: false
+            column: public_acceso
+        ordenAcceso:
+            type: integer
+            nullable: false
+            unsigned: false
+            default: '1'
+            column: orden_acceso
+        visibleAcceso:
+            type: boolean
+            nullable: false
+            default: false
+            column: visible_acceso
+    manyToOne:
+        acceso:
+            targetEntity: CtlAcceso
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                acceso_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        rol:
+            targetEntity: CtlRol
+            cascade: {  }
+            mappedBy: null
+            inversedBy: acceso
+            joinTable:
+                name: ctl_permisos
+                joinColumns:
+                    -
+                        name: acceso_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: rol_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctlinsumos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Codigonu</th>
+                <th>Codigosinab</th>
+                <th>Codigoecri</th>
+                <th>Codigoatc</th>
+                <th>Listadooficial</th>
+                <th>Nombrelargo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ctlInsumo in ctlInsumos %}
+            <tr>
+                <td><a href="{{ path('insumo_show', { 'id': ctlInsumo.id }) }}">{{ ctlInsumo.id }}</a></td>
+                <td>{{ ctlInsumo.codigoNu }}</td>
+                <td>{{ ctlInsumo.codigoSinab }}</td>
+                <td>{{ ctlInsumo.codigoEcri }}</td>
+                <td>{{ ctlInsumo.codigoAtc }}</td>
+                <td>{% if ctlInsumo.listadoOficial %}Yes{% else %}No{% endif %}</td>
+                <td>{{ ctlInsumo.nombreLargo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('insumo_show', { 'id': ctlInsumo.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

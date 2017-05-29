@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctltipomovimiento</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ctlTipoMovimiento.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombremovimiento</th>
+                <td>{{ ctlTipoMovimiento.nombreMovimiento }}</td>
+            </tr>
+            <tr>
+                <th>Descripcionmovmiento</th>
+                <td>{{ ctlTipoMovimiento.descripcionMovmiento }}</td>
+            </tr>
+            <tr>
+                <th>Agregamovimiento</th>
+                <td>{{ ctlTipoMovimiento.agregaMovimiento }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tipo_movimiento_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('tipo_movimiento_edit', { 'id': ctlTipoMovimiento.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,12 @@
+municipio_index:
+    path:     /
+    defaults: { _controller: "MinsalCoreBundle:CtlMunicipio:index" }
+    methods:  GET
+
+municipio_show:
+    path:     /{id}/show
+    defaults: { _controller: "MinsalCoreBundle:CtlMunicipio:show" }
+    methods:  GET
+
+
+

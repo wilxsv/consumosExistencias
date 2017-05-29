@@ -1,3 +1,42 @@
+minsal_core_municipio:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlmunicipio.yml"
+    prefix:   /municipio
+minsal_core_movimiento:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlmovimiento.yml"
+    prefix:   /movimiento
+minsal_core_mecanismo:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlmecanismo.yml"
+    prefix:   /mecanismo
+minsal_core_insumo:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlinsumo.yml"
+    prefix:   /insumo
+minsal_core_existencias:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlexistencias.yml"
+    prefix:   /existencias
+minsal_core_establecimiento:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlestablecimiento.yml"
+    prefix:   /establecimiento
+minsal_core_departamento:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctldepartamento.yml"
+    prefix:   /departamento
+minsal_core_consumo:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlconsumo.yml"
+    prefix:   /consumo
+minsal_core_componente:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlcomponente.yml"
+    prefix:   /componente
+minsal_core_tipo_movimiento:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctltipomovimiento.yml"
+    prefix:   /tipo_movimiento
+minsal_core_admin_rol:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlrol.yml"
+    prefix:   /admin/rol
+minsal_core_admin_acceso:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlacceso.yml"
+    prefix:   /admin/
+
+
+
 minsal_core_homepage:
     path:     /
     defaults: { _controller: MinsalCoreBundle:Default:index }

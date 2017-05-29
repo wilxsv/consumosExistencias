@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctlestablecimientos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombreestablecimiento</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ctlEstablecimiento in ctlEstablecimientos %}
+            <tr>
+                <td><a href="{{ path('establecimiento_show', { 'id': ctlEstablecimiento.id }) }}">{{ ctlEstablecimiento.id }}</a></td>
+                <td>{{ ctlEstablecimiento.nombreEstablecimiento }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('establecimiento_show', { 'id': ctlEstablecimiento.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('establecimiento_edit', { 'id': ctlEstablecimiento.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('establecimiento_new') }}">Create a new ctlEstablecimiento</a>
+        </li>
+    </ul>
+{% endblock %}

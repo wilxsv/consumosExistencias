@@ -1,0 +1,45 @@
+Minsal\CoreBundle\Entity\CtlEstablecimiento:
+    type: entity
+    table: ctl_establecimiento
+    indexes:
+        IDX_332BD42CEAE26BA0:
+            columns:
+                - ctl_municipioid
+    uniqueConstraints:
+        ctl_establecimiento_nombre_establecimiento_key:
+            columns:
+                - nombre_establecimiento
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombreEstablecimiento:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            column: nombre_establecimiento
+    manyToOne:
+        ctlMunicipioid:
+            targetEntity: CtlMunicipio
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_municipioid:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        ctlInsumoid:
+            targetEntity: CtlInsumo
+            cascade: {  }
+            mappedBy: ctlEstablecimientoid
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

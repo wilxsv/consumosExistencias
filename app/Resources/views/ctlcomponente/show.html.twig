@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctlcomponente</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ctlComponente.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombrecomponente</th>
+                <td>{{ ctlComponente.nombreComponente }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('componente_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('componente_edit', { 'id': ctlComponente.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

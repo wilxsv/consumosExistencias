@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctlcomponentes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombrecomponente</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ctlComponente in ctlComponentes %}
+            <tr>
+                <td><a href="{{ path('componente_show', { 'id': ctlComponente.id }) }}">{{ ctlComponente.id }}</a></td>
+                <td>{{ ctlComponente.nombreComponente }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('componente_show', { 'id': ctlComponente.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('componente_edit', { 'id': ctlComponente.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('componente_new') }}">Create a new ctlComponente</a>
+        </li>
+    </ul>
+{% endblock %}

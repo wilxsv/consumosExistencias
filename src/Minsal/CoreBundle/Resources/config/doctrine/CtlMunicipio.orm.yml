@@ -1,0 +1,36 @@
+Minsal\CoreBundle\Entity\CtlMunicipio:
+    type: entity
+    table: ctl_municipio
+    indexes:
+        IDX_914172ED84FB3890:
+            columns:
+                - ctl_departamentoid
+    uniqueConstraints:
+        ctl_municipio_nombre_municipio_key:
+            columns:
+                - nombre_municipio
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombreMunicipio:
+            type: bigint
+            nullable: true
+            unsigned: false
+            column: nombre_municipio
+    manyToOne:
+        ctlDepartamentoid:
+            targetEntity: CtlDepartamento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_departamentoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
