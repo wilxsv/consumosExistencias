@@ -1,1 +1,11 @@
-Hello World!
+{% extends 'base.html.twig' %}
+{% block title %}Informes{% endblock %}
+{% block subtitle %}Se presentan una variedad de informes generales, dar clic para realizar descargas en los periodos seleccionados, solo se muestra informacion de su establecimiento{% endblock %}
+{% block body %}
+<section id="form">
+ <div class="row">
+  {% include 'MinsalReporteBundle::Default/form.html.twig' %}
+  {% include 'MinsalReporteBundle::Default/semaforo.html.twig' %}
+ </div><!-- /.row -->
+</section>
+{% endblock %}
