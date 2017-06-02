@@ -10,8 +10,44 @@
                 <td>{{ ctlDepartamento.id }}</td>
             </tr>
             <tr>
-                <th>Nombredepartamento</th>
-                <td>{{ ctlDepartamento.nombreDepartamento }}</td>
+                <th>Nombre</th>
+                <td>{{ ctlDepartamento.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Codigocnr</th>
+                <td>{{ ctlDepartamento.codigoCnr }}</td>
+            </tr>
+            <tr>
+                <th>Abreviatura</th>
+                <td>{{ ctlDepartamento.abreviatura }}</td>
+            </tr>
+            <tr>
+                <th>Idestablecimientoregion</th>
+                <td>{{ ctlDepartamento.idEstablecimientoRegion }}</td>
+            </tr>
+            <tr>
+                <th>Idpais</th>
+                <td>{{ ctlDepartamento.idPais }}</td>
+            </tr>
+            <tr>
+                <th>Idusuarioreg</th>
+                <td>{{ ctlDepartamento.idUsuarioReg }}</td>
+            </tr>
+            <tr>
+                <th>Fechahorareg</th>
+                <td>{% if ctlDepartamento.fechaHoraReg %}{{ ctlDepartamento.fechaHoraReg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idusuariomod</th>
+                <td>{{ ctlDepartamento.idUsuarioMod }}</td>
+            </tr>
+            <tr>
+                <th>Fechahoramod</th>
+                <td>{% if ctlDepartamento.fechaHoraMod %}{{ ctlDepartamento.fechaHoraMod|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Iso31662</th>
+                <td>{{ ctlDepartamento.iso31662 }}</td>
             </tr>
         </tbody>
     </table>

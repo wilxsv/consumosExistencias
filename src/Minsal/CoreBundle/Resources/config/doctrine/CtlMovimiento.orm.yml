@@ -8,12 +8,12 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
         IDX_B621B540B264D8:
             columns:
                 - establecimiento_origen_id
-        IDX_B621B5403CEA1C61:
-            columns:
-                - ctl_tipo_movimientoid
         IDX_B621B540D05C792B:
             columns:
                 - ctl_insumoid
+        IDX_B621B5403CEA1C61:
+            columns:
+                - ctl_tipo_movimientoid
     id:
         id:
             type: integer
@@ -59,15 +59,6 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
                 establecimiento_origen_id:
                     referencedColumnName: id
             orphanRemoval: false
-        ctlTipoMovimientoid:
-            targetEntity: CtlTipoMovimiento
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                ctl_tipo_movimientoid:
-                    referencedColumnName: id
-            orphanRemoval: false
         ctlInsumoid:
             targetEntity: CtlInsumo
             cascade: {  }
@@ -75,6 +66,15 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
             inversedBy: null
             joinColumns:
                 ctl_insumoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ctlTipoMovimientoid:
+            targetEntity: CtlTipoMovimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_tipo_movimientoid:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

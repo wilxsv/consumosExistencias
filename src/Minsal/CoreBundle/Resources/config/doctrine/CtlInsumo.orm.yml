@@ -1,10 +1,10 @@
 Minsal\CoreBundle\Entity\CtlInsumo:
     type: entity
     table: ctl_insumo
-    uniqueConstraints:
+    indexes:
         ctl_insumo_nombre_largo_key:
             columns:
-                - nombre_largo
+                - nombre_largo_insumo
     id:
         id:
             type: bigint
@@ -20,34 +20,113 @@ Minsal\CoreBundle\Entity\CtlInsumo:
             length: 255
             fixed: false
             column: codigo_nu
-        codigoSinab:
-            type: text
+        ctlProductoid:
+            type: integer
             nullable: true
-            length: null
+            unsigned: false
+            column: ctl_productoid
+        ctlNivelUsoid:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: ctl_nivel_usoid
+        ctlFormaFarmaceuticaId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: ctl_forma_farmaceutica_id
+        ctlPresentacionid:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: ctl_presentacionid
+        ctlProgramaid:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: ctl_programaid
+        ctlUnidadMedidaid:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: ctl_unidad_medidaid
+        grupoid:
+            type: integer
+            nullable: true
+            unsigned: false
+        codigoSinab:
+            type: string
+            nullable: false
+            length: 10
             fixed: false
             column: codigo_sinab
-        codigoEcri:
-            type: string
-            nullable: true
-            length: 255
-            fixed: false
-            column: codigo_ecri
-        codigoAtc:
-            type: string
-            nullable: true
-            length: 255
-            fixed: false
-            column: codigo_atc
+        codificacionInsumo:
+            type: bigint
+            nullable: false
+            unsigned: false
+            default: '0'
+            column: codificacion_insumo
+        codigoSinabExt:
+            type: bigint
+            nullable: false
+            unsigned: false
+            default: '0'
+            column: codigo_sinab_ext
         listadoOficial:
             type: boolean
-            nullable: false
+            nullable: true
+            default: false
             column: listado_oficial
-        nombreLargo:
+        nombreLargoInsumo:
             type: text
-            nullable: false
+            nullable: true
             length: null
             fixed: false
-            column: nombre_largo
+            column: nombre_largo_insumo
+        registroSchema:
+            type: datetime
+            nullable: true
+            default: '(now())::timestamp(0) without time zone'
+            column: registro_schema
+        detalleSchema:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            default: 'Agregado antes de gestor de maestros'
+            column: detalle_schema
+        userIdSchema:
+            type: bigint
+            nullable: true
+            unsigned: false
+            default: '1'
+            column: user_id_schema
+        ipUserSchema:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: 0.0.0.0
+            column: ip_user_schema
+        estadoSchema:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+            column: estado_schema
+        enableSchema:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+            column: enable_schema
+        detalleInsumo:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            default: na
+            column: detalle_insumo
     manyToMany:
         componente:
             targetEntity: CtlComponente

@@ -1,21 +1,24 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Editar de componentes{% endblock %}
+{% block subtitle %}Actualice componentes y asocie productos para hacer seguimiento especial{% endblock %}
 {% block body %}
-    <h1>Ctlcomponente edit</h1>
-
-    {{ form_start(edit_form) }}
+<div class="box">
+ <div class="box-header with-border">
+  <div class="box-tools pull-right">
+   <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+   <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+  </div>
+ </div>
+ <div class="box-body">
+      {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('componente_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+        <input type="submit" value="Actualizar" class="btn  btn-success"/>
+    {{ form_end(edit_form) }}  
+ </div>
+ <div class="box-footer"> <a href="{{ path('componente_index') }}" class="btn  btn-default">Regresar</a> - 
+ {{ form_start(delete_form) }}
+                <input type="submit" value="Borrar" class="btn  btn-danger">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+ </div>
+</div>
 {% endblock %}

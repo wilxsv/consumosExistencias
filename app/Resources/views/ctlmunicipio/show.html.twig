@@ -10,8 +10,36 @@
                 <td>{{ ctlMunicipio.id }}</td>
             </tr>
             <tr>
-                <th>Nombremunicipio</th>
-                <td>{{ ctlMunicipio.nombreMunicipio }}</td>
+                <th>Nombre</th>
+                <td>{{ ctlMunicipio.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Codigocnr</th>
+                <td>{{ ctlMunicipio.codigoCnr }}</td>
+            </tr>
+            <tr>
+                <th>Abreviatura</th>
+                <td>{{ ctlMunicipio.abreviatura }}</td>
+            </tr>
+            <tr>
+                <th>Idusuarioreg</th>
+                <td>{{ ctlMunicipio.idUsuarioReg }}</td>
+            </tr>
+            <tr>
+                <th>Fechahorareg</th>
+                <td>{% if ctlMunicipio.fechaHoraReg %}{{ ctlMunicipio.fechaHoraReg|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Idusuariomod</th>
+                <td>{{ ctlMunicipio.idUsuarioMod }}</td>
+            </tr>
+            <tr>
+                <th>Fechahoramod</th>
+                <td>{% if ctlMunicipio.fechaHoraMod %}{{ ctlMunicipio.fechaHoraMod|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Cabecera</th>
+                <td>{% if ctlMunicipio.cabecera %}Yes{% else %}No{% endif %}</td>
             </tr>
         </tbody>
     </table>

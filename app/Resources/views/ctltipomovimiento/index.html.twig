@@ -1,43 +1,68 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Catalogo de tipos de movimientos entre almacenes{% endblock %}
+{% block subtitle %}Representa las operaciones entre almacenes{% endblock %}
 {% block body %}
-    <h1>Ctltipomovimientos list</h1>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombremovimiento</th>
-                <th>Descripcionmovmiento</th>
-                <th>Agregamovimiento</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="tabla" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                <th>Nombre mecanismo</th>
+                <th>Descripción</th>
+                <th>Efectos en inventario</th>
+                </tr>
+                </thead>
+                <tbody>
         {% for ctlTipoMovimiento in ctlTipoMovimientos %}
             <tr>
-                <td><a href="{{ path('tipo_movimiento_show', { 'id': ctlTipoMovimiento.id }) }}">{{ ctlTipoMovimiento.id }}</a></td>
                 <td>{{ ctlTipoMovimiento.nombreMovimiento }}</td>
                 <td>{{ ctlTipoMovimiento.descripcionMovmiento }}</td>
-                <td>{{ ctlTipoMovimiento.agregaMovimiento }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('tipo_movimiento_show', { 'id': ctlTipoMovimiento.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('tipo_movimiento_edit', { 'id': ctlTipoMovimiento.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{% if ctlTipoMovimiento.agregaMovimiento %}Incrementa{% else %}Decrementa{% endif %}</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+                </tbody>
+                <tfoot>
+                <tr>
+                <th>Nombre mecanismo</th>
+                <th>Descripción</th>
+                <th>Efectos en los almacenes</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>    
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('tipo_movimiento_new') }}">Create a new ctlTipoMovimiento</a>
-        </li>
-    </ul>
+{% block footer_js %}
+<!-- DataTables -->
+<script src="{{ asset('assets/') }}core/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('assets/') }}core/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $("#tabla").DataTable();
+    $('#e').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 {% endblock %}

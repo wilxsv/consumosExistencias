@@ -13,7 +13,7 @@ class CtlMovimientoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('fechaMovimiento')->add('tipoMovimiento')->add('cantidad')->add('fechaRegistroMovimiento')->add('ctlEstablecimientoid')->add('establecimientoOrigen')->add('ctlTipoMovimientoid')->add('ctlInsumoid');
+        $builder->add('fechaMovimiento')->add('tipoMovimiento')->add('cantidad')->add('ctlEstablecimientoid')->add('establecimientoOrigen')->add('ctlTipoMovimientoid')->add('ctlInsumoid');
     }
     
     /**

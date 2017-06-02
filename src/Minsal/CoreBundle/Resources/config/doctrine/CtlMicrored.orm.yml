@@ -1,16 +1,11 @@
-Minsal\CoreBundle\Entity\CtlMunicipio:
+Minsal\CoreBundle\Entity\CtlMicrored:
     type: entity
-    table: ctl_municipio
-    indexes:
-        idx_914172ed6325e299:
-            columns:
-                - id_departamento
+    table: ctl_microred
     id:
         id:
             type: integer
             nullable: false
             unsigned: false
-            comment: 'Identificador código de municipio'
             id: true
             generator:
                 strategy: SEQUENCE
@@ -20,20 +15,11 @@ Minsal\CoreBundle\Entity\CtlMunicipio:
             nullable: true
             length: 150
             fixed: false
-            comment: 'Descripción nombre del Municipio'
-        codigoCnr:
-            type: string
+            comment: 'Descripción nombre de la microred'
+        activo:
+            type: boolean
             nullable: true
-            length: 5
-            fixed: false
-            comment: 'Identificador Código de Municipio según CNR'
-            column: codigo_cnr
-        abreviatura:
-            type: string
-            nullable: true
-            length: 60
-            fixed: false
-            comment: 'Abreviatura de Municipio'
+            comment: 'Identificador estado activo o inactivo de la microred true o false'
         idUsuarioReg:
             type: string
             nullable: true
@@ -58,18 +44,9 @@ Minsal\CoreBundle\Entity\CtlMunicipio:
             nullable: true
             comment: 'Auditoría fecha y hora modificación del registro'
             column: fecha_hora_mod
-        cabecera:
-            type: boolean
+        codigoc3:
+            type: integer
             nullable: false
-            comment: 'Identificador para determinar si se incluyen o no las cabeceras departamentales'
-    manyToOne:
-        idDepartamento:
-            targetEntity: CtlDepartamento
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                id_departamento:
-                    referencedColumnName: id
-            orphanRemoval: false
+            unsigned: false
+            comment: 'Número correlativo para cada cabeza de microred de las Unidades Comunitarias de Salud Familiar, asociándolas a su respectivo Sistema Básico de Salud Integral (SIBASI) en forma ascendente'
     lifecycleCallbacks: {  }

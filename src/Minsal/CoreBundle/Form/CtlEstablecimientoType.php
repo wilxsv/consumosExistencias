@@ -13,7 +13,8 @@ class CtlEstablecimientoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombreEstablecimiento')->add('ctlMunicipioid')->add('ctlInsumoid');
+        $builder->add('nombre', 'text', array('label'  => 'Nombre del establecimiento', 'read_only'  => true))
+                ->add('ctlInsumoid', 'entity',array('label'  => 'Productos del cuadro básico:', 'class' => 'MinsalCoreBundle:CtlInsumo', 'required' => false, 'multiple' => true));
     }
     
     /**

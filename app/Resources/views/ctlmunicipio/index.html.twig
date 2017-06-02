@@ -7,7 +7,14 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nombremunicipio</th>
+                <th>Nombre</th>
+                <th>Codigocnr</th>
+                <th>Abreviatura</th>
+                <th>Idusuarioreg</th>
+                <th>Fechahorareg</th>
+                <th>Idusuariomod</th>
+                <th>Fechahoramod</th>
+                <th>Cabecera</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -15,7 +22,14 @@
         {% for ctlMunicipio in ctlMunicipios %}
             <tr>
                 <td><a href="{{ path('municipio_show', { 'id': ctlMunicipio.id }) }}">{{ ctlMunicipio.id }}</a></td>
-                <td>{{ ctlMunicipio.nombreMunicipio }}</td>
+                <td>{{ ctlMunicipio.nombre }}</td>
+                <td>{{ ctlMunicipio.codigoCnr }}</td>
+                <td>{{ ctlMunicipio.abreviatura }}</td>
+                <td>{{ ctlMunicipio.idUsuarioReg }}</td>
+                <td>{% if ctlMunicipio.fechaHoraReg %}{{ ctlMunicipio.fechaHoraReg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ ctlMunicipio.idUsuarioMod }}</td>
+                <td>{% if ctlMunicipio.fechaHoraMod %}{{ ctlMunicipio.fechaHoraMod|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if ctlMunicipio.cabecera %}Yes{% else %}No{% endif %}</td>
                 <td>
                     <ul>
                         <li>

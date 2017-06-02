@@ -33,20 +33,15 @@ class CtlExistenciasController extends Controller
      */
     public function newAction(Request $request)
     {
-        $ctlExistencia = new Ctlexistencia();
-        $form = $this->createForm('Minsal\CoreBundle\Form\CtlExistenciasType', $ctlExistencia);
+        //$ctlExistencia = new CtlExistencia();
+        $form = $this->createForm('Minsal\CoreBundle\Form\CtlExistenciasType');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ctlExistencia);
-            $em->flush();
 
-            return $this->redirectToRoute('existencias_show', array('id' => $ctlExistencia->getId()));
         }
 
         return $this->render('ctlexistencias/new.html.twig', array(
-            'ctlExistencia' => $ctlExistencia,
             'form' => $form->createView(),
         ));
     }

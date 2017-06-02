@@ -7,7 +7,16 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nombredepartamento</th>
+                <th>Nombre</th>
+                <th>Codigocnr</th>
+                <th>Abreviatura</th>
+                <th>Idestablecimientoregion</th>
+                <th>Idpais</th>
+                <th>Idusuarioreg</th>
+                <th>Fechahorareg</th>
+                <th>Idusuariomod</th>
+                <th>Fechahoramod</th>
+                <th>Iso31662</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -15,7 +24,16 @@
         {% for ctlDepartamento in ctlDepartamentos %}
             <tr>
                 <td><a href="{{ path('departamento_show', { 'id': ctlDepartamento.id }) }}">{{ ctlDepartamento.id }}</a></td>
-                <td>{{ ctlDepartamento.nombreDepartamento }}</td>
+                <td>{{ ctlDepartamento.nombre }}</td>
+                <td>{{ ctlDepartamento.codigoCnr }}</td>
+                <td>{{ ctlDepartamento.abreviatura }}</td>
+                <td>{{ ctlDepartamento.idEstablecimientoRegion }}</td>
+                <td>{{ ctlDepartamento.idPais }}</td>
+                <td>{{ ctlDepartamento.idUsuarioReg }}</td>
+                <td>{% if ctlDepartamento.fechaHoraReg %}{{ ctlDepartamento.fechaHoraReg|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ ctlDepartamento.idUsuarioMod }}</td>
+                <td>{% if ctlDepartamento.fechaHoraMod %}{{ ctlDepartamento.fechaHoraMod|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ ctlDepartamento.iso31662 }}</td>
                 <td>
                     <ul>
                         <li>

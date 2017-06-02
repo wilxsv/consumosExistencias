@@ -1,16 +1,22 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Registro de componentes{% endblock %}
+{% block subtitle %}registre componentes y asocie productos para hacer seguimiento especial{% endblock %}
 {% block body %}
-    <h1>Ctlcomponente creation</h1>
-
-    {{ form_start(form) }}
+<div class="box">
+ <div class="box-header with-border">
+  <div class="box-tools pull-right">
+   <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+   <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+  </div>
+ </div>
+ <div class="box-body">
+  
+  {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('componente_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <input type="submit" value="Agregar" class="btn  btn-success"/>
+  {{ form_end(form) }}
+  
+ </div>
+ <div class="box-footer"> <a href="{{ path('componente_index') }}">Regresar</a></div>
+</div>
 {% endblock %}

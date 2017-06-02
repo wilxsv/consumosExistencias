@@ -1,32 +1,39 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Establecimiento [{{ ctlEstablecimiento.nombre }}]{% endblock %}
+{% block subtitle %}Al editar puede actualizar el cuadro basico{% endblock %}
 {% block body %}
-    <h1>Ctlestablecimiento</h1>
-
-    <table>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+        <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ ctlEstablecimiento.id }}</td>
+                <th>Nombre</th>
+                <td>{{ ctlEstablecimiento.nombre }}</td>
             </tr>
             <tr>
-                <th>Nombreestablecimiento</th>
-                <td>{{ ctlEstablecimiento.nombreEstablecimiento }}</td>
+                <th>Direccion</th>
+                <td>{{ ctlEstablecimiento.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ ctlEstablecimiento.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ ctlEstablecimiento.fax }}</td>
             </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('establecimiento_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('establecimiento_edit', { 'id': ctlEstablecimiento.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <p>
+     <a href="{{ path('establecimiento_index') }}" class="btn  btn-default">Regresar a la lista</a>
+     <a href="{{ path('establecimiento_edit', { 'id': ctlEstablecimiento.id }) }}" class="btn  btn-primary" >Editar</a>
+     {{ form_start(delete_form) }}<input type="submit" value="Borrar" class="btn  btn-danger">{{ form_end(delete_form) }}
+    </p>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>    
 {% endblock %}

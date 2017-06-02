@@ -2,36 +2,285 @@ Minsal\CoreBundle\Entity\CtlEstablecimiento:
     type: entity
     table: ctl_establecimiento
     indexes:
-        IDX_332BD42CEAE26BA0:
+        idx_332bd42c7ead49c7:
             columns:
-                - ctl_municipioid
-    uniqueConstraints:
-        ctl_establecimiento_nombre_establecimiento_key:
+                - id_municipio
+        IDX_332BD42C3544B551:
             columns:
-                - nombre_establecimiento
+                - id_establecimiento_padre
     id:
         id:
             type: integer
             nullable: false
             unsigned: false
+            comment: 'Identificar ID del establecimiento'
             id: true
             generator:
                 strategy: SEQUENCE
     fields:
-        nombreEstablecimiento:
-            type: text
+        idTipoEstablecimiento:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: 'Tipo de establecimiento según Institución'
+            column: id_tipo_establecimiento
+        nombre:
+            type: string
+            nullable: true
+            length: 150
+            fixed: false
+            comment: 'Descripción Nombre del establecimiento'
+        direccion:
+            type: string
+            nullable: true
+            length: 300
+            fixed: false
+            comment: 'Dirección donde se encuentra ubicado el establecimiento'
+        telefono:
+            type: string
+            nullable: true
+            length: 15
+            fixed: false
+            comment: 'Número de Teléfono del establecimiento'
+        fax:
+            type: string
+            nullable: true
+            length: 15
+            fixed: false
+            comment: 'Número de Fax del establecimiento'
+        latitud:
+            type: decimal
+            nullable: true
+            precision: 13
+            scale: 8
+            comment: 'Coordenadas geografica latitud (norte o sur) donde se encuentra ubicado el establecimiento'
+        longitud:
+            type: decimal
+            nullable: true
+            precision: 13
+            scale: 8
+            comment: 'Coordenadas geográfica longitud (este u oeste) donde se encuentra ubicado el establecimiento'
+        idInstitucion:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: 'Identificador Institucion a la que pertenece el establecimiento'
+            column: id_institucion
+        anioApertura:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: 'Año en el cual se apertura el establecimiento'
+            column: anio_apertura
+        idCatNivelMinsal:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: id_cat_nivel_minsal
+        codestabConsumos:
+            type: string
+            nullable: true
+            length: 18
+            fixed: false
+            column: codestab_consumos
+        codestabSiaf:
+            type: string
+            nullable: true
+            length: 4
+            fixed: false
+            column: codestab_siaf
+        codUcsf:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: cod_ucsf
+        idCatTipoExpediente:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: id_cat_tipo_expediente
+        idCatTipoFarmacia:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: id_cat_tipo_farmacia
+        idCatTipoConsumo:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: id_cat_tipo_consumo
+        instMortalidad:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: inst_mortalidad
+        digitaMortalidad:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: digita_mortalidad
+        cvcd4:
+            type: integer
+            nullable: true
+            unsigned: false
+        idCatPruebas:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: id_cat_pruebas
+        activo:
+            type: boolean
+            nullable: true
+            comment: 'Identificador estado del establecimiento true o false'
+        idUsuarioReg:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: 'Auditoría usuario ingreso el registro'
+            column: id_usuario_reg
+        fechaHoraReg:
+            type: datetime
+            nullable: true
+            comment: 'Auditoría fecha y hora ingreso de registro'
+            column: fecha_hora_reg
+        idUsuarioMod:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: 'Auditoría usuario modificó el registro'
+            column: id_usuario_mod
+        fechaHoraMod:
+            type: datetime
+            nullable: true
+            comment: 'Auditoría fecha y hora modificación del registro'
+            column: fecha_hora_mod
+        idestablesimow:
+            type: integer
+            nullable: true
+            unsigned: false
+        idestablevigepes:
+            type: integer
+            nullable: true
+            unsigned: false
+        estadoVigepes:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: estado_vigepes
+        estadoVacunas:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: estado_vacunas
+        estadoSeps:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: estado_seps
+        estadoSimow:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: estado_simow
+        idestablesumeve:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: 'Id establecimiento de SUMEVE'
+        estadoSumeve:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: 'Estado del sumeve'
+            column: estado_sumeve
+        cabezaMicrored:
+            type: boolean
+            nullable: true
+            comment: 'Identificador para establecer si el establecimiento es o no cabeza de red (true o false)'
+            default: false
+            column: cabeza_microred
+        hospitalizacion:
+            type: boolean
+            nullable: true
+            default: false
+        idmicrored:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: 'Identificador id de microred a la que pertenecen establecimientos del MINSAL'
+        poblacionAsignana:
+            type: bigint
             nullable: false
+            unsigned: false
+            default: '1'
+            column: poblacion_asignana
+        cantidadFamilia:
+            type: bigint
+            nullable: false
+            unsigned: false
+            default: '1'
+            column: cantidad_familia
+        idSituacionLegal:
+            type: bigint
+            nullable: false
+            unsigned: false
+            default: '1'
+            column: id_situacion_legal
+        registroSchema:
+            type: datetime
+            nullable: true
+            column: registro_schema
+        detalleSchema:
+            type: text
+            nullable: true
             length: null
             fixed: false
-            column: nombre_establecimiento
+            default: 'Agregado antes de gestor de maestros'
+            column: detalle_schema
+        userIdSchema:
+            type: bigint
+            nullable: true
+            unsigned: false
+            default: '1'
+            column: user_id_schema
+        ipUserSchema:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: '::1'
+            column: ip_user_schema
+        estadoSchema:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+            column: estado_schema
+        enableSchema:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+            column: enable_schema
     manyToOne:
-        ctlMunicipioid:
+        idEstablecimientoPadre:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_establecimiento_padre:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idMunicipio:
             targetEntity: CtlMunicipio
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                ctl_municipioid:
+                id_municipio:
                     referencedColumnName: id
             orphanRemoval: false
     manyToMany:

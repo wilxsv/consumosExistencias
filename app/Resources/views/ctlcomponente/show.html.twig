@@ -1,32 +1,27 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Componente [{{ ctlComponente.nombreComponente }}]{% endblock %}
+{% block subtitle %}Detalles de componente{% endblock %}
 {% block body %}
-    <h1>Ctlcomponente</h1>
-
-    <table>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+        <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ ctlComponente.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombrecomponente</th>
+                <th>Nombre de componente o programa</th>
                 <td>{{ ctlComponente.nombreComponente }}</td>
             </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('componente_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('componente_edit', { 'id': ctlComponente.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <p>
+     <a href="{{ path('componente_index') }}" class="btn  btn-default">Regresar a la lista</a>
+     <a href="{{ path('componente_edit', { 'id': ctlComponente.id }) }}" class="btn  btn-primary" >Editar</a>
+     {{ form_start(delete_form) }}<input type="submit" value="Borrar" class="btn  btn-danger">{{ form_end(delete_form) }}
+    </p>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>    
 {% endblock %}

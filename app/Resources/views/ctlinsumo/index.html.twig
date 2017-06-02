@@ -1,42 +1,71 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Catalogo de insumos{% endblock %}
+{% block subtitle %}Insumos oficiales en uso{% endblock %}
 {% block body %}
-    <h1>Ctlinsumos list</h1>
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          
 
-    <table>
-        <thead>
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="tabla" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Codigo Sinab</th>
+                  <th>Listado oficial</th>
+                  <th>Nombre largo</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ctlInsumo in ctlInsumos %}
             <tr>
-                <th>Id</th>
-                <th>Codigonu</th>
-                <th>Codigosinab</th>
-                <th>Codigoecri</th>
-                <th>Codigoatc</th>
-                <th>Listadooficial</th>
-                <th>Nombrelargo</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ctlInsumo in ctlInsumos %}
-            <tr>
-                <td><a href="{{ path('insumo_show', { 'id': ctlInsumo.id }) }}">{{ ctlInsumo.id }}</a></td>
-                <td>{{ ctlInsumo.codigoNu }}</td>
+                <td>{{ ctlInsumo.id }}</td>
                 <td>{{ ctlInsumo.codigoSinab }}</td>
-                <td>{{ ctlInsumo.codigoEcri }}</td>
-                <td>{{ ctlInsumo.codigoAtc }}</td>
-                <td>{% if ctlInsumo.listadoOficial %}Yes{% else %}No{% endif %}</td>
-                <td>{{ ctlInsumo.nombreLargo }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('insumo_show', { 'id': ctlInsumo.id }) }}">show</a>
-                        </li>
-                    </ul>
-                </td>
+                <td>{% if ctlInsumo.listadoOficial %}Si{% else %}No{% endif %}</td>
+                <td>{{ ctlInsumo.nombreLargoInsumo }}</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>ID</th>
+                  <th>Codigo Sinab</th>
+                  <th>Listado oficial</th>
+                  <th>Nombre largo</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>    
+{% endblock %}
 
-    
+{% block footer_js %}
+<!-- DataTables -->
+<script src="{{ asset('assets/') }}core/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ asset('assets/') }}core/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $("#tabla").DataTable();
+    $('#e').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
 {% endblock %}

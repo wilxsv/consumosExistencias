@@ -2,12 +2,12 @@ Minsal\CoreBundle\Entity\CtlConsumo:
     type: entity
     table: ctl_consumo
     indexes:
-        IDX_285219DCD05C792B:
-            columns:
-                - ctl_insumoid
         IDX_285219DC7B62918:
             columns:
                 - ctl_establecimientoid
+        IDX_285219DCD05C792B:
+            columns:
+                - ctl_insumoid
         IDX_285219DC46F39AED:
             columns:
                 - ctl_mecanismoid
@@ -39,15 +39,6 @@ Minsal\CoreBundle\Entity\CtlConsumo:
             unsigned: false
             column: user_id
     manyToOne:
-        ctlInsumoid:
-            targetEntity: CtlInsumo
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                ctl_insumoid:
-                    referencedColumnName: id
-            orphanRemoval: false
         ctlEstablecimientoid:
             targetEntity: CtlEstablecimiento
             cascade: {  }
@@ -55,6 +46,15 @@ Minsal\CoreBundle\Entity\CtlConsumo:
             inversedBy: null
             joinColumns:
                 ctl_establecimientoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ctlInsumoid:
+            targetEntity: CtlInsumo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_insumoid:
                     referencedColumnName: id
             orphanRemoval: false
         ctlMecanismoid:
