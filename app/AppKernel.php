@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Minsal\PlantillaBundle\MinsalPlantillaBundle(),
             new Minsal\ReporteBundle\MinsalReporteBundle(),
             new Minsal\RutinaBundle\MinsalRutinaBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
