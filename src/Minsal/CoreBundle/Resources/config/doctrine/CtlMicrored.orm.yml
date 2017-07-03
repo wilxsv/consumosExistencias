@@ -1,0 +1,24 @@
+Minsal\CoreBundle\Entity\CtlMicrored:
+    type: entity
+    table: ctl_microred
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombre:
+            type: string
+            nullable: true
+            length: 150
+            fixed: false
+            comment: 'Descripción nombre de la microred'
+        codigoc3:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: 'Número correlativo para cada cabeza de microred de las Unidades Comunitarias de Salud Familiar, asociándolas a su respectivo Sistema Básico de Salud Integral (SIBASI) en forma ascendente'
+    lifecycleCallbacks: {  }

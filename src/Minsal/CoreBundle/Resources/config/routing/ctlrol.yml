@@ -1,0 +1,24 @@
+admin_rol_index:
+    path:     /
+    defaults: { _controller: "MinsalCoreBundle:CtlRol:index" }
+    methods:  GET
+
+admin_rol_show:
+    path:     /{id}/show
+    defaults: { _controller: "MinsalCoreBundle:CtlRol:show" }
+    methods:  GET
+
+admin_rol_new:
+    path:     /new
+    defaults: { _controller: "MinsalCoreBundle:CtlRol:new" }
+    methods:  [GET, POST]
+
+admin_rol_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MinsalCoreBundle:CtlRol:edit" }
+    methods:  [GET, POST]
+
+admin_rol_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MinsalCoreBundle:CtlRol:delete" }
+    methods:  DELETE

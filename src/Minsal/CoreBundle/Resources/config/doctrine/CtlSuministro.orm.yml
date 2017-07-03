@@ -1,0 +1,41 @@
+Minsal\CoreBundle\Entity\CtlSuministro:
+    type: entity
+    table: ctl_suministro
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombreSuministro:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: nombre_suministro
+        ctlSuministroid:
+            type: bigint
+            nullable: true
+            unsigned: false
+            column: ctl_suministroid
+        registroSchema:
+            type: datetime
+            nullable: true
+            default: '2017-02-26 21:29:15.600166'
+            column: registro_schema
+        enableSchema:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+            column: enable_schema
+        codificacionSuministro:
+            type: bigint
+            nullable: false
+            unsigned: false
+            default: '1'
+            column: codificacion_suministro
+    lifecycleCallbacks: {  }

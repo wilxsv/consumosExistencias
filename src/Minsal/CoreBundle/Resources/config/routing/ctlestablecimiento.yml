@@ -1,0 +1,14 @@
+configuracion_establecimientos_index:
+    path:     /
+    defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:index" }
+    methods:  GET
+
+configuracion_establecimientos_show:
+    path:     /{id}/show
+    defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:show" }
+    methods:  GET
+    
+configuracion_establecimientos_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:edit" }
+    methods:  [GET, POST]

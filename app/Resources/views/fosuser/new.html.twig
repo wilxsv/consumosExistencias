@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}Agregar persona usuaria{% endblock %}
+{% block body %}
+<div class="row">
+ <div class="col-xs-12">
+  <div class="box">
+   <div class="box-header with-border">
+    <h4>Datos</h4>
+    <div class="box-tools pull-right">
+     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Ocultar">
+     <i class="fa fa-minus"></i></button>
+     <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Salir">
+     <i class="fa fa-times"></i></button>
+    </div>
+   </div>
+   <div class="box-body" style="">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Agregar" class="btn btn-primary" />
+    {{ form_end(form) }}
+   </div>
+   <div class="box-footer" style="">
+    <a href="{{ path('admin_personas_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock %}

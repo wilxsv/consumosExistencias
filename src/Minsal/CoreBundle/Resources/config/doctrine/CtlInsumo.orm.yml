@@ -1,0 +1,101 @@
+Minsal\CoreBundle\Entity\CtlInsumo:
+    type: entity
+    table: ctl_insumo
+    indexes:
+        ctl_insumo_nombre_largo_key:
+            columns:
+                - nombre_largo_insumo
+    id:
+        id:
+            type: bigint
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        codigoNu:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            column: codigo_nu
+        grupoid:
+            type: integer
+            nullable: true
+            unsigned: false
+        codigoSinab:
+            type: string
+            nullable: false
+            length: 10
+            fixed: false
+            column: codigo_sinab
+        listadoOficial:
+            type: boolean
+            nullable: true
+            default: false
+            column: listado_oficial
+        nombreLargoInsumo:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            column: nombre_largo_insumo
+        registroSchema:
+            type: datetime
+            nullable: true
+            column: registro_schema
+        enableSchema:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+            column: enable_schema
+        detalleInsumo:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            default: na
+            column: detalle_insumo
+    manyToMany:
+        establecimiento:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: insumo
+            joinTable:
+                name: historico_cuadro_basico
+                joinColumns:
+                    -
+                        name: insumo_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: establecimiento_id
+                        referencedColumnName: id
+            orderBy: null
+        componente:
+            targetEntity: CtlComponente
+            cascade: {  }
+            mappedBy: insumo
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        ctlEstablecimientoid:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: ctlInsumoid
+            joinTable:
+                name: ctl_cuadro_basico
+                joinColumns:
+                    -
+                        name: ctl_insumoid
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: ctl_establecimientoid
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

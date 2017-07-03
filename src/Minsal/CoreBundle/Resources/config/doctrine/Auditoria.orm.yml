@@ -1,0 +1,33 @@
+Minsal\CoreBundle\Entity\Auditoria:
+    type: entity
+    table: auditoria
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        tipoOperacion:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: tipo_operacion
+        tablaOperacion:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            column: tabla_operacion
+        indiceOperacion:
+            type: bigint
+            nullable: false
+            unsigned: false
+            column: indice_operacion
+        userid:
+            type: bigint
+            nullable: false
+            unsigned: false
+    lifecycleCallbacks: {  }

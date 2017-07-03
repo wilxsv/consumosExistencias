@@ -1,0 +1,40 @@
+Minsal\CoreBundle\Entity\CtlComponente:
+    type: entity
+    table: ctl_componente
+    uniqueConstraints:
+        ctl_componente_nombre_componente_key:
+            columns:
+                - nombre_componente
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombreComponente:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: nombre_componente
+    manyToMany:
+        insumo:
+            targetEntity: CtlInsumo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: componente
+            joinTable:
+                name: componente_insumo
+                joinColumns:
+                    -
+                        name: componente_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: insumo_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

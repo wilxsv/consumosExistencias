@@ -1,0 +1,24 @@
+admin_personas_index:
+    path:     /
+    defaults: { _controller: "MinsalCoreBundle:FosUser:index" }
+    methods:  GET
+
+admin_personas_show:
+    path:     /{id}/show
+    defaults: { _controller: "MinsalCoreBundle:FosUser:show" }
+    methods:  GET
+
+admin_personas_new:
+    path:     /new
+    defaults: { _controller: "MinsalCoreBundle:FosUser:new" }
+    methods:  [GET, POST]
+
+admin_personas_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MinsalCoreBundle:FosUser:edit" }
+    methods:  [GET, POST]
+
+admin_personas_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MinsalCoreBundle:FosUser:delete" }
+    methods:  DELETE

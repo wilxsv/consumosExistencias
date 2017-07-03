@@ -1,3 +1,13 @@
+minsal_core_admin_rol:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlrol.yml"
+    prefix:   /admin/rol
+minsal_core_configuracion_establecimientos:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlestablecimiento.yml"
+    prefix:   /configuracion/establecimientos
+minsal_core_admin_personas:
+    resource: "@MinsalCoreBundle/Resources/config/routing/fosuser.yml"
+    prefix:   /admin/personas
+
 minsal_core_homepage:
     path:     /
     defaults: { _controller: MinsalCoreBundle:Default:index }
@@ -10,3 +20,9 @@ minsal_core_registro_manual:
 minsal_core_registro_archivo:
     path:     /registro/archivo
     defaults: { _controller: MinsalCoreBundle:Default:archivo }
+
+
+minsal_core_configuracion_cuadro:
+    path:     /configuracion/cuadrosbasicos
+    defaults: { _controller: MinsalCoreBundle:Default:cuadro }
+    methods:  [GET, POST]

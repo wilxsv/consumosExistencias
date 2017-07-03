@@ -1,0 +1,37 @@
+Minsal\CoreBundle\Entity\CtlDepartamento:
+    type: entity
+    table: ctl_departamento
+    indexes:
+        idx_ctl_departamento_nombre:
+            columns:
+                - nombre
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: 'Identificador codigo catálogo maestro para cada departamento'
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+            comment: 'Descripción nombre del departamento'
+        codigoCnr:
+            type: string
+            nullable: true
+            length: 5
+            fixed: false
+            comment: 'Código CNR para departamento'
+            column: codigo_cnr
+        abreviatura:
+            type: string
+            nullable: true
+            length: 5
+            fixed: false
+            comment: 'Abreviatura departamento'
+    lifecycleCallbacks: {  }
