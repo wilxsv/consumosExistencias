@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ctltipoestablecimientos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Idinstitucion</th>
+                <th>Codigo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ctlTipoEstablecimiento in ctlTipoEstablecimientos %}
+            <tr>
+                <td><a href="{{ path('configuracion_tipoestablecimientos_show', { 'id': ctlTipoEstablecimiento.id }) }}">{{ ctlTipoEstablecimiento.id }}</a></td>
+                <td>{{ ctlTipoEstablecimiento.nombre }}</td>
+                <td>{{ ctlTipoEstablecimiento.idInstitucion }}</td>
+                <td>{{ ctlTipoEstablecimiento.codigo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('configuracion_tipoestablecimientos_show', { 'id': ctlTipoEstablecimiento.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

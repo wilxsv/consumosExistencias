@@ -15,72 +15,6 @@ class CtlMunicipio
     private $id;
 
     /**
-     * @var integer
-     */
-    private $nombreMunicipio;
-
-    /**
-     * @var \Minsal\CoreBundle\Entity\CtlDepartamento
-     */
-    private $ctlDepartamentoid;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set nombreMunicipio
-     *
-     * @param integer $nombreMunicipio
-     * @return CtlMunicipio
-     */
-    public function setNombreMunicipio($nombreMunicipio)
-    {
-        $this->nombreMunicipio = $nombreMunicipio;
-
-        return $this;
-    }
-
-    /**
-     * Get nombreMunicipio
-     *
-     * @return integer 
-     */
-    public function getNombreMunicipio()
-    {
-        return $this->nombreMunicipio;
-    }
-
-    /**
-     * Set ctlDepartamentoid
-     *
-     * @param \Minsal\CoreBundle\Entity\CtlDepartamento $ctlDepartamentoid
-     * @return CtlMunicipio
-     */
-    public function setCtlDepartamentoid(\Minsal\CoreBundle\Entity\CtlDepartamento $ctlDepartamentoid = null)
-    {
-        $this->ctlDepartamentoid = $ctlDepartamentoid;
-
-        return $this;
-    }
-
-    /**
-     * Get ctlDepartamentoid
-     *
-     * @return \Minsal\CoreBundle\Entity\CtlDepartamento 
-     */
-    public function getCtlDepartamentoid()
-    {
-        return $this->ctlDepartamentoid;
-    }
-    /**
      * @var string
      */
     private $nombre;
@@ -96,26 +30,6 @@ class CtlMunicipio
     private $abreviatura;
 
     /**
-     * @var string
-     */
-    private $idUsuarioReg;
-
-    /**
-     * @var \DateTime
-     */
-    private $fechaHoraReg;
-
-    /**
-     * @var string
-     */
-    private $idUsuarioMod;
-
-    /**
-     * @var \DateTime
-     */
-    private $fechaHoraMod;
-
-    /**
      * @var boolean
      */
     private $cabecera;
@@ -125,6 +39,16 @@ class CtlMunicipio
      */
     private $idDepartamento;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set nombre
@@ -193,98 +117,6 @@ class CtlMunicipio
     public function getAbreviatura()
     {
         return $this->abreviatura;
-    }
-
-    /**
-     * Set idUsuarioReg
-     *
-     * @param string $idUsuarioReg
-     * @return CtlMunicipio
-     */
-    public function setIdUsuarioReg($idUsuarioReg)
-    {
-        $this->idUsuarioReg = $idUsuarioReg;
-
-        return $this;
-    }
-
-    /**
-     * Get idUsuarioReg
-     *
-     * @return string 
-     */
-    public function getIdUsuarioReg()
-    {
-        return $this->idUsuarioReg;
-    }
-
-    /**
-     * Set fechaHoraReg
-     *
-     * @param \DateTime $fechaHoraReg
-     * @return CtlMunicipio
-     */
-    public function setFechaHoraReg($fechaHoraReg)
-    {
-        $this->fechaHoraReg = $fechaHoraReg;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaHoraReg
-     *
-     * @return \DateTime 
-     */
-    public function getFechaHoraReg()
-    {
-        return $this->fechaHoraReg;
-    }
-
-    /**
-     * Set idUsuarioMod
-     *
-     * @param string $idUsuarioMod
-     * @return CtlMunicipio
-     */
-    public function setIdUsuarioMod($idUsuarioMod)
-    {
-        $this->idUsuarioMod = $idUsuarioMod;
-
-        return $this;
-    }
-
-    /**
-     * Get idUsuarioMod
-     *
-     * @return string 
-     */
-    public function getIdUsuarioMod()
-    {
-        return $this->idUsuarioMod;
-    }
-
-    /**
-     * Set fechaHoraMod
-     *
-     * @param \DateTime $fechaHoraMod
-     * @return CtlMunicipio
-     */
-    public function setFechaHoraMod($fechaHoraMod)
-    {
-        $this->fechaHoraMod = $fechaHoraMod;
-
-        return $this;
-    }
-
-    /**
-     * Get fechaHoraMod
-     *
-     * @return \DateTime 
-     */
-    public function getFechaHoraMod()
-    {
-        return $this->fechaHoraMod;
     }
 
     /**

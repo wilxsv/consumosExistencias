@@ -1,0 +1,12 @@
+configuracion_tipoestablecimientos_index:
+    path:     /
+    defaults: { _controller: "MinsalCoreBundle:CtlTipoEstablecimiento:index" }
+    methods:  GET
+
+configuracion_tipoestablecimientos_show:
+    path:     /{id}/show
+    defaults: { _controller: "MinsalCoreBundle:CtlTipoEstablecimiento:show" }
+    methods:  GET
+
+
+

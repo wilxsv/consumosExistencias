@@ -32,17 +32,17 @@ class CtlConsumo
     /**
      * @var integer
      */
-    private $userId;
+    private $userIdSchema;
 
     /**
-     * @var \Minsal\CoreBundle\Entity\CtlInsumo
+     * @var string
      */
-    private $ctlInsumoid;
+    private $ipUserSchema;
 
     /**
-     * @var \Minsal\CoreBundle\Entity\CtlEstablecimiento
+     * @var \Minsal\CoreBundle\Entity\CtlExistencias
      */
-    private $ctlEstablecimientoid;
+    private $ctlExistencia;
 
     /**
      * @var \Minsal\CoreBundle\Entity\CtlMecanismo
@@ -130,72 +130,72 @@ class CtlConsumo
     }
 
     /**
-     * Set userId
+     * Set userIdSchema
      *
-     * @param integer $userId
+     * @param integer $userIdSchema
      * @return CtlConsumo
      */
-    public function setUserId($userId)
+    public function setUserIdSchema($userIdSchema)
     {
-        $this->userId = $userId;
+        $this->userIdSchema = $userIdSchema;
 
         return $this;
     }
 
     /**
-     * Get userId
+     * Get userIdSchema
      *
      * @return integer 
      */
-    public function getUserId()
+    public function getUserIdSchema()
     {
-        return $this->userId;
+        return $this->userIdSchema;
     }
 
     /**
-     * Set ctlInsumoid
+     * Set ipUserSchema
      *
-     * @param \Minsal\CoreBundle\Entity\CtlInsumo $ctlInsumoid
+     * @param string $ipUserSchema
      * @return CtlConsumo
      */
-    public function setCtlInsumoid(\Minsal\CoreBundle\Entity\CtlInsumo $ctlInsumoid = null)
+    public function setIpUserSchema($ipUserSchema)
     {
-        $this->ctlInsumoid = $ctlInsumoid;
+        $this->ipUserSchema = $ipUserSchema;
 
         return $this;
     }
 
     /**
-     * Get ctlInsumoid
+     * Get ipUserSchema
      *
-     * @return \Minsal\CoreBundle\Entity\CtlInsumo 
+     * @return string 
      */
-    public function getCtlInsumoid()
+    public function getIpUserSchema()
     {
-        return $this->ctlInsumoid;
+        return $this->ipUserSchema;
     }
 
     /**
-     * Set ctlEstablecimientoid
+     * Set ctlExistencia
      *
-     * @param \Minsal\CoreBundle\Entity\CtlEstablecimiento $ctlEstablecimientoid
+     * @param \Minsal\CoreBundle\Entity\CtlExistencias $ctlExistencia
      * @return CtlConsumo
      */
-    public function setCtlEstablecimientoid(\Minsal\CoreBundle\Entity\CtlEstablecimiento $ctlEstablecimientoid = null)
+    public function setCtlExistencia(\Minsal\CoreBundle\Entity\CtlExistencias $ctlExistencia = null)
     {
-        $this->ctlEstablecimientoid = $ctlEstablecimientoid;
+        $this->ctlExistencia = $ctlExistencia;
 
         return $this;
     }
 
     /**
-     * Get ctlEstablecimientoid
+     * Get ctlExistencia
      *
-     * @return \Minsal\CoreBundle\Entity\CtlEstablecimiento 
+     * @return \Minsal\CoreBundle\Entity\CtlExistencias 
      */
-    public function getCtlEstablecimientoid()
+    public function getCtlExistencia()
     {
-        return $this->ctlEstablecimientoid;
+        return $this->ctlExistencia;
     }
 
     /**

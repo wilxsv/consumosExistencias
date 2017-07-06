@@ -1,0 +1,28 @@
+Minsal\CoreBundle\Entity\CtlTipoEstablecimiento:
+    type: entity
+    table: ctl_tipo_establecimiento
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 150
+            fixed: false
+        idInstitucion:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: id_institucion
+        codigo:
+            type: string
+            nullable: true
+            length: 6
+            fixed: false
+    lifecycleCallbacks: {  }

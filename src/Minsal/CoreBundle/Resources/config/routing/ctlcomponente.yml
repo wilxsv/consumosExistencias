@@ -1,24 +1,24 @@
-componente_index:
+configuracion_programas_index:
     path:     /
     defaults: { _controller: "MinsalCoreBundle:CtlComponente:index" }
     methods:  GET
 
-componente_show:
+configuracion_programas_show:
     path:     /{id}/show
     defaults: { _controller: "MinsalCoreBundle:CtlComponente:show" }
     methods:  GET
 
-componente_new:
+configuracion_programas_new:
     path:     /new
     defaults: { _controller: "MinsalCoreBundle:CtlComponente:new" }
     methods:  [GET, POST]
 
-componente_edit:
+configuracion_programas_edit:
     path:     /{id}/edit
     defaults: { _controller: "MinsalCoreBundle:CtlComponente:edit" }
     methods:  [GET, POST]
 
-componente_delete:
+configuracion_programas_delete:
     path:     /{id}/delete
     defaults: { _controller: "MinsalCoreBundle:CtlComponente:delete" }
     methods:  DELETE

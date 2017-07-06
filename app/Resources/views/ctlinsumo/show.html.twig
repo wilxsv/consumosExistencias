@@ -14,31 +14,47 @@
                 <td>{{ ctlInsumo.codigoNu }}</td>
             </tr>
             <tr>
+                <th>Grupoid</th>
+                <td>{{ ctlInsumo.grupoid }}</td>
+            </tr>
+            <tr>
                 <th>Codigosinab</th>
                 <td>{{ ctlInsumo.codigoSinab }}</td>
-            </tr>
-            <tr>
-                <th>Codigoecri</th>
-                <td>{{ ctlInsumo.codigoEcri }}</td>
-            </tr>
-            <tr>
-                <th>Codigoatc</th>
-                <td>{{ ctlInsumo.codigoAtc }}</td>
             </tr>
             <tr>
                 <th>Listadooficial</th>
                 <td>{% if ctlInsumo.listadoOficial %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Nombrelargo</th>
-                <td>{{ ctlInsumo.nombreLargo }}</td>
+                <th>Nombrelargoinsumo</th>
+                <td>{{ ctlInsumo.nombreLargoInsumo }}</td>
+            </tr>
+            <tr>
+                <th>Registroschema</th>
+                <td>{% if ctlInsumo.registroSchema %}{{ ctlInsumo.registroSchema|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Enableschema</th>
+                <td>{{ ctlInsumo.enableSchema }}</td>
+            </tr>
+            <tr>
+                <th>Detalleinsumo</th>
+                <td>{{ ctlInsumo.detalleInsumo }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('insumo_index') }}">Back to the list</a>
+            <a href="{{ path('configuracion_productos_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('configuracion_productos_edit', { 'id': ctlInsumo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
         </li>
     </ul>
 {% endblock %}

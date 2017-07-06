@@ -43,11 +43,19 @@ Minsal\CoreBundle\Entity\CtlExistencias:
             type: boolean
             nullable: false
             column: almacen_farmacia
-        userId:
+        userIdSchema:
             type: bigint
-            nullable: true
+            nullable: false
             unsigned: false
-            column: user_id
+            default: '1::bigint'
+            column: user_id_schema
+        ipUserSchema:
+            type: string
+            nullable: false
+            length: null
+            fixed: false
+            default: '::1'
+            column: ip_user_schema
     manyToOne:
         ctlInsumoid:
             targetEntity: CtlInsumo

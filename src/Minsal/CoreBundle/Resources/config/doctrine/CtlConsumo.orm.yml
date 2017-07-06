@@ -2,12 +2,9 @@ Minsal\CoreBundle\Entity\CtlConsumo:
     type: entity
     table: ctl_consumo
     indexes:
-        IDX_285219DC7B62918:
+        fki_fkctl_consumo_existencia:
             columns:
-                - ctl_establecimientoid
-        IDX_285219DCD05C792B:
-            columns:
-                - ctl_insumoid
+                - ctl_existencia
         IDX_285219DC46F39AED:
             columns:
                 - ctl_mecanismoid
@@ -33,28 +30,26 @@ Minsal\CoreBundle\Entity\CtlConsumo:
             type: datetime
             nullable: false
             column: registro_schema
-        userId:
+        userIdSchema:
             type: bigint
             nullable: false
             unsigned: false
-            column: user_id
+            column: user_id_schema
+        ipUserSchema:
+            type: string
+            nullable: false
+            length: null
+            fixed: false
+            default: '::1'
+            column: ip_user_schema
     manyToOne:
-        ctlEstablecimientoid:
-            targetEntity: CtlEstablecimiento
+        ctlExistencia:
+            targetEntity: CtlExistencias
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                ctl_establecimientoid:
-                    referencedColumnName: id
-            orphanRemoval: false
-        ctlInsumoid:
-            targetEntity: CtlInsumo
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                ctl_insumoid:
+                ctl_existencia:
                     referencedColumnName: id
             orphanRemoval: false
         ctlMecanismoid:

@@ -25,34 +25,9 @@ class CtlGrupo
     private $detalleGrupo;
 
     /**
-     * @var integer
-     */
-    private $grupoId;
-
-    /**
      * @var \DateTime
      */
     private $registroSchema;
-
-    /**
-     * @var string
-     */
-    private $detalleSchema;
-
-    /**
-     * @var integer
-     */
-    private $userIdSchema;
-
-    /**
-     * @var string
-     */
-    private $ipUserSchema;
-
-    /**
-     * @var integer
-     */
-    private $estadoSchema;
 
     /**
      * @var integer
@@ -62,12 +37,17 @@ class CtlGrupo
     /**
      * @var integer
      */
-    private $suministroId;
+    private $codigoGrupo;
 
     /**
-     * @var integer
+     * @var \Minsal\CoreBundle\Entity\CtlGrupo
      */
-    private $codigoGrupo;
+    private $grupo;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlSuministro
+     */
+    private $suministro;
 
 
     /**
@@ -127,29 +107,6 @@ class CtlGrupo
     }
 
     /**
-     * Set grupoId
-     *
-     * @param integer $grupoId
-     * @return CtlGrupo
-     */
-    public function setGrupoId($grupoId)
-    {
-        $this->grupoId = $grupoId;
-
-        return $this;
-    }
-
-    /**
-     * Get grupoId
-     *
-     * @return integer 
-     */
-    public function getGrupoId()
-    {
-        return $this->grupoId;
-    }
-
-    /**
      * Set registroSchema
      *
      * @param \DateTime $registroSchema
@@ -171,6 +128,118 @@ class CtlGrupo
     {
         return $this->registroSchema;
     }
+
+    /**
+     * Set enableSchema
+     *
+     * @param integer $enableSchema
+     * @return CtlGrupo
+     */
+    public function setEnableSchema($enableSchema)
+    {
+        $this->enableSchema = $enableSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get enableSchema
+     *
+     * @return integer 
+     */
+    public function getEnableSchema()
+    {
+        return $this->enableSchema;
+    }
+
+    /**
+     * Set codigoGrupo
+     *
+     * @param integer $codigoGrupo
+     * @return CtlGrupo
+     */
+    public function setCodigoGrupo($codigoGrupo)
+    {
+        $this->codigoGrupo = $codigoGrupo;
+
+        return $this;
+    }
+
+    /**
+     * Get codigoGrupo
+     *
+     * @return integer 
+     */
+    public function getCodigoGrupo()
+    {
+        return $this->codigoGrupo;
+    }
+
+    /**
+     * Set grupo
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlGrupo $grupo
+     * @return CtlGrupo
+     */
+    public function setGrupo(\Minsal\CoreBundle\Entity\CtlGrupo $grupo = null)
+    {
+        $this->grupo = $grupo;
+
+        return $this;
+    }
+
+    /**
+     * Get grupo
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlGrupo 
+     */
+    public function getGrupo()
+    {
+        return $this->grupo;
+    }
+
+    /**
+     * Set suministro
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlSuministro $suministro
+     * @return CtlGrupo
+     */
+    public function setSuministro(\Minsal\CoreBundle\Entity\CtlSuministro $suministro = null)
+    {
+        $this->suministro = $suministro;
+
+        return $this;
+    }
+
+    /**
+     * Get suministro
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlSuministro 
+     */
+    public function getSuministro()
+    {
+        return $this->suministro;
+    }
+    /**
+     * @var string
+     */
+    private $detalleSchema;
+
+    /**
+     * @var integer
+     */
+    private $userIdSchema;
+
+    /**
+     * @var string
+     */
+    private $ipUserSchema;
+
+    /**
+     * @var integer
+     */
+    private $estadoSchema;
+
 
     /**
      * Set detalleSchema
@@ -262,74 +331,5 @@ class CtlGrupo
     public function getEstadoSchema()
     {
         return $this->estadoSchema;
-    }
-
-    /**
-     * Set enableSchema
-     *
-     * @param integer $enableSchema
-     * @return CtlGrupo
-     */
-    public function setEnableSchema($enableSchema)
-    {
-        $this->enableSchema = $enableSchema;
-
-        return $this;
-    }
-
-    /**
-     * Get enableSchema
-     *
-     * @return integer 
-     */
-    public function getEnableSchema()
-    {
-        return $this->enableSchema;
-    }
-
-    /**
-     * Set suministroId
-     *
-     * @param integer $suministroId
-     * @return CtlGrupo
-     */
-    public function setSuministroId($suministroId)
-    {
-        $this->suministroId = $suministroId;
-
-        return $this;
-    }
-
-    /**
-     * Get suministroId
-     *
-     * @return integer 
-     */
-    public function getSuministroId()
-    {
-        return $this->suministroId;
-    }
-
-    /**
-     * Set codigoGrupo
-     *
-     * @param integer $codigoGrupo
-     * @return CtlGrupo
-     */
-    public function setCodigoGrupo($codigoGrupo)
-    {
-        $this->codigoGrupo = $codigoGrupo;
-
-        return $this;
-    }
-
-    /**
-     * Get codigoGrupo
-     *
-     * @return integer 
-     */
-    public function getCodigoGrupo()
-    {
-        return $this->codigoGrupo;
     }
 }

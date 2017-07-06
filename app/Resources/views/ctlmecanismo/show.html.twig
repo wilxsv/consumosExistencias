@@ -22,15 +22,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('mecanismo_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('mecanismo_edit', { 'id': ctlMecanismo.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('configuracion_mecanismos_index') }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}

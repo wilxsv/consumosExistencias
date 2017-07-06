@@ -20,11 +20,6 @@ class CtlSuministro
     private $nombreSuministro;
 
     /**
-     * @var string
-     */
-    private $detalleSuministro;
-
-    /**
      * @var integer
      */
     private $ctlSuministroid;
@@ -35,26 +30,6 @@ class CtlSuministro
     private $registroSchema;
 
     /**
-     * @var string
-     */
-    private $detalleSchema;
-
-    /**
-     * @var integer
-     */
-    private $userIdSchema;
-
-    /**
-     * @var string
-     */
-    private $ipUserSchema;
-
-    /**
-     * @var integer
-     */
-    private $estadoSchema;
-
-    /**
      * @var integer
      */
     private $enableSchema;
@@ -63,16 +38,6 @@ class CtlSuministro
      * @var integer
      */
     private $codificacionSuministro;
-
-    /**
-     * @var integer
-     */
-    private $rolSolicitaSuministro;
-
-    /**
-     * @var integer
-     */
-    private $rolValidaSuministro;
 
 
     /**
@@ -106,29 +71,6 @@ class CtlSuministro
     public function getNombreSuministro()
     {
         return $this->nombreSuministro;
-    }
-
-    /**
-     * Set detalleSuministro
-     *
-     * @param string $detalleSuministro
-     * @return CtlSuministro
-     */
-    public function setDetalleSuministro($detalleSuministro)
-    {
-        $this->detalleSuministro = $detalleSuministro;
-
-        return $this;
-    }
-
-    /**
-     * Get detalleSuministro
-     *
-     * @return string 
-     */
-    public function getDetalleSuministro()
-    {
-        return $this->detalleSuministro;
     }
 
     /**
@@ -178,98 +120,6 @@ class CtlSuministro
     }
 
     /**
-     * Set detalleSchema
-     *
-     * @param string $detalleSchema
-     * @return CtlSuministro
-     */
-    public function setDetalleSchema($detalleSchema)
-    {
-        $this->detalleSchema = $detalleSchema;
-
-        return $this;
-    }
-
-    /**
-     * Get detalleSchema
-     *
-     * @return string 
-     */
-    public function getDetalleSchema()
-    {
-        return $this->detalleSchema;
-    }
-
-    /**
-     * Set userIdSchema
-     *
-     * @param integer $userIdSchema
-     * @return CtlSuministro
-     */
-    public function setUserIdSchema($userIdSchema)
-    {
-        $this->userIdSchema = $userIdSchema;
-
-        return $this;
-    }
-
-    /**
-     * Get userIdSchema
-     *
-     * @return integer 
-     */
-    public function getUserIdSchema()
-    {
-        return $this->userIdSchema;
-    }
-
-    /**
-     * Set ipUserSchema
-     *
-     * @param string $ipUserSchema
-     * @return CtlSuministro
-     */
-    public function setIpUserSchema($ipUserSchema)
-    {
-        $this->ipUserSchema = $ipUserSchema;
-
-        return $this;
-    }
-
-    /**
-     * Get ipUserSchema
-     *
-     * @return string 
-     */
-    public function getIpUserSchema()
-    {
-        return $this->ipUserSchema;
-    }
-
-    /**
-     * Set estadoSchema
-     *
-     * @param integer $estadoSchema
-     * @return CtlSuministro
-     */
-    public function setEstadoSchema($estadoSchema)
-    {
-        $this->estadoSchema = $estadoSchema;
-
-        return $this;
-    }
-
-    /**
-     * Get estadoSchema
-     *
-     * @return integer 
-     */
-    public function getEstadoSchema()
-    {
-        return $this->estadoSchema;
-    }
-
-    /**
      * Set enableSchema
      *
      * @param integer $enableSchema
@@ -313,51 +163,5 @@ class CtlSuministro
     public function getCodificacionSuministro()
     {
         return $this->codificacionSuministro;
-    }
-
-    /**
-     * Set rolSolicitaSuministro
-     *
-     * @param integer $rolSolicitaSuministro
-     * @return CtlSuministro
-     */
-    public function setRolSolicitaSuministro($rolSolicitaSuministro)
-    {
-        $this->rolSolicitaSuministro = $rolSolicitaSuministro;
-
-        return $this;
-    }
-
-    /**
-     * Get rolSolicitaSuministro
-     *
-     * @return integer 
-     */
-    public function getRolSolicitaSuministro()
-    {
-        return $this->rolSolicitaSuministro;
-    }
-
-    /**
-     * Set rolValidaSuministro
-     *
-     * @param integer $rolValidaSuministro
-     * @return CtlSuministro
-     */
-    public function setRolValidaSuministro($rolValidaSuministro)
-    {
-        $this->rolValidaSuministro = $rolValidaSuministro;
-
-        return $this;
-    }
-
-    /**
-     * Get rolValidaSuministro
-     *
-     * @return integer 
-     */
-    public function getRolValidaSuministro()
-    {
-        return $this->rolValidaSuministro;
     }
 }

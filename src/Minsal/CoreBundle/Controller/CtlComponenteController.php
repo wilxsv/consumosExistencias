@@ -42,7 +42,7 @@ class CtlComponenteController extends Controller
             $em->persist($ctlComponente);
             $em->flush();
 
-            return $this->redirectToRoute('componente_show', array('id' => $ctlComponente->getId()));
+            return $this->redirectToRoute('configuracion_programas_show', array('id' => $ctlComponente->getId()));
         }
 
         return $this->render('ctlcomponente/new.html.twig', array(
@@ -78,7 +78,7 @@ class CtlComponenteController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('componente_edit', array('id' => $ctlComponente->getId()));
+            return $this->redirectToRoute('configuracion_programas_edit', array('id' => $ctlComponente->getId()));
         }
 
         return $this->render('ctlcomponente/edit.html.twig', array(
@@ -103,7 +103,7 @@ class CtlComponenteController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('componente_index');
+        return $this->redirectToRoute('configuracion_programas_index');
     }
 
     /**
@@ -116,7 +116,7 @@ class CtlComponenteController extends Controller
     private function createDeleteForm(CtlComponente $ctlComponente)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('componente_delete', array('id' => $ctlComponente->getId())))
+            ->setAction($this->generateUrl('configuracion_programas_delete', array('id' => $ctlComponente->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -47,7 +47,12 @@ class CtlExistencias
     /**
      * @var integer
      */
-    private $userId;
+    private $userIdSchema;
+
+    /**
+     * @var string
+     */
+    private $ipUserSchema;
 
     /**
      * @var \Minsal\CoreBundle\Entity\CtlInsumo
@@ -209,26 +214,49 @@ class CtlExistencias
     }
 
     /**
-     * Set userId
+     * Set userIdSchema
      *
-     * @param integer $userId
+     * @param integer $userIdSchema
      * @return CtlExistencias
      */
-    public function setUserId($userId)
+    public function setUserIdSchema($userIdSchema)
     {
-        $this->userId = $userId;
+        $this->userIdSchema = $userIdSchema;
 
         return $this;
     }
 
     /**
-     * Get userId
+     * Get userIdSchema
      *
      * @return integer 
      */
-    public function getUserId()
+    public function getUserIdSchema()
     {
-        return $this->userId;
+        return $this->userIdSchema;
+    }
+
+    /**
+     * Set ipUserSchema
+     *
+     * @param string $ipUserSchema
+     * @return CtlExistencias
+     */
+    public function setIpUserSchema($ipUserSchema)
+    {
+        $this->ipUserSchema = $ipUserSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get ipUserSchema
+     *
+     * @return string 
+     */
+    public function getIpUserSchema()
+    {
+        return $this->ipUserSchema;
     }
 
     /**

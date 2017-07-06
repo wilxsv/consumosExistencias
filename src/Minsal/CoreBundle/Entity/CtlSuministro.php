@@ -20,11 +20,6 @@ class CtlSuministro
     private $nombreSuministro;
 
     /**
-     * @var string
-     */
-    private $detalleSuministro;
-
-    /**
      * @var integer
      */
     private $ctlSuministroid;
@@ -35,26 +30,6 @@ class CtlSuministro
     private $registroSchema;
 
     /**
-     * @var string
-     */
-    private $detalleSchema;
-
-    /**
-     * @var integer
-     */
-    private $userIdSchema;
-
-    /**
-     * @var string
-     */
-    private $ipUserSchema;
-
-    /**
-     * @var integer
-     */
-    private $estadoSchema;
-
-    /**
      * @var integer
      */
     private $enableSchema;
@@ -63,16 +38,6 @@ class CtlSuministro
      * @var integer
      */
     private $codificacionSuministro;
-
-    /**
-     * @var integer
-     */
-    private $rolSolicitaSuministro;
-
-    /**
-     * @var integer
-     */
-    private $rolValidaSuministro;
 
 
     /**
@@ -106,29 +71,6 @@ class CtlSuministro
     public function getNombreSuministro()
     {
         return $this->nombreSuministro;
-    }
-
-    /**
-     * Set detalleSuministro
-     *
-     * @param string $detalleSuministro
-     * @return CtlSuministro
-     */
-    public function setDetalleSuministro($detalleSuministro)
-    {
-        $this->detalleSuministro = $detalleSuministro;
-
-        return $this;
-    }
-
-    /**
-     * Get detalleSuministro
-     *
-     * @return string 
-     */
-    public function getDetalleSuministro()
-    {
-        return $this->detalleSuministro;
     }
 
     /**
@@ -175,6 +117,110 @@ class CtlSuministro
     public function getRegistroSchema()
     {
         return $this->registroSchema;
+    }
+
+    /**
+     * Set enableSchema
+     *
+     * @param integer $enableSchema
+     * @return CtlSuministro
+     */
+    public function setEnableSchema($enableSchema)
+    {
+        $this->enableSchema = $enableSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get enableSchema
+     *
+     * @return integer 
+     */
+    public function getEnableSchema()
+    {
+        return $this->enableSchema;
+    }
+
+    /**
+     * Set codificacionSuministro
+     *
+     * @param integer $codificacionSuministro
+     * @return CtlSuministro
+     */
+    public function setCodificacionSuministro($codificacionSuministro)
+    {
+        $this->codificacionSuministro = $codificacionSuministro;
+
+        return $this;
+    }
+
+    /**
+     * Get codificacionSuministro
+     *
+     * @return integer 
+     */
+    public function getCodificacionSuministro()
+    {
+        return $this->codificacionSuministro;
+    }
+    /**
+     * @var string
+     */
+    private $detalleSuministro;
+
+    /**
+     * @var string
+     */
+    private $detalleSchema;
+
+    /**
+     * @var integer
+     */
+    private $userIdSchema;
+
+    /**
+     * @var string
+     */
+    private $ipUserSchema;
+
+    /**
+     * @var integer
+     */
+    private $estadoSchema;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlRol
+     */
+    private $rolSolicitaSuministro;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlRol
+     */
+    private $rolValidaSuministro;
+
+
+    /**
+     * Set detalleSuministro
+     *
+     * @param string $detalleSuministro
+     * @return CtlSuministro
+     */
+    public function setDetalleSuministro($detalleSuministro)
+    {
+        $this->detalleSuministro = $detalleSuministro;
+
+        return $this;
+    }
+
+    /**
+     * Get detalleSuministro
+     *
+     * @return string 
+     */
+    public function getDetalleSuministro()
+    {
+        return $this->detalleSuministro;
     }
 
     /**
@@ -270,58 +316,12 @@ class CtlSuministro
     }
 
     /**
-     * Set enableSchema
-     *
-     * @param integer $enableSchema
-     * @return CtlSuministro
-     */
-    public function setEnableSchema($enableSchema)
-    {
-        $this->enableSchema = $enableSchema;
-
-        return $this;
-    }
-
-    /**
-     * Get enableSchema
-     *
-     * @return integer 
-     */
-    public function getEnableSchema()
-    {
-        return $this->enableSchema;
-    }
-
-    /**
-     * Set codificacionSuministro
-     *
-     * @param integer $codificacionSuministro
-     * @return CtlSuministro
-     */
-    public function setCodificacionSuministro($codificacionSuministro)
-    {
-        $this->codificacionSuministro = $codificacionSuministro;
-
-        return $this;
-    }
-
-    /**
-     * Get codificacionSuministro
-     *
-     * @return integer 
-     */
-    public function getCodificacionSuministro()
-    {
-        return $this->codificacionSuministro;
-    }
-
-    /**
      * Set rolSolicitaSuministro
      *
-     * @param integer $rolSolicitaSuministro
+     * @param \Minsal\CoreBundle\Entity\CtlRol $rolSolicitaSuministro
      * @return CtlSuministro
      */
-    public function setRolSolicitaSuministro($rolSolicitaSuministro)
+    public function setRolSolicitaSuministro(\Minsal\CoreBundle\Entity\CtlRol $rolSolicitaSuministro = null)
     {
         $this->rolSolicitaSuministro = $rolSolicitaSuministro;
 
@@ -331,7 +331,7 @@ class CtlSuministro
     /**
      * Get rolSolicitaSuministro
      *
-     * @return integer 
+     * @return \Minsal\CoreBundle\Entity\CtlRol 
      */
     public function getRolSolicitaSuministro()
     {
@@ -341,10 +341,10 @@ class CtlSuministro
     /**
      * Set rolValidaSuministro
      *
-     * @param integer $rolValidaSuministro
+     * @param \Minsal\CoreBundle\Entity\CtlRol $rolValidaSuministro
      * @return CtlSuministro
      */
-    public function setRolValidaSuministro($rolValidaSuministro)
+    public function setRolValidaSuministro(\Minsal\CoreBundle\Entity\CtlRol $rolValidaSuministro = null)
     {
         $this->rolValidaSuministro = $rolValidaSuministro;
 
@@ -354,7 +354,7 @@ class CtlSuministro
     /**
      * Get rolValidaSuministro
      *
-     * @return integer 
+     * @return \Minsal\CoreBundle\Entity\CtlRol 
      */
     public function getRolValidaSuministro()
     {

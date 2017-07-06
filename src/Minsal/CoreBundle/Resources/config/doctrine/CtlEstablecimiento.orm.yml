@@ -77,187 +77,10 @@ Minsal\CoreBundle\Entity\CtlEstablecimiento:
             nullable: true
             unsigned: false
             column: id_cat_nivel_minsal
-        codestabConsumos:
-            type: string
-            nullable: true
-            length: 18
-            fixed: false
-            column: codestab_consumos
-        codestabSiaf:
-            type: string
-            nullable: true
-            length: 4
-            fixed: false
-            column: codestab_siaf
-        codUcsf:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: cod_ucsf
-        idCatTipoExpediente:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: id_cat_tipo_expediente
-        idCatTipoFarmacia:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: id_cat_tipo_farmacia
-        idCatTipoConsumo:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: id_cat_tipo_consumo
-        instMortalidad:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: inst_mortalidad
-        digitaMortalidad:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: digita_mortalidad
-        cvcd4:
-            type: integer
-            nullable: true
-            unsigned: false
-        idCatPruebas:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: id_cat_pruebas
-        activo:
-            type: boolean
-            nullable: true
-            comment: 'Identificador estado del establecimiento true o false'
-        idUsuarioReg:
-            type: string
-            nullable: true
-            length: 50
-            fixed: false
-            comment: 'Auditoría usuario ingreso el registro'
-            column: id_usuario_reg
-        fechaHoraReg:
-            type: datetime
-            nullable: true
-            comment: 'Auditoría fecha y hora ingreso de registro'
-            column: fecha_hora_reg
-        idUsuarioMod:
-            type: string
-            nullable: true
-            length: 50
-            fixed: false
-            comment: 'Auditoría usuario modificó el registro'
-            column: id_usuario_mod
-        fechaHoraMod:
-            type: datetime
-            nullable: true
-            comment: 'Auditoría fecha y hora modificación del registro'
-            column: fecha_hora_mod
-        idestablesimow:
-            type: integer
-            nullable: true
-            unsigned: false
-        idestablevigepes:
-            type: integer
-            nullable: true
-            unsigned: false
-        estadoVigepes:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: estado_vigepes
-        estadoVacunas:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: estado_vacunas
-        estadoSeps:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: estado_seps
-        estadoSimow:
-            type: integer
-            nullable: true
-            unsigned: false
-            column: estado_simow
-        idestablesumeve:
-            type: integer
-            nullable: true
-            unsigned: false
-            comment: 'Id establecimiento de SUMEVE'
-        estadoSumeve:
-            type: integer
-            nullable: true
-            unsigned: false
-            comment: 'Estado del sumeve'
-            column: estado_sumeve
-        cabezaMicrored:
-            type: boolean
-            nullable: true
-            comment: 'Identificador para establecer si el establecimiento es o no cabeza de red (true o false)'
-            default: false
-            column: cabeza_microred
-        hospitalizacion:
-            type: boolean
-            nullable: true
-            default: false
-        idmicrored:
-            type: integer
-            nullable: true
-            unsigned: false
-            comment: 'Identificador id de microred a la que pertenecen establecimientos del MINSAL'
-        poblacionAsignana:
-            type: bigint
-            nullable: false
-            unsigned: false
-            default: '1'
-            column: poblacion_asignana
-        cantidadFamilia:
-            type: bigint
-            nullable: false
-            unsigned: false
-            default: '1'
-            column: cantidad_familia
-        idSituacionLegal:
-            type: bigint
-            nullable: false
-            unsigned: false
-            default: '1'
-            column: id_situacion_legal
         registroSchema:
             type: datetime
             nullable: true
             column: registro_schema
-        detalleSchema:
-            type: text
-            nullable: true
-            length: null
-            fixed: false
-            default: 'Agregado antes de gestor de maestros'
-            column: detalle_schema
-        userIdSchema:
-            type: bigint
-            nullable: true
-            unsigned: false
-            default: '1'
-            column: user_id_schema
-        ipUserSchema:
-            type: string
-            nullable: true
-            length: null
-            fixed: false
-            default: '::1'
-            column: ip_user_schema
-        estadoSchema:
-            type: integer
-            nullable: true
-            unsigned: false
-            default: '0'
-            column: estado_schema
         enableSchema:
             type: integer
             nullable: true
@@ -284,6 +107,13 @@ Minsal\CoreBundle\Entity\CtlEstablecimiento:
                     referencedColumnName: id
             orphanRemoval: false
     manyToMany:
+        insumo:
+            targetEntity: CtlInsumo
+            cascade: {  }
+            mappedBy: establecimiento
+            inversedBy: null
+            joinTable: null
+            orderBy: null
         ctlInsumoid:
             targetEntity: CtlInsumo
             cascade: {  }

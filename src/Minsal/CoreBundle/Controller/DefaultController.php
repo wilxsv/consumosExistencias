@@ -3,6 +3,7 @@
 namespace Minsal\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -21,5 +22,17 @@ class DefaultController extends Controller
     public function archivoAction()
     {
         return $this->render('MinsalCoreBundle:Default:archivo.html.twig');
+    }    
+    
+    public function cuadroAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $establecimientos = $em->getRepository('MinsalCoreBundle:CtlEstablecimiento')->findAll();
+        $form = $this->createForm('Minsal\CoreBundle\Form\CuadroType');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        }
+        return $this->render('MinsalCoreBundle:Default:cuadro.html.twig', array('form' => $form->createView(), 'establecimientos' => $establecimientos));
     }
 }

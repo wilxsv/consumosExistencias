@@ -1,24 +1,12 @@
-mecanismo_index:
+configuracion_mecanismos_index:
     path:     /
     defaults: { _controller: "MinsalCoreBundle:CtlMecanismo:index" }
     methods:  GET
 
-mecanismo_show:
+configuracion_mecanismos_show:
     path:     /{id}/show
     defaults: { _controller: "MinsalCoreBundle:CtlMecanismo:show" }
     methods:  GET
 
-mecanismo_new:
-    path:     /new
-    defaults: { _controller: "MinsalCoreBundle:CtlMecanismo:new" }
-    methods:  [GET, POST]
 
-mecanismo_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "MinsalCoreBundle:CtlMecanismo:edit" }
-    methods:  [GET, POST]
 
-mecanismo_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "MinsalCoreBundle:CtlMecanismo:delete" }
-    methods:  DELETE

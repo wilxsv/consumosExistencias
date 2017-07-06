@@ -1,6 +1,20 @@
 Minsal\CoreBundle\Entity\CtlSuministro:
     type: entity
     table: ctl_suministro
+    indexes:
+        IDX_23741A44DF5CB336:
+            columns:
+                - rol_solicita_suministro
+        IDX_23741A446EB0AB02:
+            columns:
+                - rol_valida_suministro
+        IDX_23741A44D64E375F:
+            columns:
+                - ctl_suministroid
+    uniqueConstraints:
+        ctl_suministro_nombre_suministro_key:
+            columns:
+                - nombre_suministro
     id:
         id:
             type: integer
@@ -22,11 +36,6 @@ Minsal\CoreBundle\Entity\CtlSuministro:
             length: 255
             fixed: false
             column: detalle_suministro
-        ctlSuministroid:
-            type: bigint
-            nullable: true
-            unsigned: false
-            column: ctl_suministroid
         registroSchema:
             type: datetime
             nullable: true
@@ -70,16 +79,32 @@ Minsal\CoreBundle\Entity\CtlSuministro:
             unsigned: false
             default: '1'
             column: codificacion_suministro
+    manyToOne:
         rolSolicitaSuministro:
-            type: bigint
-            nullable: false
-            unsigned: false
-            default: '1'
-            column: rol_solicita_suministro
+            targetEntity: CtlRol
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                rol_solicita_suministro:
+                    referencedColumnName: id
+            orphanRemoval: false
         rolValidaSuministro:
-            type: bigint
-            nullable: false
-            unsigned: false
-            default: '1'
-            column: rol_valida_suministro
+            targetEntity: CtlRol
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                rol_valida_suministro:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ctlSuministroid:
+            targetEntity: CtlSuministro
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_suministroid:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

@@ -20,29 +20,25 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- User Account: style can be found in dropdown.less -->
-          {% set user = { username: app.session.get('username'), id: app.session.get('id'), correo: app.session.get('username'), nombre: app.session.get('name') } %}
-          {% if user is defined %}
+           {%  if is_granted('IS_AUTHENTICATED_FULLY') %}
             {% if is_granted('ROLE_ADMIN') %}
 			<!-- Messages: style can be found in dropdown.less-->
 			<!-- Notifications: style can be found in dropdown.less -->
-			<li class="dropdown notifications-menu">
+			<li class="dropdown notifications-menu" class="active">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="fa fa-bell-o"></i>Administracion y seguridad
+				<i class="fa fa-bell-o"></i><b>Administracion y seguridad</b>
 				</a>
 				<ul class="dropdown-menu">
-				<li class="header">Configuraciones</li>
 				<li>
 					<ul class="menu">
-						<li><a href="#">Roles de usuaria</a></li>
-						<li><a href="#">Usuarias del sistema</a></li>
-						<li><a href="#">Roles de usuaria</a></li>
-						<li><a href="#">Accesos a enlaces (url)</a></li>
+						<li><a href="{{ path('admin_personas_index') }}">Usuarias del sistema</a></li>
+						<li><a href="{{ path('admin_rol_index') }}">Roles de usuaria</a></li>
+						<li><a href="">Accesos a enlaces (url)</a></li>
 					</ul>
 				</li>
 				</ul>
 			</li>
             {% endif %}
-
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <span class="hidden-xs">Nombre de empleada o empleado</span>
@@ -60,10 +56,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-flat">Editar perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Salir</a>
+                  <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">Salir</a>
                 </div>
               </li>
             </ul>
@@ -74,7 +70,7 @@
           </li>
           
           {% else %}
-			<li class="grey"><a href=""> <i class="icon-off"></i> Entrar al sistema.</a></li>
+			<li class="active"><a href="{{ path('fos_user_security_login') }}"> <i class="icon-off"></i> Entrar al sistema.</a></li>
 		  {% endif %}
         </ul>
       </div>

@@ -45,14 +45,14 @@ class CtlMovimiento
     private $establecimientoOrigen;
 
     /**
-     * @var \Minsal\CoreBundle\Entity\CtlTipoMovimiento
-     */
-    private $ctlTipoMovimientoid;
-
-    /**
      * @var \Minsal\CoreBundle\Entity\CtlInsumo
      */
     private $ctlInsumoid;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlTipoMovimiento
+     */
+    private $ctlTipoMovimientoid;
 
 
     /**
@@ -204,29 +204,6 @@ class CtlMovimiento
     }
 
     /**
-     * Set ctlTipoMovimientoid
-     *
-     * @param \Minsal\CoreBundle\Entity\CtlTipoMovimiento $ctlTipoMovimientoid
-     * @return CtlMovimiento
-     */
-    public function setCtlTipoMovimientoid(\Minsal\CoreBundle\Entity\CtlTipoMovimiento $ctlTipoMovimientoid = null)
-    {
-        $this->ctlTipoMovimientoid = $ctlTipoMovimientoid;
-
-        return $this;
-    }
-
-    /**
-     * Get ctlTipoMovimientoid
-     *
-     * @return \Minsal\CoreBundle\Entity\CtlTipoMovimiento 
-     */
-    public function getCtlTipoMovimientoid()
-    {
-        return $this->ctlTipoMovimientoid;
-    }
-
-    /**
      * Set ctlInsumoid
      *
      * @param \Minsal\CoreBundle\Entity\CtlInsumo $ctlInsumoid
@@ -247,5 +224,28 @@ class CtlMovimiento
     public function getCtlInsumoid()
     {
         return $this->ctlInsumoid;
+    }
+
+    /**
+     * Set ctlTipoMovimientoid
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlTipoMovimiento $ctlTipoMovimientoid
+     * @return CtlMovimiento
+     */
+    public function setCtlTipoMovimientoid(\Minsal\CoreBundle\Entity\CtlTipoMovimiento $ctlTipoMovimientoid = null)
+    {
+        $this->ctlTipoMovimientoid = $ctlTipoMovimientoid;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlTipoMovimientoid
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlTipoMovimiento 
+     */
+    public function getCtlTipoMovimientoid()
+    {
+        return $this->ctlTipoMovimientoid;
     }
 }

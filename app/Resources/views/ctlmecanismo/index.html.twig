@@ -1,65 +1,56 @@
 {% extends 'base.html.twig' %}
-{% block title %}Catalogo de mecanismos de carga de datos{% endblock %}
-{% block subtitle %}Representa los diferentes estrategias de carga de datos{% endblock %}
+{% block title %}Mecanismos de transferencia de datos{% endblock %}
+{% block subtitle %}{% endblock %}
 {% block body %}
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          
-
-          <div class="box">
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="tabla" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                <th>Nombre mecanismo</th>
-                <th>Manual</th>
-                </tr>
-                </thead>
-                <tbody>
+<div class="col-xs-12">
+ <div class="box">
+  <div class="box-header"><h3 class="box-title">Listado</h3></div>
+   <div class="box-body">
+    <table id="tabla" class="table table-bordered table-striped">
+     <thead>
+      <tr>
+       <th>Nombre del mecanismo</th>
+       <th>Tipo</th>
+      </tr>
+     </thead>
+     <tbody>
         {% for ctlMecanismo in ctlMecanismos %}
             <tr>
                 <td>{{ ctlMecanismo.nombreMecanismo }}</td>
-                <td>{% if ctlMecanismo.manualMecanismo %}Si{% else %}No{% endif %}</td
+                <td>{{ ctlMecanismo.manualMecanismo }}</td>
             </tr>
         {% endfor %}
-                </tbody>
-                <tfoot>
-                <tr>
-                <th>Nombre mecanismo</th>
-                <th>Manual</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>    
+     </tbody>
+     <tfoot>
+       <th>Nombre del mecanismo</th>
+       <th>Tipo</th>
+     </tfoot>
+    </table>
+   </div>
+  </div>
+ </div>
+</div>
 {% endblock %}
 
 {% block footer_js %}
 <!-- DataTables -->
-<script src="{{ asset('assets/') }}core/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{ asset('assets/') }}core/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
 <!-- page script -->
 <script>
   $(function () {
-    $("#tabla").DataTable();
-    $('#e').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
+    $('#example1').DataTable()
+    $('#tabla').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
 </script>
 {% endblock %}
+
+

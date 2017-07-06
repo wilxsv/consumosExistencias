@@ -34,30 +34,6 @@ Minsal\CoreBundle\Entity\CtlMunicipio:
             length: 60
             fixed: false
             comment: 'Abreviatura de Municipio'
-        idUsuarioReg:
-            type: string
-            nullable: true
-            length: 50
-            fixed: false
-            comment: 'Auditoría usuario ingreso el registro'
-            column: id_usuario_reg
-        fechaHoraReg:
-            type: datetime
-            nullable: true
-            comment: 'Auditoría fecha y hora ingreso de registro'
-            column: fecha_hora_reg
-        idUsuarioMod:
-            type: string
-            nullable: true
-            length: 50
-            fixed: false
-            comment: 'Auditoría usuario modificó el registro'
-            column: id_usuario_mod
-        fechaHoraMod:
-            type: datetime
-            nullable: true
-            comment: 'Auditoría fecha y hora modificación del registro'
-            column: fecha_hora_mod
         cabecera:
             type: boolean
             nullable: false

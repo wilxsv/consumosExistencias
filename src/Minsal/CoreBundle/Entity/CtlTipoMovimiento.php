@@ -108,8 +108,4 @@ class CtlTipoMovimiento
     {
         return $this->agregaMovimiento;
     }
-    
-    public function __toString(){
-		return $this->getNombreMovimiento();
-	}
 }

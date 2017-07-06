@@ -27,7 +27,7 @@ Minsal\CoreBundle\Entity\CtlComponente:
             mappedBy: null
             inversedBy: componente
             joinTable:
-                name: ctl_componente_ctl_insumo
+                name: componente_insumo
                 joinColumns:
                     -
                         name: componente_id

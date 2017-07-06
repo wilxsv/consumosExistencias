@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Editar{% endblock %}
+{% block body %}
+<div class="box box-info">
+ <div class="box-header with-border"><h3 class="box-title">Datos</h3></div>
+  {{ form_start(edit_form, { 'attr' : { 'class': 'form-horizontal' } }) }}
+  <div class="box-body">
+    {{ form_row(edit_form.username) }}
+    {{ form_row(edit_form.email) }}
+    {{ form_row(edit_form.password, { 'attr' : { 'disabled': true } }) }}
+    {{ form_row(edit_form.roles, { 'attr' : { 'disabled': true } }) }}
+    {{ form_widget(edit_form) }}
+  </div>
+  <div class="box-footer">
+   <a href="{{ path('admin_personas_index') }}" class="btn btn-success"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"></span> Listar </a>
+   <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+  </div>
+  {{ form_end(edit_form) }}
+ </div>
+{{ form_start(delete_form) }}
+ <input type="submit" value="Eliminar" class="btn btn-danger"/>
+{{ form_end(delete_form) }}
+</div>
+{% endblock %}

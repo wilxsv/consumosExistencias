@@ -59,7 +59,7 @@ Minsal\CoreBundle\Entity\CtlAcceso:
             mappedBy: null
             inversedBy: acceso
             joinTable:
-                name: ctl_permisos
+                name: permisos
                 joinColumns:
                     -
                         name: acceso_id

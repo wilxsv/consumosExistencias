@@ -13,7 +13,10 @@ class CtlComponenteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombreComponente')->add('insumo');
+        $builder->add('nombreComponente')
+        //->add('insumo')
+        ->add('insumo', 'entity',array('label'  => 'Digite o seleccione los productos del componente: ', 'class' => 'MinsalCoreBundle:CtlInsumo', 'required' => true, 'multiple' => true, 'attr' => array('class' => 'form-control select2', 'data-placeholder' => 'Seleccione los insumos', 'style' => 'width: 100%'),))
+        ;//'multiple' => true
     }
     
     /**
