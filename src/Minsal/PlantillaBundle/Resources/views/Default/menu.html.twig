@@ -13,42 +13,31 @@
         </div>
       </form>
       <!-- /.search form -->
-      
-  {% if is_granted('ROLE_ADMIN_REGION') %}
 	<section class="sidebar">
 	 <ul class="sidebar-menu">
+  {% if is_granted('ROLE_ADMIN_REGION') %}
 	  <li><a href="{{ path('configuracion_establecimientos_index') }}"><i class="fa fa-clone"></i> <span>Establecimientos</span></a></li>
 	  <li><a href="{{ path('configuracion_mecanismos_index') }}"><i class="fa fa-refresh"></i> <span>Mecanismo de transferencia</span></a></li>
 	  <li><a href="{{ path('configuracion_programas_index') }}"><i class="fa fa-linux"></i> <span>Programas especiales</span></a></li>
 	  <li><a href="{{ path('configuracion_productos_index') }}"><i class="fa fa-dropbox"></i> <span>Suministros</span></a></li>
+  {%  endif %}
+  {% if is_granted('ROLE_REGISTRO_LOCAL') %}
+        <li><a href="{{ path('minsal_core_registro_index') }}"><i class="fa fa-edit"></i> <span>Registrar consumo</span></a></li>
+  {%  endif %}
+  {% if is_granted('ROLE_REGISTRO_REGIONAL') %}
+      <li><a href="{{ path('minsal_core_registro_index') }}"><i class="fa fa-database"></i> <span>Registrar consumo</span></a></li>
+  {%  endif %}
 	 </ul>  
     </section>
-  {%  endif %}
-
   </aside>
 {%  endif %}
 
 
 
-    <!-- /
-    <section class="sidebar">
-      <ul class="sidebar-menu">        
-        <li><a href="{{ path('minsal_core_registro_index') }}"><i class="fa fa-edit"></i> <span>Registrar consumo</span></a></li>
-        <li><a href="{{ path('configuracion_establecimientos_index') }}"><i class="fa fa-circle-o text-yellow"></i> <span>Manual</span></a></li>
+<!-- 
         <li><a href="{{ path('minsal_core_registro_archivo') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Archivo</span></a></li>
         <li><a href=""><i class="fa fa-circle-o text-grey"></i> <span>Movimientos</span></a></li>
         <li><a href=""><i class="fa fa-circle-o text-aqua"></i> <span>Consumos</span></a></li>
         <li><a href=""><i class="fa fa-circle-o text-aqua"></i> <span>Existencias</span></a></li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-folder"></i> <span>Tablas mantenimiento</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="">+  Componente</a></li>
-            <li><a href="">+  Cuadro básico * Establecimiento</a></li>
-          </ul>
-        </li>
         <li><a href="{{ path('minsal_reporte_homepage') }}"><i class="fa fa-calendar"></i> <span>Informe</span></a></li>
-        <li><a href="#"><i class="fa fa-book"></i> <span>Documentación</span></a></li>
-      </ul>
-    </section>.sidebar -->
+ -->

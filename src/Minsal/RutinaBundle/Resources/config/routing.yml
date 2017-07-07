@@ -1,3 +1,9 @@
+minsal_core:
+    resource: "@MinsalCoreBundle/Resources/config/routing.yml"
+    prefix:   /
 minsal_rutina_homepage:
     path:     /
     defaults: { _controller: MinsalRutinaBundle:Default:index }
+minsal_core:
+    resource: "@MinsalCoreBundle/Resources/config/routing.yml"
+    prefix:   /

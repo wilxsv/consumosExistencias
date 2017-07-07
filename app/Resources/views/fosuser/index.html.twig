@@ -76,12 +76,3 @@
 {% block head_js %}
   <link rel="stylesheet" href="{{ asset('assets/') }}core/plugins/select2/select2.min.css">
 {% endblock %}
-{% block footer_js %}
-  <script src="{{ asset('assets/') }}core/plugins/select2/select2.full.min.js"></script>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".minsal_cuadro_basico_tipo").select2();
-  });
-</script>
-{% endblock %}

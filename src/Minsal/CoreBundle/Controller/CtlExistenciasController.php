@@ -20,10 +20,12 @@ class CtlExistenciasController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $ctlExistencias = $em->getRepository('MinsalCoreBundle:CtlExistencias')->findAll();
+        $c = $em->getRepository('MinsalCoreBundle:CtlExistencias')->findAll();
+        $e = $em->getRepository('MinsalCoreBundle:CtlConsumo')->findAll();
 
         return $this->render('ctlexistencias/index.html.twig', array(
-            'ctlExistencias' => $ctlExistencias,
+            'ctlConsumos' => $c,
+            'ctlExistencias' => $e,
         ));
     }
 
