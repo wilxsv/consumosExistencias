@@ -164,4 +164,200 @@ class CtlSuministro
     {
         return $this->codificacionSuministro;
     }
+    /**
+     * @var string
+     */
+    private $detalleSuministro;
+
+    /**
+     * @var string
+     */
+    private $detalleSchema;
+
+    /**
+     * @var integer
+     */
+    private $userIdSchema;
+
+    /**
+     * @var string
+     */
+    private $ipUserSchema;
+
+    /**
+     * @var integer
+     */
+    private $estadoSchema;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlRol
+     */
+    private $rolSolicitaSuministro;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlRol
+     */
+    private $rolValidaSuministro;
+
+
+    /**
+     * Set detalleSuministro
+     *
+     * @param string $detalleSuministro
+     * @return CtlSuministro
+     */
+    public function setDetalleSuministro($detalleSuministro)
+    {
+        $this->detalleSuministro = $detalleSuministro;
+
+        return $this;
+    }
+
+    /**
+     * Get detalleSuministro
+     *
+     * @return string 
+     */
+    public function getDetalleSuministro()
+    {
+        return $this->detalleSuministro;
+    }
+
+    /**
+     * Set detalleSchema
+     *
+     * @param string $detalleSchema
+     * @return CtlSuministro
+     */
+    public function setDetalleSchema($detalleSchema)
+    {
+        $this->detalleSchema = $detalleSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get detalleSchema
+     *
+     * @return string 
+     */
+    public function getDetalleSchema()
+    {
+        return $this->detalleSchema;
+    }
+
+    /**
+     * Set userIdSchema
+     *
+     * @param integer $userIdSchema
+     * @return CtlSuministro
+     */
+    public function setUserIdSchema($userIdSchema)
+    {
+        $this->userIdSchema = $userIdSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get userIdSchema
+     *
+     * @return integer 
+     */
+    public function getUserIdSchema()
+    {
+        return $this->userIdSchema;
+    }
+
+    /**
+     * Set ipUserSchema
+     *
+     * @param string $ipUserSchema
+     * @return CtlSuministro
+     */
+    public function setIpUserSchema($ipUserSchema)
+    {
+        $this->ipUserSchema = $ipUserSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get ipUserSchema
+     *
+     * @return string 
+     */
+    public function getIpUserSchema()
+    {
+        return $this->ipUserSchema;
+    }
+
+    /**
+     * Set estadoSchema
+     *
+     * @param integer $estadoSchema
+     * @return CtlSuministro
+     */
+    public function setEstadoSchema($estadoSchema)
+    {
+        $this->estadoSchema = $estadoSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoSchema
+     *
+     * @return integer 
+     */
+    public function getEstadoSchema()
+    {
+        return $this->estadoSchema;
+    }
+
+    /**
+     * Set rolSolicitaSuministro
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlRol $rolSolicitaSuministro
+     * @return CtlSuministro
+     */
+    public function setRolSolicitaSuministro(\Minsal\CoreBundle\Entity\CtlRol $rolSolicitaSuministro = null)
+    {
+        $this->rolSolicitaSuministro = $rolSolicitaSuministro;
+
+        return $this;
+    }
+
+    /**
+     * Get rolSolicitaSuministro
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlRol 
+     */
+    public function getRolSolicitaSuministro()
+    {
+        return $this->rolSolicitaSuministro;
+    }
+
+    /**
+     * Set rolValidaSuministro
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlRol $rolValidaSuministro
+     * @return CtlSuministro
+     */
+    public function setRolValidaSuministro(\Minsal\CoreBundle\Entity\CtlRol $rolValidaSuministro = null)
+    {
+        $this->rolValidaSuministro = $rolValidaSuministro;
+
+        return $this;
+    }
+
+    /**
+     * Get rolValidaSuministro
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlRol 
+     */
+    public function getRolValidaSuministro()
+    {
+        return $this->rolValidaSuministro;
+    }
 }

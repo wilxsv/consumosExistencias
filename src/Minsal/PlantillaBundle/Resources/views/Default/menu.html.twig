@@ -19,7 +19,8 @@
 	  <li><a href="{{ path('configuracion_establecimientos_index') }}"><i class="fa fa-clone"></i> <span>Establecimientos</span></a></li>
 	  <li><a href="{{ path('configuracion_mecanismos_index') }}"><i class="fa fa-refresh"></i> <span>Mecanismo de transferencia</span></a></li>
 	  <li><a href="{{ path('configuracion_programas_index') }}"><i class="fa fa-linux"></i> <span>Programas especiales</span></a></li>
-	  <li><a href="{{ path('configuracion_productos_index') }}"><i class="fa fa-dropbox"></i> <span>Suministros</span></a></li>
+	  <li><a href="{{ path('configuracion_productos_index') }}"><i class="fa fa-dropbox"></i> <span>Productos</span></a></li>
+	  <li><a href="{{ path('configuracion_suministros_index') }}"><i class="fa fa-cubes"></i> <span>Suministros</span></a></li>
   {%  endif %}
   {% if is_granted('ROLE_REGISTRO_LOCAL') %}
         <li><a href="{{ path('minsal_core_registro_index') }}"><i class="fa fa-edit"></i> <span>Registrar consumo</span></a></li>

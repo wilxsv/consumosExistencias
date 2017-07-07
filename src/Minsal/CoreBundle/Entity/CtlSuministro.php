@@ -360,4 +360,32 @@ class CtlSuministro
     {
         return $this->rolValidaSuministro;
     }
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlRol
+     */
+    private $roleRegistra;
+
+
+    /**
+     * Set roleRegistra
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlRol $roleRegistra
+     * @return CtlSuministro
+     */
+    public function setRoleRegistra(\Minsal\CoreBundle\Entity\CtlRol $roleRegistra = null)
+    {
+        $this->roleRegistra = $roleRegistra;
+
+        return $this;
+    }
+
+    /**
+     * Get roleRegistra
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlRol 
+     */
+    public function getRoleRegistra()
+    {
+        return $this->roleRegistra;
+    }
 }

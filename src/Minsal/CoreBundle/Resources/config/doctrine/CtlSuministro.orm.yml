@@ -2,15 +2,9 @@ Minsal\CoreBundle\Entity\CtlSuministro:
     type: entity
     table: ctl_suministro
     indexes:
-        IDX_23741A44DF5CB336:
+        FKI_suministro_registra:
             columns:
-                - rol_solicita_suministro
-        IDX_23741A446EB0AB02:
-            columns:
-                - rol_valida_suministro
-        IDX_23741A44D64E375F:
-            columns:
-                - ctl_suministroid
+                - role_registra
     uniqueConstraints:
         ctl_suministro_nombre_suministro_key:
             columns:
@@ -30,81 +24,25 @@ Minsal\CoreBundle\Entity\CtlSuministro:
             length: 255
             fixed: false
             column: nombre_suministro
-        detalleSuministro:
-            type: string
-            nullable: true
-            length: 255
-            fixed: false
-            column: detalle_suministro
         registroSchema:
             type: datetime
             nullable: true
             default: '2017-02-26 21:29:15.600166'
             column: registro_schema
-        detalleSchema:
-            type: text
-            nullable: true
-            length: null
-            fixed: false
-            default: 'Agregado antes de gestor de maestros'
-            column: detalle_schema
-        userIdSchema:
-            type: bigint
-            nullable: true
-            unsigned: false
-            default: '(1)::bigint'
-            column: user_id_schema
-        ipUserSchema:
-            type: string
-            nullable: true
-            length: null
-            fixed: false
-            default: 0.0.0.0
-            column: ip_user_schema
-        estadoSchema:
-            type: integer
-            nullable: true
-            unsigned: false
-            default: '0'
-            column: estado_schema
         enableSchema:
             type: integer
             nullable: true
             unsigned: false
             default: '0'
             column: enable_schema
-        codificacionSuministro:
-            type: bigint
-            nullable: false
-            unsigned: false
-            default: '1'
-            column: codificacion_suministro
     manyToOne:
-        rolSolicitaSuministro:
+        roleRegistra:
             targetEntity: CtlRol
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                rol_solicita_suministro:
-                    referencedColumnName: id
-            orphanRemoval: false
-        rolValidaSuministro:
-            targetEntity: CtlRol
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                rol_valida_suministro:
-                    referencedColumnName: id
-            orphanRemoval: false
-        ctlSuministroid:
-            targetEntity: CtlSuministro
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                ctl_suministroid:
+                role_registra:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

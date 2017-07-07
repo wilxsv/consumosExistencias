@@ -1,4 +1,7 @@
 #Configuracion
+minsal_core_configuracion_suministros:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlsuministro.yml"
+    prefix:   /configuracion/suministros
 minsal_core_configuracion_tipoestablecimientos:
     resource: "@MinsalCoreBundle/Resources/config/routing/ctltipoestablecimiento.yml"
     prefix:   /configuracion/tipoestablecimientos

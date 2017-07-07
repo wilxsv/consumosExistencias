@@ -97,4 +97,11 @@ class CtlRol
     {
         return $this->acceso;
     }
+    
+    public function __toString()
+    {
+        return $this->getNombreRol();
+    }
+    
+    
 }

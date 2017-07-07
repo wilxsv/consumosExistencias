@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}Actualizar suministro{% endblock %}
+{% block body %}
+<div class="box box-info">
+ <div class="box-header with-border"><h3 class="box-title">Datos</h3></div>
+  {{ form_start(edit_form, { 'attr' : { 'class': 'form-horizontal' } }) }}
+  <div class="box-body">
+    {{ form_row(edit_form.nombreSuministro) }}
+    {{ form_widget(edit_form) }}
+  </div>
+  <div class="box-footer">
+   <a href="{{ path('configuracion_suministros_index') }}" class="btn btn-success"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"></span> Listar </a>
+   <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+  </div>
+  {{ form_end(edit_form) }}
+ </div>
+</div>
+{% endblock %}

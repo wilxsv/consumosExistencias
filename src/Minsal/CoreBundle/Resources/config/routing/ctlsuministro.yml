@@ -1,0 +1,19 @@
+configuracion_suministros_index:
+    path:     /
+    defaults: { _controller: "MinsalCoreBundle:CtlSuministro:index" }
+    methods:  GET
+
+configuracion_suministros_show:
+    path:     /{id}/show
+    defaults: { _controller: "MinsalCoreBundle:CtlSuministro:show" }
+    methods:  GET
+
+configuracion_suministros_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MinsalCoreBundle:CtlSuministro:edit" }
+    methods:  [GET, POST]
+
+configuracion_suministros_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MinsalCoreBundle:CtlSuministro:delete" }
+    methods:  DELETE

@@ -17,7 +17,12 @@ class DefaultController extends Controller
     }
     public function manualAction()
     {
-        return $this->render('MinsalCoreBundle:Default:manual.html.twig');
+		
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT i FROM  MinsalCoreBundle:CtlInsumo i";
+		$insumo = $em->createQuery( $dql )->setMaxResults(125)->getResult();
+		
+        return $this->render('MinsalCoreBundle:Default:manual.html.twig', array('insumo' => $insumo,));
     }
     public function archivoAction()
     {

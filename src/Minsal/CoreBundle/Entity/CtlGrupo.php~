@@ -220,4 +220,116 @@ class CtlGrupo
     {
         return $this->suministro;
     }
+    /**
+     * @var string
+     */
+    private $detalleSchema;
+
+    /**
+     * @var integer
+     */
+    private $userIdSchema;
+
+    /**
+     * @var string
+     */
+    private $ipUserSchema;
+
+    /**
+     * @var integer
+     */
+    private $estadoSchema;
+
+
+    /**
+     * Set detalleSchema
+     *
+     * @param string $detalleSchema
+     * @return CtlGrupo
+     */
+    public function setDetalleSchema($detalleSchema)
+    {
+        $this->detalleSchema = $detalleSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get detalleSchema
+     *
+     * @return string 
+     */
+    public function getDetalleSchema()
+    {
+        return $this->detalleSchema;
+    }
+
+    /**
+     * Set userIdSchema
+     *
+     * @param integer $userIdSchema
+     * @return CtlGrupo
+     */
+    public function setUserIdSchema($userIdSchema)
+    {
+        $this->userIdSchema = $userIdSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get userIdSchema
+     *
+     * @return integer 
+     */
+    public function getUserIdSchema()
+    {
+        return $this->userIdSchema;
+    }
+
+    /**
+     * Set ipUserSchema
+     *
+     * @param string $ipUserSchema
+     * @return CtlGrupo
+     */
+    public function setIpUserSchema($ipUserSchema)
+    {
+        $this->ipUserSchema = $ipUserSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get ipUserSchema
+     *
+     * @return string 
+     */
+    public function getIpUserSchema()
+    {
+        return $this->ipUserSchema;
+    }
+
+    /**
+     * Set estadoSchema
+     *
+     * @param integer $estadoSchema
+     * @return CtlGrupo
+     */
+    public function setEstadoSchema($estadoSchema)
+    {
+        $this->estadoSchema = $estadoSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoSchema
+     *
+     * @return integer 
+     */
+    public function getEstadoSchema()
+    {
+        return $this->estadoSchema;
+    }
 }
