@@ -34,6 +34,9 @@ minsal_core_registro_manual:
 minsal_core_registro_archivo:
     path:     /registro/archivo
     defaults: { _controller: MinsalCoreBundle:Default:archivo }
+minsal_core_registro_archivo_xls:
+    path:     /registro/archivo_xls
+    defaults: { _controller: MinsalRutinaBundle:Default:xls }
 
 
 minsal_core_configuracion_cuadro:

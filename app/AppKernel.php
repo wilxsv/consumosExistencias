@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Minsal\PlantillaBundle\MinsalPlantillaBundle(),
             new Minsal\ReporteBundle\MinsalReporteBundle(),
             new Minsal\RutinaBundle\MinsalRutinaBundle(),
+            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new FOS\UserBundle\FOSUserBundle(),
         );
 
