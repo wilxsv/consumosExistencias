@@ -20,7 +20,7 @@
   <script type="text/javascript">$(function () { $("#minsal_cuadro_basico_subgrupo").select2(); }); </script>
  {% endif %}
  {% if insumo is defined %}
-  <select class="form-control select2" multiple="multiple"  data-placeholder="Seleccione el sub grupo" style="width: 90%;height: 50%;" id="minsal_cuadro_basico_insumo" name="minsal_cuadro_basico[insumo]">
+  <select class="form-control select2" multiple="multiple"  data-placeholder="Seleccione el sub grupo" style="width: 90%;height: 50%;" id="minsal_cuadro_basico_insumo" name="minsal_cuadro_basico[insumo][]">
    <option value=""></option>
    {% for s in insumo %}
     <option value="{{ s.id }}">{{ s.nombreLargoInsumo }}</option>

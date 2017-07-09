@@ -145,8 +145,6 @@ class CtlEstablecimientoController extends Controller
 			{
 				$em->getConnection()->exec( "select * from setCuadroBasico( $id, $selectedOption );" );
 			}
-							$request->getSession()->getFlashBag()->add('success', 'Rol agregado');
-
 			return $this->redirectToRoute('configuracion_establecimientos_index');
         }
 
