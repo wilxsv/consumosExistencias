@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Minsal\RutinaBundle\MinsalRutinaBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

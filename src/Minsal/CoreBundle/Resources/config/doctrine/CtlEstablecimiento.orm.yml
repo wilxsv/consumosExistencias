@@ -8,6 +8,9 @@ Minsal\CoreBundle\Entity\CtlEstablecimiento:
         IDX_332BD42C3544B551:
             columns:
                 - id_establecimiento_padre
+        IDX_332BD42C4E0E50FD:
+            columns:
+                - id_tipo_establecimiento
     id:
         id:
             type: integer
@@ -18,12 +21,6 @@ Minsal\CoreBundle\Entity\CtlEstablecimiento:
             generator:
                 strategy: SEQUENCE
     fields:
-        idTipoEstablecimiento:
-            type: integer
-            nullable: true
-            unsigned: false
-            comment: 'Tipo de establecimiento según Institución'
-            column: id_tipo_establecimiento
         nombre:
             type: string
             nullable: true
@@ -104,6 +101,15 @@ Minsal\CoreBundle\Entity\CtlEstablecimiento:
             inversedBy: null
             joinColumns:
                 id_municipio:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idTipoEstablecimiento:
+            targetEntity: CtlTipoEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_tipo_establecimiento:
                     referencedColumnName: id
             orphanRemoval: false
     manyToMany:

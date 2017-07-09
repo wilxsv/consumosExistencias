@@ -15,6 +15,7 @@
       <!-- /.search form -->
 	<section class="sidebar">
 	 <ul class="sidebar-menu">
+	 {{ app.session.get('menu') | raw }}
   {% if is_granted('ROLE_ADMIN_REGION') %}
 	  <li><a href="{{ path('configuracion_establecimientos_index') }}"><i class="fa fa-clone"></i> <span>Establecimientos</span></a></li>
 	  <li><a href="{{ path('configuracion_mecanismos_index') }}"><i class="fa fa-refresh"></i> <span>Mecanismo de transferencia</span></a></li>

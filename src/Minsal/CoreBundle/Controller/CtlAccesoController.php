@@ -36,18 +36,27 @@ class CtlAccesoController extends Controller
         $ctlAcceso = new Ctlacceso();
         $form = $this->createForm('Minsal\CoreBundle\Form\CtlAccesoType', $ctlAcceso);
         $form->handleRequest($request);
+        
+        $availableApiRoutes = [];
+		foreach ($this->container->get('router')->getRouteCollection()->all() as $name => $route) {
+			$route = $route->compile();
+			$availableApiRoutes[] = ["name" => $name];//, "variables" => $route->getVariables()
+		}
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $ctlAcceso->setPublicAcceso(false);
+            $ctlAcceso->setOrdenAcceso(1);
             $em->persist($ctlAcceso);
             $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Acceso creado');
 
-            return $this->redirectToRoute('admin_acceso_show', array('id' => $ctlAcceso->getId()));
+            return $this->redirectToRoute('admin_accesos_show', array('id' => $ctlAcceso->getId()));
         }
 
         return $this->render('ctlacceso/new.html.twig', array(
             'ctlAcceso' => $ctlAcceso,
-            'form' => $form->createView(),
+            'form' => $form->createView(), 'routes' => $availableApiRoutes,
         ));
     }
 
@@ -78,7 +87,7 @@ class CtlAccesoController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_acceso_edit', array('id' => $ctlAcceso->getId()));
+            return $this->redirectToRoute('admin_accesos_edit', array('id' => $ctlAcceso->getId()));
         }
 
         return $this->render('ctlacceso/edit.html.twig', array(
@@ -103,7 +112,7 @@ class CtlAccesoController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_acceso_index');
+        return $this->redirectToRoute('admin_accesos_index');
     }
 
     /**
@@ -116,7 +125,7 @@ class CtlAccesoController extends Controller
     private function createDeleteForm(CtlAcceso $ctlAcceso)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_acceso_delete', array('id' => $ctlAcceso->getId())))
+            ->setAction($this->generateUrl('admin_accesos_delete', array('id' => $ctlAcceso->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

@@ -22,21 +22,10 @@ class CtlEstablecimientoController extends Controller
         $form = $this->createForm('Minsal\CoreBundle\Form\CuadroType');
         $form->handleRequest($request);
 
-        $ctlEstablecimientos = $em->createQuery( "SELECT e FROM MinsalCoreBundle:CtlEstablecimiento e" )->setMaxResults(100)->getResult();
-        $dql = "SELECT i FROM  MinsalCoreBundle:CtlInsumo i";
-		$insumo = $em->createQuery( $dql )->setMaxResults(100)->getResult();
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-			$id = $_POST["minsal_cuadro_basico"]["tipo"];
-			foreach ($_POST["minsal_cuadro_basico"]["productos"] as $selectedOption)
-			{
-				$em->getConnection()->exec( "select * from setCuadroBasico( $id, $selectedOption );" );
-			}
-        }
+        $ctlEstablecimientos = $em->getRepository('MinsalCoreBundle:CtlEstablecimiento')->findAll();
 
         return $this->render('ctlestablecimiento/index.html.twig', array(
             'ctlEstablecimientos' => $ctlEstablecimientos,
-            'insumos' => $insumo,
             'form' => $form->createView(),
         ));
     }
@@ -144,14 +133,46 @@ class CtlEstablecimientoController extends Controller
         ));
     }    
     
-    public function cuadroAction()
+    public function cuadroAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm('Minsal\CoreBundle\Form\CuadroType');
+        $form->handleRequest($request);
 
-        $ctlEstablecimientos = $em->getRepository('MinsalCoreBundle:CtlEstablecimiento')->findAll();
+        if ($form->isSubmitted() && $form->isValid()) {
+			$id = $_POST["minsal_cuadro_basico"]["tipo"];
+			$em = $this->getDoctrine()->getManager();
+			foreach ($_POST["minsal_cuadro_basico"]["insumo"] as $selectedOption)
+			{
+				$em->getConnection()->exec( "select * from setCuadroBasico( $id, $selectedOption );" );
+			}
+							$request->getSession()->getFlashBag()->add('success', 'Rol agregado');
 
-        return $this->render('ctlestablecimiento/index.html.twig', array(
-            'ctlEstablecimientos' => $ctlEstablecimientos,
+			return $this->redirectToRoute('configuracion_establecimientos_index');
+        }
+
+        return $this->render('ctlestablecimiento/new.html.twig', array(
+            'form' => $form->createView(),
         ));
+    }
+    
+     public function ajaxAction(Request $request) 
+    {
+        if (! $request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+        }
+        $em = $this->getDoctrine()->getEntityManager();
+        if ($request->query->get('suministro') != NULL && is_numeric($request->query->get('suministro')) ){
+			$result = $em->createQuery( "SELECT g.id, g.nombreGrupo FROM MinsalCoreBundle:CtlGrupo g WHERE g.suministro = ".$request->query->get('suministro')." ORDER BY g.nombreGrupo" )->getResult();
+        	return $this->render('ctlestablecimiento/ajax.html.twig', array( 'rest'=> TRUE, 'suministro'=> $result));
+		
+        } elseif ($request->query->get('grupo') != NULL && is_numeric($request->query->get('grupo')) ){
+			$result = $em->createQuery( "SELECT g.id, g.nombreGrupo FROM MinsalCoreBundle:CtlGrupo g WHERE g.grupo = ".$request->query->get('grupo')." ORDER BY g.nombreGrupo" )->getResult();
+        	return $this->render('ctlestablecimiento/ajax.html.twig', array( 'rest'=> TRUE, 'grupo'=> $result));
+		}  elseif ($request->query->get('subgrupo') != NULL && is_numeric($request->query->get('subgrupo')) ){
+			$result = $em->createQuery( "SELECT g.id, g.nombreLargoInsumo FROM MinsalCoreBundle:CtlInsumo g WHERE g.grupoid = ".$request->query->get('subgrupo')." ORDER BY g.nombreLargoInsumo" )->getResult();
+        	return $this->render('ctlestablecimiento/ajax.html.twig', array( 'rest'=> TRUE, 'insumo'=> $result));
+		} else {
+          return $this->render('ctlestablecimiento/ajax.html.twig', array( 'rest'=> FALSE ));
+		}
     }
 }

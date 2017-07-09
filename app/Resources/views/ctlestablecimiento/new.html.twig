@@ -1,16 +1,103 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Definir cuadro basico{% endblock %}
 {% block body %}
-    <h1>Ctlestablecimiento creation</h1>
+{{ form_start(form) }}
+<div class="row">
+ <div class="col-xs-12">
+  <div class="box">
+   <div class="box-header with-border">
+    <h4>Seleccione las opciones</h4>
+    <div class="box-tools pull-right">
+     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Ocultar">
+     <i class="fa fa-minus"></i></button>
+     <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Salir">
+     <i class="fa fa-times"></i></button>
+    </div>
+   </div>
+   <div class="box-body">
+    <div class="form-group">
+     <label class="col-sm-2 control-label">Tipo de establecimiento</label>
+     <div class="col-sm-10">{{ form_widget(form.tipo) }}
+     </div>
+    </div>
+    <div class="form-group">
+     <label class="col-sm-2 control-label">Suministro</label>
+     <div class="col-sm-10">{{ form_widget(form.suministro) }}
+     </div>
+    </div>
+    <div class="form-group">
+     <label class="col-sm-2 control-label">Grupo</label>
+     <div class="col-sm-10" id="grupo"></div>
+    </div>
+    <div class="form-group">
+     <label class="col-sm-2 control-label">Sub Grupo</label>
+     <div class="col-sm-10" id="subgrupo"></div>
+    </div>
+    <div class="form-group">
+     <label class="col-sm-2 control-label">Productos</label>
+     <div class="col-sm-10" id="insumo"></div>
+    </div>
+   </div>
+   <div class="box-footer" style="">
+    <a href="{{ path('configuracion_establecimientos_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
+   </div>
+  </div>
+ </div>
+</div>
+{{ form_widget(form) }}
+{{ form_end(form) }}
+{% endblock %}
+{% block head_js %}
+  <link rel="stylesheet" href="{{ asset('assets/') }}core/plugins/select2/select2.min.css">
+{% endblock %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('configuracion_establecimientos_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block footer_js %}
+<script src="{{ asset('assets/') }}core/plugins/select2/select2.full.min.js"></script>
+<script type="text/javascript">
+  function cargarGrupo(valor) {
+   $.ajax({
+	type: "POST",
+	url: "{{ url('configuracion_establecimientos_ajax') }}?suministro=" + valor,
+	success: function(data) {
+		$('#grupo').html(data);
+    }
+   });
+   return false;
+  }
+  function cargarSubGrupo(valor) {
+   $.ajax({
+	type: "POST",
+	url: "{{ url('configuracion_establecimientos_ajax') }}?grupo=" + valor,
+	success: function(data) {
+		$('#subgrupo').html(data);
+    }
+   });
+   return false;
+  }
+  function cargarSubGrupo(valor) {
+   $.ajax({
+	type: "POST",
+	url: "{{ url('configuracion_establecimientos_ajax') }}?grupo=" + valor,
+	success: function(data) {
+		$('#subgrupo').html(data);
+    }
+   });
+   return false;
+  }
+  function cargarInsumo(valor) {
+   $.ajax({
+	type: "POST",
+	url: "{{ url('configuracion_establecimientos_ajax') }}?subgrupo=" + valor,
+	success: function(data) {
+		$('#insumo').html(data);
+    }
+   });
+   return false;
+  }
+  $(function () {
+    $("#minsal_cuadro_basico_tipo").select2();
+    $("#minsal_cuadro_basico_suministro").select2();
+    $("#minsal_cuadro_basico_grupo").select2();
+  });
+</script>
 {% endblock %}

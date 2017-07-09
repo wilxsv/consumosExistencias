@@ -1,4 +1,7 @@
 #Configuracion
+minsal_core_admin_accesos:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlacceso.yml"
+    prefix:   /admin/accesos
 minsal_core_configuracion_suministros:
     resource: "@MinsalCoreBundle/Resources/config/routing/ctlsuministro.yml"
     prefix:   /configuracion/suministros

@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Doctrine\ORM\Query\ResultSetMapping;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
@@ -17,6 +20,11 @@ class DefaultController extends Controller
         $dql = "SELECT i FROM  MinsalCoreBundle:CtlInsumo i";
 		$insumo = $em->createQuery( $dql )->getResult();
         $ctlExistencias = $em->getRepository('MinsalCoreBundle:CtlExistencias')->findAll();
+        
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('IS_AUTHENTICATED_FULLY')) {
+			$this->setMenu( $auth_checker );
+		}
 
         return $this->render('MinsalRutinaBundle:Default:index.html.twig', array(
             'ctlExistencias' => $ctlExistencias,
@@ -64,4 +72,37 @@ class DefaultController extends Controller
         return $response;
         */
     }
+    
+    private function setMenu( $rol ){
+		$em = $this->getDoctrine()->getManager();
+        
+        $list = '';
+        $pass = '';
+		$rsm = new ResultSetMapping;
+		$rsm->addEntityResult('MinsalCoreBundle:CtlAcceso', 'a');
+		$rsm->addFieldResult('a','path_acceso','pathAcceso');
+		$rsm->addFieldResult('a','id','id');
+		$rsm->addFieldResult('a','nombre_acceso','nombreAcceso');
+		$nq = $this->getDoctrine()->getManager()
+    ->createNativeQuery('
+        SELECT a.path_acceso, r.id , a.nombre_acceso
+		FROM ctl_acceso a INNER JOIN permisos AS p ON (a.id = p.acceso_id) INNER JOIN ctl_rol AS r ON (r.id = p.rol_id) ORDER BY a.nombre_acceso ASC;
+		',
+        $rsm
+    );
+    $acceso = $nq->getArrayResult();
+		foreach ($acceso as $accesos) {	
+			$pass = $pass.$accesos['pathAcceso'].'/';
+			$roles = $em->getRepository('MinsalCoreBundle:CtlRol')->findById($accesos['id']);
+			foreach ($roles as $rolt) {	
+				if ( $rol->isGranted( $rolt->getNombreRol() ) ){
+					$pass = $pass.$rolt->getNombreRol().'/';
+					$url = $this->generateUrl($accesos['pathAcceso'], array());//$this->generateUrl($accesos->getPathAcceso(), UrlGeneratorInterface::ABSOLUTE_URL);
+					$list = $list.'<li><a href="'.$url.'"><i class="fa fa-circle-o text-aqua"></i> <span>'.$accesos['nombreAcceso'].'</span></a></li>';	
+				}
+			}			
+		}		
+		$this->get('session')->set('menu', $list);
+		$this->get('session')->set('pass', $pass);
+	}
 }

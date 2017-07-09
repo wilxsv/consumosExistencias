@@ -13,7 +13,11 @@ class CtlAccesoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombreAcceso')->add('pathAcceso')->add('publicAcceso')->add('ordenAcceso')->add('visibleAcceso')->add('acceso')->add('rol');
+        $builder
+			->add('nombreAcceso', 'text', array('label'  => 'Nombre del acceso'))
+			->add('visibleAcceso', 'choice', array('label'  => 'Aparece en el menú :', 'choices'=> array('0' => 'No', '1' => 'Si'), 'required'  => true, ))
+			->add('pathAcceso', 'text', array('label'  => 'Ruta en el navegador :', 'required'  => false, ))
+			->add('rol');
     }
     
     /**

@@ -1,21 +1,55 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Editar acceso a un enlace{% endblock %}
 {% block body %}
-    <h1>Ctlacceso edit</h1>
-
+<div class="row">
+ <div class="col-xs-12">
+  <div class="box">
+   <div class="box-header with-border">
+    <h4>Datos</h4>
+    <div class="box-tools pull-right">
+     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Ocultar">
+     <i class="fa fa-minus"></i></button>
+     <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Salir">
+     <i class="fa fa-times"></i></button>
+    </div>
+   </div>
+   <div class="box-body">
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('admin_acceso_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+    <div class="form-group">
+     <label class="col-sm-2 control-label">Nombre del item en menu</label>
+     <div class="col-sm-10">
+      {{ form_widget(edit_form.nombreAcceso) }}
+     </div>
+    </div>
+    <div class="form-group">
+     <label class="col-sm-2 control-label">Es visible en el menu</label>
+     <div class="col-sm-10">
+      {{ form_widget(edit_form.visibleAcceso) }}
+     </div>
+    </div>
+    <div class="form-group">
+     <label class="col-sm-2 control-label">Ruta en router</label>
+     <div class="col-sm-10">
+      {{ form_widget(edit_form.pathAcceso) }}
+     </div>
+    </div>
+    <div class="form-group">
+     <label class="col-sm-2 control-label">Roles que tienen acceso</label>
+     <div class="col-sm-10">
+      {{ form_widget(edit_form.rol) }}
+     </div>
+    </div>
+		{{ form_widget(edit_form._token) }}
+        <input type="submit" value="Actualizar" class="btn btn-primary" />
+    </form>
+   </div>
+   <div class="box-footer" style="">
+    <a href="{{ path('admin_accesos_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
+    {{ form_start(delete_form) }}
+                <input type="submit" value="Eliminar acceso" class="btn btn-danger" />
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+   </div>
+  </div>
+ </div>
+</div>
 {% endblock %}

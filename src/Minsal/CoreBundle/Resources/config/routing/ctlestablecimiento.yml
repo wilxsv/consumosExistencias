@@ -16,4 +16,10 @@ configuracion_establecimientos_edit:
 configuracion_establecimientos_cuadro:
     path:     /cuadrosbasicos
     defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:cuadro" }
-    methods:  GET
+    methods:  [GET, POST]
+configuracion_establecimientos_ajax:
+    path:     /buscarajax
+    defaults: { _controller: "MinsalCoreBundle:CtlEstablecimiento:ajax" }
+    methods:  [GET|HEAD|POST]
+    requirements:
+        _method: POST|GET

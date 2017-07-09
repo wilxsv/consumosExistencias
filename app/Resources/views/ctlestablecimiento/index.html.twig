@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Listado de Establecimientos{% endblock %}
-{% block subtitle %}<a href="" data-toggle="modal" data-target=".bs-example-modal-lg"> Definir cuadro basico <span class="glyphicon glyphicon-plus-sign"></span></a>{% endblock %}
+{% block subtitle %}<a href="{{ path('configuracion_establecimientos_cuadro') }}" > Definir cuadro basico <span class="glyphicon glyphicon-plus-sign"></span></a>{% endblock %}
 {% block body %}
 <div class="row">
  <div class="box">
@@ -10,55 +10,31 @@
      <thead>
       <tr>
        <th>Tipo establecimiento</th>
-       <th>Región</th>
-       <th>SIBASI</th>
-       <th>Establecimiento</th>
+       <th>Nombre de establecimiento</th>
+       <th>Direccion</th>
+       <th>Telefono</th>
       </tr>
      </thead>
      <tbody>
         {% for ctlEstablecimiento in ctlEstablecimientos %}
             <tr>
-                <td>{{ ctlEstablecimiento.nombre }}</td>
+                <td>{{ ctlEstablecimiento.idTipoEstablecimiento }}</td>
+                <td><a href="{{ path('configuracion_establecimientos_show', { 'id': ctlEstablecimiento.id }) }}">{{ ctlEstablecimiento.nombre }} <span class="glyphicon glyphicon-search"></span></a></td>
                 <td>{{ ctlEstablecimiento.direccion }}</td>
                 <td>{{ ctlEstablecimiento.telefono }}</td>
-                <td><a href="{{ path('configuracion_establecimientos_show', { 'id': ctlEstablecimiento.id }) }}">{{ ctlEstablecimiento.nombre }} <span class="glyphicon glyphicon-search"></span></a></td>
             </tr>
         {% endfor %}
      </tbody>
        <th>Tipo establecimiento</th>
-       <th>Región</th>
-       <th>SIBASI</th>
-       <th>Establecimiento</th>
+       <th>Nombre de establecimiento</th>
+       <th>Direccion</th>
+       <th>Telefono</th>
      <tfoot>
      </tfoot>
     </table>
   </div>
  </div>
 </div>
-
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Configuracion de cuadro basico</h4>
-      </div>
-      {{ form_start(form) }}
-      <div class="modal-body">
- <p>Seleccione el tipo de establecimiento:<br />
- {{ form_widget(form.tipo) }}</p>
- Productos:<br />
- {{ form_widget(form.productos) }}
- </p>
-	  </div>
-      <div class="modal-footer">
-        <input type="submit" value="Guardar" class="btn btn-primary">
-      </div>
-      {{ form_end(form) }}
-    </div>
-  </div>
-</div>
-
 
 {% endblock %}
 

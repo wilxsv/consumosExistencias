@@ -1,47 +1,61 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Listado de Accesos al sistema{% endblock %}
+{% block subtitle %}<a href="{{ path('admin_accesos_new') }}"> Agregar <span class="glyphicon glyphicon-plus-sign"></span></a>{% endblock %}
 {% block body %}
-    <h1>Ctlaccesos list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombreacceso</th>
-                <th>Pathacceso</th>
-                <th>Publicacceso</th>
-                <th>Ordenacceso</th>
-                <th>Visibleacceso</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ctlAcceso in ctlAccesos %}
-            <tr>
-                <td><a href="{{ path('admin_acceso_show', { 'id': ctlAcceso.id }) }}">{{ ctlAcceso.id }}</a></td>
-                <td>{{ ctlAcceso.nombreAcceso }}</td>
-                <td>{{ ctlAcceso.pathAcceso }}</td>
-                <td>{% if ctlAcceso.publicAcceso %}Yes{% else %}No{% endif %}</td>
-                <td>{{ ctlAcceso.ordenAcceso }}</td>
-                <td>{% if ctlAcceso.visibleAcceso %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_acceso_show', { 'id': ctlAcceso.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_acceso_edit', { 'id': ctlAcceso.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
+<div class="col-xs-12">
+ <div class="box">
+  <div class="box-body">
+   <table id="tabla" class="table table-bordered table-striped">
+     <thead>
+      <tr>
+       <th>Nombre de item en menu</th>
+       <th>Ruta en router</th>
+       <th>Visible</th>
+       <th>Operaciones</th>
+      </tr>
+     </thead>
+     <tbody>
+        {% for a in ctlAccesos %}
+      <tr>
+       <td><a href="{{ path('admin_accesos_show', { 'id': a.id }) }}">{{ a.nombreAcceso }}</a></td>
+       <td>{{ a.pathAcceso }}</td>
+       <td>{{ a.visibleAcceso }}</td>
+       <td>
+        <a href="{{ path('admin_accesos_edit', { 'id': a.id }) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a href="{{ path('admin_accesos_show', { 'id': a.id }) }}"><span class="glyphicon glyphicon-search"></span></a>
+       </td>
+      </tr>
+     {% endfor %}
+     </tbody>
+     <tfoot>
+       <tr>
+       <th>Nombre de item en menu</th>
+       <th>Ruta en router</th>
+       <th>Visible</th>
+       <th>Operaciones</th>
+       </tr>
+     </tfoot>
     </table>
+ </div>
+</div>
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_acceso_new') }}">Create a new ctlAcceso</a>
-        </li>
-    </ul>
+{% block footer_js %}
+<!-- DataTables -->
+<script src="{{ asset('assets/') }}core/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- page script -->
+<script>
+  $(function () {
+    $('#tabla').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 {% endblock %}
