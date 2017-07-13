@@ -78,7 +78,7 @@ class CtlComponenteController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('configuracion_programas_edit', array('id' => $ctlComponente->getId()));
+            return $this->redirectToRoute('configuracion_programas_index');
         }
 
         return $this->render('ctlcomponente/edit.html.twig', array(

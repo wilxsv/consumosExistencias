@@ -1,6 +1,10 @@
 Minsal\CoreBundle\Entity\CtlComponente:
     type: entity
     table: ctl_componente
+    indexes:
+        FKI_componente_rol:
+            columns:
+                - role_registra_componente
     uniqueConstraints:
         ctl_componente_nombre_componente_key:
             columns:
@@ -20,6 +24,16 @@ Minsal\CoreBundle\Entity\CtlComponente:
             length: 255
             fixed: false
             column: nombre_componente
+    manyToOne:
+        roleRegistraComponente:
+            targetEntity: CtlRol
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                role_registra_componente:
+                    referencedColumnName: id
+            orphanRemoval: false
     manyToMany:
         insumo:
             targetEntity: CtlInsumo

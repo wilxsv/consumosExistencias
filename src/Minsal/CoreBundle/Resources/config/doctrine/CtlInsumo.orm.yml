@@ -88,7 +88,7 @@ Minsal\CoreBundle\Entity\CtlInsumo:
             mappedBy: null
             inversedBy: ctlInsumoid
             joinTable:
-                name: ctl_cuadro_basico
+                name: cuadro_basico
                 joinColumns:
                     -
                         name: ctl_insumoid

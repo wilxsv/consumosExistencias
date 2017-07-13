@@ -78,7 +78,7 @@ class CtlInsumoController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('configuracion_productos_edit', array('id' => $ctlInsumo->getId()));
+            return $this->redirectToRoute('configuracion_productos_index');
         }
 
         return $this->render('ctlinsumo/edit.html.twig', array(

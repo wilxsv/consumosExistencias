@@ -97,4 +97,32 @@ class CtlComponente
     {
         return $this->insumo;
     }
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlRol
+     */
+    private $roleRegistraComponente;
+
+
+    /**
+     * Set roleRegistraComponente
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlRol $roleRegistraComponente
+     * @return CtlComponente
+     */
+    public function setRoleRegistraComponente(\Minsal\CoreBundle\Entity\CtlRol $roleRegistraComponente = null)
+    {
+        $this->roleRegistraComponente = $roleRegistraComponente;
+
+        return $this;
+    }
+
+    /**
+     * Get roleRegistraComponente
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlRol 
+     */
+    public function getRoleRegistraComponente()
+    {
+        return $this->roleRegistraComponente;
+    }
 }

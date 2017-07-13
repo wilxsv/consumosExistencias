@@ -13,7 +13,9 @@ class CtlSuministroType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombreSuministro')->add('roleRegistra');
+        $builder
+			->add('nombreSuministro', 'text', array('label'  => 'Nombre del suministro :', 'required'  => false, 'disabled'  => true))
+			->add('roleRegistra');
     }
     
     /**

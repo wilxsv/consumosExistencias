@@ -78,7 +78,7 @@ class CtlSuministroController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('configuracion_suministros_edit', array('id' => $ctlSuministro->getId()));
+            return $this->redirectToRoute('configuracion_suministros_index');
         }
 
         return $this->render('ctlsuministro/edit.html.twig', array(
