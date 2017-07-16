@@ -22,9 +22,10 @@ Minsal\CoreBundle\Entity\CtlExistencias:
             nullable: false
             column: fecha_registro
         cantidadExistencia:
-            type: bigint
+            type: float
             nullable: false
-            unsigned: false
+            precision: 10
+            scale: 0
             column: cantidad_existencia
         fechaCaducidad:
             type: date

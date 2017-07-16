@@ -5,6 +5,9 @@ Minsal\CoreBundle\Entity\CtlInsumo:
         ctl_insumo_nombre_largo_key:
             columns:
                 - nombre_largo_insumo
+        IDX_9DB322272F1374E:
+            columns:
+                - grupoid
     id:
         id:
             type: bigint
@@ -20,10 +23,6 @@ Minsal\CoreBundle\Entity\CtlInsumo:
             length: 255
             fixed: false
             column: codigo_nu
-        grupoid:
-            type: integer
-            nullable: true
-            unsigned: false
         codigoSinab:
             type: string
             nullable: false
@@ -58,6 +57,16 @@ Minsal\CoreBundle\Entity\CtlInsumo:
             fixed: false
             default: na
             column: detalle_insumo
+    manyToOne:
+        grupoid:
+            targetEntity: CtlGrupo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                grupoid:
+                    referencedColumnName: id
+            orphanRemoval: false
     manyToMany:
         establecimiento:
             targetEntity: CtlEstablecimiento

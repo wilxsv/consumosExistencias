@@ -20,11 +20,6 @@ class CtlInsumo
     private $codigoNu;
 
     /**
-     * @var integer
-     */
-    private $grupoid;
-
-    /**
      * @var string
      */
     private $codigoSinab;
@@ -53,6 +48,11 @@ class CtlInsumo
      * @var string
      */
     private $detalleInsumo;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlGrupo
+     */
+    private $grupoid;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -110,29 +110,6 @@ class CtlInsumo
     public function getCodigoNu()
     {
         return $this->codigoNu;
-    }
-
-    /**
-     * Set grupoid
-     *
-     * @param integer $grupoid
-     * @return CtlInsumo
-     */
-    public function setGrupoid($grupoid)
-    {
-        $this->grupoid = $grupoid;
-
-        return $this;
-    }
-
-    /**
-     * Get grupoid
-     *
-     * @return integer 
-     */
-    public function getGrupoid()
-    {
-        return $this->grupoid;
     }
 
     /**
@@ -274,6 +251,29 @@ class CtlInsumo
     }
 
     /**
+     * Set grupoid
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlGrupo $grupoid
+     * @return CtlInsumo
+     */
+    public function setGrupoid(\Minsal\CoreBundle\Entity\CtlGrupo $grupoid = null)
+    {
+        $this->grupoid = $grupoid;
+
+        return $this;
+    }
+
+    /**
+     * Get grupoid
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlGrupo 
+     */
+    public function getGrupoid()
+    {
+        return $this->grupoid;
+    }
+
+    /**
      * Add establecimiento
      *
      * @param \Minsal\CoreBundle\Entity\CtlEstablecimiento $establecimiento
@@ -372,8 +372,10 @@ class CtlInsumo
         return $this->ctlEstablecimientoid;
     }
     
+        
     public function __toString()
     {
         return $this->getNombreLargoInsumo();
     }
+
 }

@@ -20,12 +20,7 @@ class CtlMovimiento
     private $fechaMovimiento;
 
     /**
-     * @var integer
-     */
-    private $tipoMovimiento;
-
-    /**
-     * @var integer
+     * @var float
      */
     private $cantidad;
 
@@ -35,24 +30,24 @@ class CtlMovimiento
     private $fechaRegistroMovimiento;
 
     /**
-     * @var \Minsal\CoreBundle\Entity\CtlEstablecimiento
-     */
-    private $ctlEstablecimientoid;
-
-    /**
-     * @var \Minsal\CoreBundle\Entity\CtlEstablecimiento
-     */
-    private $establecimientoOrigen;
-
-    /**
      * @var \Minsal\CoreBundle\Entity\CtlInsumo
      */
     private $ctlInsumoid;
 
     /**
+     * @var \Minsal\CoreBundle\Entity\CtlEstablecimiento
+     */
+    private $ctlEstablecimientoid;
+
+    /**
      * @var \Minsal\CoreBundle\Entity\CtlTipoMovimiento
      */
     private $ctlTipoMovimientoid;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlEstablecimiento
+     */
+    private $establecimientoOrigen;
 
 
     /**
@@ -89,32 +84,9 @@ class CtlMovimiento
     }
 
     /**
-     * Set tipoMovimiento
-     *
-     * @param integer $tipoMovimiento
-     * @return CtlMovimiento
-     */
-    public function setTipoMovimiento($tipoMovimiento)
-    {
-        $this->tipoMovimiento = $tipoMovimiento;
-
-        return $this;
-    }
-
-    /**
-     * Get tipoMovimiento
-     *
-     * @return integer 
-     */
-    public function getTipoMovimiento()
-    {
-        return $this->tipoMovimiento;
-    }
-
-    /**
      * Set cantidad
      *
-     * @param integer $cantidad
+     * @param float $cantidad
      * @return CtlMovimiento
      */
     public function setCantidad($cantidad)
@@ -127,7 +99,7 @@ class CtlMovimiento
     /**
      * Get cantidad
      *
-     * @return integer 
+     * @return float 
      */
     public function getCantidad()
     {
@@ -158,52 +130,6 @@ class CtlMovimiento
     }
 
     /**
-     * Set ctlEstablecimientoid
-     *
-     * @param \Minsal\CoreBundle\Entity\CtlEstablecimiento $ctlEstablecimientoid
-     * @return CtlMovimiento
-     */
-    public function setCtlEstablecimientoid(\Minsal\CoreBundle\Entity\CtlEstablecimiento $ctlEstablecimientoid = null)
-    {
-        $this->ctlEstablecimientoid = $ctlEstablecimientoid;
-
-        return $this;
-    }
-
-    /**
-     * Get ctlEstablecimientoid
-     *
-     * @return \Minsal\CoreBundle\Entity\CtlEstablecimiento 
-     */
-    public function getCtlEstablecimientoid()
-    {
-        return $this->ctlEstablecimientoid;
-    }
-
-    /**
-     * Set establecimientoOrigen
-     *
-     * @param \Minsal\CoreBundle\Entity\CtlEstablecimiento $establecimientoOrigen
-     * @return CtlMovimiento
-     */
-    public function setEstablecimientoOrigen(\Minsal\CoreBundle\Entity\CtlEstablecimiento $establecimientoOrigen = null)
-    {
-        $this->establecimientoOrigen = $establecimientoOrigen;
-
-        return $this;
-    }
-
-    /**
-     * Get establecimientoOrigen
-     *
-     * @return \Minsal\CoreBundle\Entity\CtlEstablecimiento 
-     */
-    public function getEstablecimientoOrigen()
-    {
-        return $this->establecimientoOrigen;
-    }
-
-    /**
      * Set ctlInsumoid
      *
      * @param \Minsal\CoreBundle\Entity\CtlInsumo $ctlInsumoid
@@ -227,6 +153,29 @@ class CtlMovimiento
     }
 
     /**
+     * Set ctlEstablecimientoid
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlEstablecimiento $ctlEstablecimientoid
+     * @return CtlMovimiento
+     */
+    public function setCtlEstablecimientoid(\Minsal\CoreBundle\Entity\CtlEstablecimiento $ctlEstablecimientoid = null)
+    {
+        $this->ctlEstablecimientoid = $ctlEstablecimientoid;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlEstablecimientoid
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlEstablecimiento 
+     */
+    public function getCtlEstablecimientoid()
+    {
+        return $this->ctlEstablecimientoid;
+    }
+
+    /**
      * Set ctlTipoMovimientoid
      *
      * @param \Minsal\CoreBundle\Entity\CtlTipoMovimiento $ctlTipoMovimientoid
@@ -247,5 +196,28 @@ class CtlMovimiento
     public function getCtlTipoMovimientoid()
     {
         return $this->ctlTipoMovimientoid;
+    }
+
+    /**
+     * Set establecimientoOrigen
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlEstablecimiento $establecimientoOrigen
+     * @return CtlMovimiento
+     */
+    public function setEstablecimientoOrigen(\Minsal\CoreBundle\Entity\CtlEstablecimiento $establecimientoOrigen = null)
+    {
+        $this->establecimientoOrigen = $establecimientoOrigen;
+
+        return $this;
+    }
+
+    /**
+     * Get establecimientoOrigen
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlEstablecimiento 
+     */
+    public function getEstablecimientoOrigen()
+    {
+        return $this->establecimientoOrigen;
     }
 }

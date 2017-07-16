@@ -22,9 +22,10 @@ Minsal\CoreBundle\Entity\CtlConsumo:
             nullable: false
             column: fecha_consumo
         cantidadConsumo:
-            type: bigint
+            type: float
             nullable: false
-            unsigned: false
+            precision: 10
+            scale: 0
             column: cantidad_consumo
         registroSchema:
             type: datetime

@@ -1,17 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 {%  if is_granted('IS_AUTHENTICATED_FULLY') %}
-  {% if is_granted('ROLE_ADMIN_REGION') %}
-	{% include 'MinsalRutinaBundle::Default/region.html.twig' %}
-  {%  endif %}
-  {% if is_granted('ROLE_REGISTRO_LOCAL') %}
-	{% include 'MinsalRutinaBundle::Default/local.html.twig' %}
-  {%  endif %}
-  {% if is_granted('ROLE_REGISTRO_REGIONAL') %}
+  {% if registro %}
 	{% include 'MinsalRutinaBundle::Default/registro.html.twig' %}
   {%  endif %}
-{%  endif %}
+{%  else %}
 	{% include 'MinsalRutinaBundle::Default/holamundo.html.twig' %}
+{%  endif %}
 {% endblock %}
 
 {% block footer_js %}
@@ -29,7 +24,15 @@
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : false
-    })
+    });
+    $('#tabla2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    });
   })
 </script>
 {% endblock %}

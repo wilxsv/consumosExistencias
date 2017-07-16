@@ -2,18 +2,18 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
     type: entity
     table: ctl_movimiento
     indexes:
-        IDX_B621B5407B62918:
-            columns:
-                - ctl_establecimientoid
-        IDX_B621B540B264D8:
-            columns:
-                - establecimiento_origen_id
         IDX_B621B540D05C792B:
             columns:
                 - ctl_insumoid
+        IDX_B621B5407B62918:
+            columns:
+                - ctl_establecimientoid
         IDX_B621B5403CEA1C61:
             columns:
                 - ctl_tipo_movimientoid
+        IDX_B621B540B264D8:
+            columns:
+                - establecimiento_origen_id
     id:
         id:
             type: integer
@@ -27,38 +27,16 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
             type: datetime
             nullable: false
             column: fecha_movimiento
-        tipoMovimiento:
-            type: bigint
-            nullable: false
-            unsigned: false
-            column: tipo_movimiento
         cantidad:
-            type: bigint
+            type: float
             nullable: false
-            unsigned: false
+            precision: 10
+            scale: 0
         fechaRegistroMovimiento:
             type: datetime
             nullable: false
             column: fecha_registro_movimiento
     manyToOne:
-        ctlEstablecimientoid:
-            targetEntity: CtlEstablecimiento
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                ctl_establecimientoid:
-                    referencedColumnName: id
-            orphanRemoval: false
-        establecimientoOrigen:
-            targetEntity: CtlEstablecimiento
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                establecimiento_origen_id:
-                    referencedColumnName: id
-            orphanRemoval: false
         ctlInsumoid:
             targetEntity: CtlInsumo
             cascade: {  }
@@ -68,6 +46,15 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
                 ctl_insumoid:
                     referencedColumnName: id
             orphanRemoval: false
+        ctlEstablecimientoid:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_establecimientoid:
+                    referencedColumnName: id
+            orphanRemoval: false
         ctlTipoMovimientoid:
             targetEntity: CtlTipoMovimiento
             cascade: {  }
@@ -75,6 +62,15 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
             inversedBy: null
             joinColumns:
                 ctl_tipo_movimientoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        establecimientoOrigen:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                establecimiento_origen_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

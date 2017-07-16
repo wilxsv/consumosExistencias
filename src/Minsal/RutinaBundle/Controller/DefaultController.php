@@ -17,19 +17,55 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $dql = "SELECT i FROM  MinsalCoreBundle:CtlInsumo i";
-		$insumo = $em->createQuery( $dql )->getResult();
-        $ctlExistencias = $em->getRepository('MinsalCoreBundle:CtlExistencias')->findAll();
-        
+        $registro = false;
+        $movimiento = false;
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('IS_AUTHENTICATED_FULLY')) {
 			$this->setMenu( $auth_checker );
+			$id = $this->getUser()->getId();
+			foreach ($this->getUser()->getRoles() as $role){
+				if ($role != 'ROLE_USER'){
+					$dql = "SELECT c.fechaConsumo, c.cantidadConsumo , e.cantidadExistencia, e.almacenFarmacia, ee.nombre, i.nombreLargoInsumo, e.loteExistencia
+					FROM MinsalCoreBundle:CtlConsumo c JOIN c.ctlExistencia e JOIN e.ctlInsumoid i JOIN i.ctlEstablecimientoid ee
+					WHERE ee.id = 409
+					ORDER BY e.id";
+					$query = $em->createQuery($dql);
+					if ($query->getResult() )
+						$registro = $query->getResult();
+					$dql = "SELECT m.fechaMovimiento, m.cantidad, e.nombre, i.nombreLargoInsumo
+					FROM MinsalCoreBundle:CtlMovimiento m JOIN m.ctlEstablecimientoid e JOIN m.ctlInsumoid i
+					WHERE e.id = 409
+					ORDER BY e.id";
+					$query = $em->createQuery($dql);
+					if ($query->getResult() )
+						$movimiento = $query->getResult();
+				}
+			}
 		}
 
         return $this->render('MinsalRutinaBundle:Default:index.html.twig', array(
-            'ctlExistencias' => $ctlExistencias,
+            'ctlExistencias' => $registro,
+            'movimiento' => $movimiento,
+            'registro' => $registro,
         ));
     }
+    
+    public function registroAction(){
+			foreach ($this->getUser()->getRoles() as $role){
+				$dql = "
+				SELECT u
+				FROM MinsalCoreBundle:FosUser u JOIN u.establecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
+				ORDER BY e.id
+					
+				SELECT e 
+					FROM MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
+					WHERE r.nombreRol = '$role'
+					ORDER BY e.id";
+				$query = $em->createQuery($dql);
+				if ($query->getResult() )
+				$registro = true;
+			}			
+	}
     
     public function xlsAction()
     {   
@@ -85,7 +121,7 @@ class DefaultController extends Controller
 		$rsm->addFieldResult('a','nombre_acceso','nombreAcceso');
 		$nq = $this->getDoctrine()->getManager()
     ->createNativeQuery('
-        SELECT a.path_acceso, r.id , a.nombre_acceso
+        SELECT a.path_acceso, r.id , a.nombre_acceso, r.nombre_rol
 		FROM ctl_acceso a INNER JOIN permisos AS p ON (a.id = p.acceso_id) INNER JOIN ctl_rol AS r ON (r.id = p.rol_id) ORDER BY a.nombre_acceso ASC;
 		',
         $rsm
@@ -94,14 +130,17 @@ class DefaultController extends Controller
 		foreach ($acceso as $accesos) {	
 			$pass = $pass.$accesos['pathAcceso'].'/';
 			$roles = $em->getRepository('MinsalCoreBundle:CtlRol')->findById($accesos['id']);
+			$my = null;
 			foreach ($roles as $rolt) {	
 				if ( $rol->isGranted( $rolt->getNombreRol() ) ){
+					$this->get('session')->set('user', $rolt->getNombreRol() );
 					$pass = $pass.$rolt->getNombreRol().'/';
 					$url = $this->generateUrl($accesos['pathAcceso'], array());//$this->generateUrl($accesos->getPathAcceso(), UrlGeneratorInterface::ABSOLUTE_URL);
 					$list = $list.'<li><a href="'.$url.'"><i class="fa fa-circle-o text-aqua"></i> <span>'.$accesos['nombreAcceso'].'</span></a></li>';	
 				}
 			}			
-		}		
+		}
+		$this->get('session')->set('rol', $this->getUser()->getRoles() );
 		$this->get('session')->set('menu', $list);
 		$this->get('session')->set('pass', $pass);
 	}

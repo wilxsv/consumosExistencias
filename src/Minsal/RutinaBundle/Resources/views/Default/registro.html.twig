@@ -1,23 +1,38 @@
 <div class="col-xs-12">
  <div class="box">
-  <div class="box-header"><h3 class="box-title">Registros</h3></div>
-   <div class="box-body">
+  <div class="nav-tabs-custom">
+   <ul class="nav nav-tabs pull-right">
+    <li class="active"><a href="#registro" data-toggle="tab">Consumos y existencias</a></li>
+    <li><a href="#movimiento" data-toggle="tab">Movimientos es almacenes / farmacias</a></li>
+    <li class="pull-left header"><i class="fa fa-inbox"></i> Registros generales</li>
+   </ul>
+   <div class="tab-content no-padding">
+    <div class="chart tab-pane active" id="registro">
     <table id="tabla" class="table table-bordered table-striped">
      <thead>
       <tr>
        <th>Año</th>
        <th>Mes</th>
        <th>Establecimiento</th>
+       <th>Producto</th>
        <th>Consumo</th>
        <th>Existencia</th>
-       <th>Dias</th>
-       <th>Ingresos</th>
-       <th>Egresos</th>
+       <th>Lote</th>
        <th>Total</th>
       </tr>
      </thead>
      <tbody>
         {% for e in ctlExistencias %}
+         <tr>
+          <td>{% if e.fechaConsumo %}{{ e.fechaConsumo|date('Y') }}{% endif %}</td>
+          <td>{% if e.fechaConsumo %}{{ e.fechaConsumo|date('m') }}{% endif %}</td>
+          <td>{{ e.nombre }}</td>
+          <td>{{ e.nombreLargoInsumo }}</td>
+          <td>{{ e.cantidadConsumo | round(3, 'floor') }}</td>
+          <td>{% if e.almacenFarmacia %}{{e.cantidadExistencia  | round(3, 'floor')}} A{% else %}{{e.cantidadExistencia | round(3, 'floor')}} F{% endif %} </td>
+          <td>{{ e.loteExistencia }} </td>
+          <td>{{ (e.cantidadExistencia - e.cantidadConsumo) | round(3, 'floor') }}</td>
+         </tr>
         {% endfor %}
      </tbody>
      <tfoot>
@@ -25,15 +40,53 @@
        <th>Año</th>
        <th>Mes</th>
        <th>Establecimiento</th>
+       <th>Producto</th>
        <th>Consumo</th>
-       <th>Existencia</th>
-       <th>Dias</th>
-       <th>Ingresos</th>
-       <th>Egresos</th>
+       <th>Existencia A</th>
+       <th>Existencia F</th>
        <th>Total</th>
       </tr>
      </tfoot>
     </table>
+
+    </div>
+    <div class="chart tab-pane" id="movimiento">
+    <table id="tabla2" class="table table-bordered table-striped">
+     <thead>
+      <tr>
+       <th>Año</th>
+       <th>Mes</th>
+       <th>Origen</th>
+       <th>Destino</th>
+       <th>Producto</th>
+       <th>Cantidad</th>
+       <th>Tipo</th>
+      </tr>
+     </thead>
+     <tbody>
+        {% for e in movimiento %}
+         <tr>
+          <td>{% if e.fechaMovimiento %}{{ e.fechaMovimiento|date('Y') }}{% endif %}</td>
+          <td>{% if e.fechaMovimiento %}{{ e.fechaMovimiento|date('m') }}{% endif %}</td>
+          <td>{{ e.nombre }}</td>
+          <td>{{ e.nombre }}</td>
+          <td>{{ e.nombreLargoInsumo }}</td>
+          <td>{{ e.cantidad | round(3, 'floor') }}</td>
+         </tr>
+        {% endfor %}
+     </tbody>
+     <tfoot>
+      <tr>
+       <th>Año</th>
+       <th>Mes</th>
+       <th>Establecimiento</th>
+       <th>Producto</th>
+       <th>Cantidad</th>
+       <th>Tipo</th>
+      </tr>
+     </tfoot>
+    </table>
+    </div>
    </div>
   </div>
  </div>
