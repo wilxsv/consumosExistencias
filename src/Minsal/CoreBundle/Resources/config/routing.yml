@@ -37,9 +37,13 @@ minsal_core_registro_index:
 minsal_core_registro_manual:
     path:     /registro/manual
     defaults: { _controller: MinsalCoreBundle:Default:manual }
+    methods:  [GET|HEAD|POST]
+    requirements:
+        _method: POST|GET
 minsal_core_registro_archivo:
     path:     /registro/archivo
     defaults: { _controller: MinsalCoreBundle:Default:archivo }
+    methods:  [GET, POST]
 minsal_core_registro_archivo_xls:
     path:     /registro/archivo_xls
     defaults: { _controller: MinsalRutinaBundle:Default:xls }

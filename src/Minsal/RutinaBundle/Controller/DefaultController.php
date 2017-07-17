@@ -23,18 +23,26 @@ class DefaultController extends Controller
         if ($auth_checker->isGranted('IS_AUTHENTICATED_FULLY')) {
 			$this->setMenu( $auth_checker );
 			$id = $this->getUser()->getId();
+			
+			$dql = "SELECT e.id FROM  MinsalCoreBundle:FosUser u JOIN u.establecimiento e WHERE u.id = $id";
+			$persona = $em->createQuery( $dql )->getResult();
+			$e = 0;
+			foreach ($persona as $i) {
+				$e = $i['id'];
+            }
+			
 			foreach ($this->getUser()->getRoles() as $role){
 				if ($role != 'ROLE_USER'){
 					$dql = "SELECT c.fechaConsumo, c.cantidadConsumo , e.cantidadExistencia, e.almacenFarmacia, ee.nombre, i.nombreLargoInsumo, e.loteExistencia
 					FROM MinsalCoreBundle:CtlConsumo c JOIN c.ctlExistencia e JOIN e.ctlInsumoid i JOIN i.ctlEstablecimientoid ee
-					WHERE ee.id = 409
+					WHERE ee.id = $e
 					ORDER BY e.id";
 					$query = $em->createQuery($dql);
 					if ($query->getResult() )
 						$registro = $query->getResult();
 					$dql = "SELECT m.fechaMovimiento, m.cantidad, e.nombre, i.nombreLargoInsumo
 					FROM MinsalCoreBundle:CtlMovimiento m JOIN m.ctlEstablecimientoid e JOIN m.ctlInsumoid i
-					WHERE e.id = 409
+					WHERE e.id = $e
 					ORDER BY e.id";
 					$query = $em->createQuery($dql);
 					if ($query->getResult() )
@@ -76,18 +84,42 @@ class DefaultController extends Controller
            ->setTitle("Archivo de registro de consumos y existencias")
            ->setDescription( uniqid() );
         $phpExcelObject->setActiveSheetIndex(0);
-
         $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT i FROM  MinsalCoreBundle:CtlInsumo i";
-		$insumo = $em->createQuery( $dql )->setMaxResults(125)->getResult();
+        $id = $this->getUser()->getId();
+		$dql = "SELECT e.id, e.nombre FROM  MinsalCoreBundle:FosUser u JOIN u.establecimiento e WHERE u.id = $id";
+		$persona = $em->createQuery( $dql )->getResult();
+		$e = 0;
+		//Encabezado
+		foreach ($persona as $i) {
+			$e = $i['id'];
+			$ee = $i['nombre'];
+        }
+        //Producros por establecimiento del usuario
+		foreach ($this->getUser()->getRoles() as $role){
+			if ($role != 'ROLE_USER'){
+				$dql = "SELECT i.id, i.codigoSinab, i.nombreLargoInsumo
+					FROM MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
+					WHERE r.nombreRol = '$role' AND e.id = $e
+					ORDER BY e.id";
+				$insumo = $em->createQuery( $dql )->getResult();
+			}
+		}
+		//set datos personales
+		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C2', $ee);
+		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C3', date('Y-m-d'));
+		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C4', $this->container->get('security.context')->getToken()->getUser());
 		$i = 6;
 		foreach ($insumo as $item) {
             $phpExcelObject->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, $item->getId())
-                ->setCellValue('B'.$i, $item->getCodigoSinab())
-                ->setCellValue('C'.$i, $item->getNombreLargoInsumo());
+                ->setCellValue('A'.$i, $item['id'])
+                ->setCellValue('B'.$i, $item['codigoSinab'])
+                ->setCellValue('C'.$i, $item['nombreLargoInsumo']);
             $i++;
          }
+        $phpExcelObject->getActiveSheet()->protectCells('A1:C'.$i, 'minsal');
+        $phpExcelObject->getActiveSheet()->getProtection()->setSheet(true);
+        //Validacion de campos
+        //salida
         $phpExcelObject->getActiveSheet()->setTitle('Datos');
         $phpExcelObject->setActiveSheetIndex(0);
         $writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
@@ -98,15 +130,7 @@ class DefaultController extends Controller
         $response->headers->set('Cache-Control', 'maxage=1');
         $response->headers->set('Content-Disposition', $dispositionHeader);
 
-        return $response;   
-        /*
-        $file = $this->container->getParameter('kernel.root_dir').'/../web/files/registro.xlsx';
-        
-        $response = new BinaryFileResponse($file);
-        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
-        
         return $response;
-        */
     }
     
     private function setMenu( $rol ){
