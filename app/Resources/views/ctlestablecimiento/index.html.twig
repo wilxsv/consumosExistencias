@@ -6,45 +6,10 @@
  <div class="box">
   <div class="box-header"><h3 class="box-title">Dar clic en el tipo de establecimiento para ver el detalle del cuadro basico</h3>
    <select class="select2"  id="establecimiento" onchange="muestra()">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+    {% for t in ctlEstablecimientos %}
+     <option value="{{t.id}}"><i class="fa fa-fw fa-database"></i> {{ t.nombre }}</option>
+    {% endfor %}
    </select>
-  </div>
-   <div class="box-body">
-    <div class = "row">
-    </div>
-    <script>
-function muestra() {
-    var x = document.getElementById("establecimiento").value;
-    document.getElementById("respuesta").innerHTML = "You selected: " + x;
-}
-</script>
-    <table id="tabla" class="table table-bordered table-striped">
-     <thead>
-      <tr>
-       <th>Tipo establecimiento</th>
-       <th>Opciones</th>
-      </tr>
-     </thead>
-     <tbody>
-        {% for t in ctlEstablecimientos %}
-            <tr>
-                <td>{{ t.nombre }}</td>
-                <td><button type="submit" class="btn btn-primary btn-xs pull-left" onclick="cuadrobasico({{t.id}})"> <i class="fa fa-fw fa-database"></i> Ver cuadro básico</button>
-                <button type="submit" class="btn btn-primary btn-xs pull-right" onclick="establecimientos({{t.id}})"> <i class="fa fa-fw fa-building-o"></i> Establecimientos</button></td>
-            </tr>
-        {% endfor %}
-     </tbody>
-      <tr>
-       <th>Tipo establecimiento</th>
-       <th>Opciones</th>
-      </tr>
-     <tfoot>
-     </tfoot>
-    </table>
   </div>
  </div>
 </div>
@@ -54,12 +19,13 @@ function muestra() {
 
 {% block footer_js %}
  <script>  
-  function cuadrobasico(value){
+  function muestra(){
+    $('#respuesta').html('');
 	$.ajax({
 	  type: "POST",
-	  url: "{{ url('configuracion_establecimientos_ajax') }}?cuadro="+ value,
+	  url: "{{ url('configuracion_establecimientos_ajax') }}?cuadro="+ document.getElementById("establecimiento").value,
 	  success: function(data) {
-		 document.getElementById('respuesta').style.display = 'none';
+		$('#respuesta').html(data);
       }
     });
   }

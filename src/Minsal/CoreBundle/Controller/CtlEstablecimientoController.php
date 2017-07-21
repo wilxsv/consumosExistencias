@@ -169,6 +169,10 @@ class CtlEstablecimientoController extends Controller
 		}  elseif ($request->query->get('subgrupo') != NULL && is_numeric($request->query->get('subgrupo')) ){
 			$result = $em->createQuery( "SELECT g.id, g.nombreLargoInsumo FROM MinsalCoreBundle:CtlInsumo g WHERE g.grupoid = ".$request->query->get('subgrupo')." ORDER BY g.nombreLargoInsumo" )->getResult();
         	return $this->render('ctlestablecimiento/ajax.html.twig', array( 'rest'=> TRUE, 'insumo'=> $result));
+		}  elseif ($request->query->get('cuadro') != NULL && is_numeric($request->query->get('cuadro')) ){
+			$result = $em->createQuery( "SELECT i.nombreLargoInsumo FROM MinsalCoreBundle:CtlInsumo i JOIN i.ctlEstablecimientoid e JOIN e.idTipoEstablecimiento t WHERE t.id = ".$request->query->get('cuadro')." GROUP BY i.nombreLargoInsumo ORDER BY i.nombreLargoInsumo " )->getResult();
+			$result2 = $em->createQuery( "SELECT e FROM MinsalCoreBundle:CtlEstablecimiento e WHERE e.idTipoEstablecimiento = ".$request->query->get('cuadro')." ORDER BY e.idMunicipio, e.nombre " )->getResult();
+        	return $this->render('ctlestablecimiento/ajax.html.twig', array( 'rest'=> FALSE, 'cuadro'=> $result, 'establecimiento'=> $result2));
 		} else {
           return $this->render('ctlestablecimiento/ajax.html.twig', array( 'rest'=> FALSE ));
 		}
