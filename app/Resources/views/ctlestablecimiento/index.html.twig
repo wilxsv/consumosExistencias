@@ -4,41 +4,66 @@
 {% block body %}
 <div class="row">
  <div class="box">
-  <div class="box-header"><h3 class="box-title">Dar clic en el establecimiento para ver el detalle del cuadro basico</h3></div>
+  <div class="box-header"><h3 class="box-title">Dar clic en el tipo de establecimiento para ver el detalle del cuadro basico</h3>
+   <select class="select2"  id="establecimiento" onchange="muestra()">
+                    <option>option 1</option>
+                    <option>option 2</option>
+                    <option>option 3</option>
+                    <option>option 4</option>
+                    <option>option 5</option>
+   </select>
+  </div>
    <div class="box-body">
+    <div class = "row">
+    </div>
+    <script>
+function muestra() {
+    var x = document.getElementById("establecimiento").value;
+    document.getElementById("respuesta").innerHTML = "You selected: " + x;
+}
+</script>
     <table id="tabla" class="table table-bordered table-striped">
      <thead>
       <tr>
        <th>Tipo establecimiento</th>
-       <th>Nombre de establecimiento</th>
-       <th>Direccion</th>
-       <th>Telefono</th>
+       <th>Opciones</th>
       </tr>
      </thead>
      <tbody>
-        {% for ctlEstablecimiento in ctlEstablecimientos %}
+        {% for t in ctlEstablecimientos %}
             <tr>
-                <td>{{ ctlEstablecimiento.idTipoEstablecimiento }}</td>
-                <td><a href="{{ path('configuracion_establecimientos_show', { 'id': ctlEstablecimiento.id }) }}">{{ ctlEstablecimiento.nombre }} <span class="glyphicon glyphicon-search"></span></a></td>
-                <td>{{ ctlEstablecimiento.direccion }}</td>
-                <td>{{ ctlEstablecimiento.telefono }}</td>
+                <td>{{ t.nombre }}</td>
+                <td><button type="submit" class="btn btn-primary btn-xs pull-left" onclick="cuadrobasico({{t.id}})"> <i class="fa fa-fw fa-database"></i> Ver cuadro básico</button>
+                <button type="submit" class="btn btn-primary btn-xs pull-right" onclick="establecimientos({{t.id}})"> <i class="fa fa-fw fa-building-o"></i> Establecimientos</button></td>
             </tr>
         {% endfor %}
      </tbody>
+      <tr>
        <th>Tipo establecimiento</th>
-       <th>Nombre de establecimiento</th>
-       <th>Direccion</th>
-       <th>Telefono</th>
+       <th>Opciones</th>
+      </tr>
      <tfoot>
      </tfoot>
     </table>
   </div>
  </div>
 </div>
+<div id="respuesta"></div>
 
 {% endblock %}
 
 {% block footer_js %}
+ <script>  
+  function cuadrobasico(value){
+	$.ajax({
+	  type: "POST",
+	  url: "{{ url('configuracion_establecimientos_ajax') }}?cuadro="+ value,
+	  success: function(data) {
+		 document.getElementById('respuesta').style.display = 'none';
+      }
+    });
+  }
+  </script>
 <!-- DataTables -->
 <script src="{{ asset('assets/') }}core/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('assets/') }}core/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

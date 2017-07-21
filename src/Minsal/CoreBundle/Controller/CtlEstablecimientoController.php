@@ -22,7 +22,7 @@ class CtlEstablecimientoController extends Controller
         $form = $this->createForm('Minsal\CoreBundle\Form\CuadroType');
         $form->handleRequest($request);
 
-        $ctlEstablecimientos = $em->getRepository('MinsalCoreBundle:CtlEstablecimiento')->findAll();
+        $ctlEstablecimientos = $em->getRepository('MinsalCoreBundle:CtlTipoEstablecimiento')->findAll();
 
         return $this->render('ctlestablecimiento/index.html.twig', array(
             'ctlEstablecimientos' => $ctlEstablecimientos,
