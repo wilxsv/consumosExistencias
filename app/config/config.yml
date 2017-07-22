@@ -38,6 +38,7 @@ twig:
     globals:
         version: "0.1.0"
         nombre: "Sistema de consumos y existencias"
+        max: "3"
 
 # Doctrine Configuration
 doctrine:

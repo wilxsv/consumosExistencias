@@ -1,4 +1,7 @@
 #Configuracion
+minsal_core_registro_accesos:
+    resource: "@MinsalCoreBundle/Resources/config/routing/ctlmovimiento.yml"
+    prefix:   /registro/movimientos
 minsal_core_admin_accesos:
     resource: "@MinsalCoreBundle/Resources/config/routing/ctlacceso.yml"
     prefix:   /admin/accesos

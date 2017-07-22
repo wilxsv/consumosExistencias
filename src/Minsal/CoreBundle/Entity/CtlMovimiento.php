@@ -220,4 +220,89 @@ class CtlMovimiento
     {
         return $this->establecimientoOrigen;
     }
+    /**
+     * @var boolean
+     */
+    private $almacenFarmacia;
+
+
+    /**
+     * Set almacenFarmacia
+     *
+     * @param boolean $almacenFarmacia
+     * @return CtlMovimiento
+     */
+    public function setAlmacenFarmacia($almacenFarmacia)
+    {
+        $this->almacenFarmacia = $almacenFarmacia;
+
+        return $this;
+    }
+
+    /**
+     * Get almacenFarmacia
+     *
+     * @return boolean 
+     */
+    public function getAlmacenFarmacia()
+    {
+        return $this->almacenFarmacia;
+    }
+    
+    /**
+     * @var integer
+     */
+    private $loteMovimieno;
+
+
+    /**
+     * Set loteMovimieno
+     *
+     * @param integer $loteMovimieno
+     * @return CtlMovimiento
+     */
+    public function setLoteMovimieno($loteMovimieno)
+    {
+        $this->loteMovimieno = $loteMovimieno;
+
+        return $this;
+    }
+
+    /**
+     * Get loteMovimieno
+     *
+     * @return integer 
+     */
+    public function getLoteMovimieno()
+    {
+        return $this->loteMovimieno;
+    }
+    /**
+     * @var integer
+     */
+    private $loteMovimiento;
+
+
+    /**
+     * Set loteMovimiento
+     *
+     * @param integer $loteMovimiento
+     * @return CtlMovimiento
+     */
+    public function setLoteMovimiento($loteMovimiento)
+    {
+        $this->loteMovimiento = $loteMovimiento;
+
+        return $this;
+    }
+
+    /**
+     * Get loteMovimiento
+     *
+     * @return integer 
+     */
+    public function getLoteMovimiento()
+    {
+        return $this->loteMovimiento;
+    }
 }

@@ -22,3 +22,10 @@ movimiento_delete:
     path:     /{id}/delete
     defaults: { _controller: "MinsalCoreBundle:CtlMovimiento:delete" }
     methods:  DELETE
+    
+movimiento_ajax:
+    path:     /buscarajax
+    defaults: { _controller: "MinsalCoreBundle:CtlMovimiento:ajax" }
+    methods:  [GET|HEAD|POST]
+    requirements:
+        _method: POST|GET

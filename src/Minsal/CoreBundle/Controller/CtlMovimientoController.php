@@ -19,11 +19,25 @@ class CtlMovimientoController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $id = $this->getUser()->getId();
+		$dql = "SELECT e.id, e.nombre FROM  MinsalCoreBundle:FosUser u JOIN u.establecimiento e WHERE u.id = $id";
+		$persona = $em->createQuery( $dql )->getResult();
+		$e = 0;
+		//Encabezado
+		foreach ($persona as $i) {
+			$e = $i['id'];
+			$ee = $i['nombre'];
+        }
 
-        $ctlMovimientos = $em->getRepository('MinsalCoreBundle:CtlMovimiento')->findAll();
+        $repository = $this->getDoctrine()->getRepository('MinsalCoreBundle:CtlMovimiento');
+		$query = $repository->createQueryBuilder('p')->where("p.ctlEstablecimientoid = $e OR p.establecimientoOrigen = $e")->addOrderBy('p.fechaMovimiento', 'ASC')->getQuery();
+		$ctlMovimientos = $query->getResult();
+			
 
         return $this->render('ctlmovimiento/index.html.twig', array(
             'ctlMovimientos' => $ctlMovimientos,
+            'establecimiento' => $ee,
+            'id' => $e	,
         ));
     }
 
@@ -39,6 +53,8 @@ class CtlMovimientoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $ctlMovimiento->setFechaMovimiento(new \DateTime($_POST["minsal_corebundle_ctlmovimiento"]["fechaMovimiento"]));
+            $ctlMovimiento->setFechaRegistroMovimiento(new \DateTime("now"));
             $em->persist($ctlMovimiento);
             $em->flush();
 

@@ -20,12 +20,7 @@ class CtlMovimiento
     private $fechaMovimiento;
 
     /**
-     * @var integer
-     */
-    private $tipoMovimiento;
-
-    /**
-     * @var integer
+     * @var float
      */
     private $cantidad;
 
@@ -35,24 +30,24 @@ class CtlMovimiento
     private $fechaRegistroMovimiento;
 
     /**
-     * @var \Minsal\CoreBundle\Entity\CtlEstablecimiento
-     */
-    private $ctlEstablecimientoid;
-
-    /**
-     * @var \Minsal\CoreBundle\Entity\CtlEstablecimiento
-     */
-    private $establecimientoOrigen;
-
-    /**
      * @var \Minsal\CoreBundle\Entity\CtlInsumo
      */
     private $ctlInsumoid;
 
     /**
+     * @var \Minsal\CoreBundle\Entity\CtlEstablecimiento
+     */
+    private $ctlEstablecimientoid;
+
+    /**
      * @var \Minsal\CoreBundle\Entity\CtlTipoMovimiento
      */
     private $ctlTipoMovimientoid;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlEstablecimiento
+     */
+    private $establecimientoOrigen;
 
 
     /**
@@ -89,32 +84,9 @@ class CtlMovimiento
     }
 
     /**
-     * Set tipoMovimiento
-     *
-     * @param integer $tipoMovimiento
-     * @return CtlMovimiento
-     */
-    public function setTipoMovimiento($tipoMovimiento)
-    {
-        $this->tipoMovimiento = $tipoMovimiento;
-
-        return $this;
-    }
-
-    /**
-     * Get tipoMovimiento
-     *
-     * @return integer 
-     */
-    public function getTipoMovimiento()
-    {
-        return $this->tipoMovimiento;
-    }
-
-    /**
      * Set cantidad
      *
-     * @param integer $cantidad
+     * @param float $cantidad
      * @return CtlMovimiento
      */
     public function setCantidad($cantidad)
@@ -127,7 +99,7 @@ class CtlMovimiento
     /**
      * Get cantidad
      *
-     * @return integer 
+     * @return float 
      */
     public function getCantidad()
     {
@@ -158,6 +130,29 @@ class CtlMovimiento
     }
 
     /**
+     * Set ctlInsumoid
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlInsumo $ctlInsumoid
+     * @return CtlMovimiento
+     */
+    public function setCtlInsumoid(\Minsal\CoreBundle\Entity\CtlInsumo $ctlInsumoid = null)
+    {
+        $this->ctlInsumoid = $ctlInsumoid;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlInsumoid
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlInsumo 
+     */
+    public function getCtlInsumoid()
+    {
+        return $this->ctlInsumoid;
+    }
+
+    /**
      * Set ctlEstablecimientoid
      *
      * @param \Minsal\CoreBundle\Entity\CtlEstablecimiento $ctlEstablecimientoid
@@ -178,6 +173,29 @@ class CtlMovimiento
     public function getCtlEstablecimientoid()
     {
         return $this->ctlEstablecimientoid;
+    }
+
+    /**
+     * Set ctlTipoMovimientoid
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlTipoMovimiento $ctlTipoMovimientoid
+     * @return CtlMovimiento
+     */
+    public function setCtlTipoMovimientoid(\Minsal\CoreBundle\Entity\CtlTipoMovimiento $ctlTipoMovimientoid = null)
+    {
+        $this->ctlTipoMovimientoid = $ctlTipoMovimientoid;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlTipoMovimientoid
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlTipoMovimiento 
+     */
+    public function getCtlTipoMovimientoid()
+    {
+        return $this->ctlTipoMovimientoid;
     }
 
     /**
@@ -202,50 +220,89 @@ class CtlMovimiento
     {
         return $this->establecimientoOrigen;
     }
+    /**
+     * @var boolean
+     */
+    private $almacenFarmacia;
+
 
     /**
-     * Set ctlInsumoid
+     * Set almacenFarmacia
      *
-     * @param \Minsal\CoreBundle\Entity\CtlInsumo $ctlInsumoid
+     * @param boolean $almacenFarmacia
      * @return CtlMovimiento
      */
-    public function setCtlInsumoid(\Minsal\CoreBundle\Entity\CtlInsumo $ctlInsumoid = null)
+    public function setAlmacenFarmacia($almacenFarmacia)
     {
-        $this->ctlInsumoid = $ctlInsumoid;
+        $this->almacenFarmacia = $almacenFarmacia;
 
         return $this;
     }
 
     /**
-     * Get ctlInsumoid
+     * Get almacenFarmacia
      *
-     * @return \Minsal\CoreBundle\Entity\CtlInsumo 
+     * @return boolean 
      */
-    public function getCtlInsumoid()
+    public function getAlmacenFarmacia()
     {
-        return $this->ctlInsumoid;
+        return $this->almacenFarmacia;
     }
+    
+    /**
+     * @var integer
+     */
+    private $loteMovimieno;
+
 
     /**
-     * Set ctlTipoMovimientoid
+     * Set loteMovimieno
      *
-     * @param \Minsal\CoreBundle\Entity\CtlTipoMovimiento $ctlTipoMovimientoid
+     * @param integer $loteMovimieno
      * @return CtlMovimiento
      */
-    public function setCtlTipoMovimientoid(\Minsal\CoreBundle\Entity\CtlTipoMovimiento $ctlTipoMovimientoid = null)
+    public function setLoteMovimieno($loteMovimieno)
     {
-        $this->ctlTipoMovimientoid = $ctlTipoMovimientoid;
+        $this->loteMovimieno = $loteMovimieno;
 
         return $this;
     }
 
     /**
-     * Get ctlTipoMovimientoid
+     * Get loteMovimieno
      *
-     * @return \Minsal\CoreBundle\Entity\CtlTipoMovimiento 
+     * @return integer 
      */
-    public function getCtlTipoMovimientoid()
+    public function getLoteMovimieno()
     {
-        return $this->ctlTipoMovimientoid;
+        return $this->loteMovimieno;
+    }
+    /**
+     * @var integer
+     */
+    private $loteMovimiento;
+
+
+    /**
+     * Set loteMovimiento
+     *
+     * @param integer $loteMovimiento
+     * @return CtlMovimiento
+     */
+    public function setLoteMovimiento($loteMovimiento)
+    {
+        $this->loteMovimiento = $loteMovimiento;
+
+        return $this;
+    }
+
+    /**
+     * Get loteMovimiento
+     *
+     * @return integer 
+     */
+    public function getLoteMovimiento()
+    {
+        return $this->loteMovimiento;
     }
 }

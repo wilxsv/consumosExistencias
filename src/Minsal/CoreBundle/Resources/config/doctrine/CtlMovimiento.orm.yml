@@ -36,6 +36,15 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
             type: datetime
             nullable: false
             column: fecha_registro_movimiento
+        almacenFarmacia:
+            type: boolean
+            nullable: true
+            column: almacen_farmacia
+        loteMovimiento:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: lote_movimiento
     manyToOne:
         ctlInsumoid:
             targetEntity: CtlInsumo

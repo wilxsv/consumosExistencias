@@ -1,42 +1,54 @@
 {% extends 'base.html.twig' %}
-{% block title %}Registro de movimientos entre almacenes [Establecimiento xx-99-xx]{% endblock %}
+{% block title %}Registro de movimientos entre almacenes y farmacias{% endblock %}
 {% block subtitle %}Detalle de transferencias u otros movimientos entre almacenes del ministerio{% endblock %}
 {% block body %}
     <!-- Main content -->
     <section class="content">
       <div class="row">
+       <div class="col-xs-12">
+        <div class="box">
+         
+        </div>
+       </div>
+      </div>
+      <div class="row">
         <div class="col-xs-12">
-          
-
           <div class="box">
             <!-- /.box-header -->
             <div class="box-body">
               <table id="tabla" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                <th>Tipo de movimiento</th>
-                <th>Fecha de movimiento</th>
+                <th>Fecha</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Producto</th>
+                <th>Lote</th>
                 <th>Cantidad</th>
                 <th>Operaciones</th>
                 </tr>
                 </thead>
                 <tbody>
-        {% for ctlMovimiento in ctlMovimientos %}
+        {% for m in ctlMovimientos %}
             <tr>
-                <td>{{ ctlMovimiento.tipoMovimiento }}</td>
-                <td>{% if ctlMovimiento.fechaMovimiento %}{{ ctlMovimiento.fechaMovimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ ctlMovimiento.cantidad }}</td>
-                <td>{% if ctlMovimiento.fechaRegistroMovimiento %}{{ ctlMovimiento.fechaRegistroMovimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <a href="{{ path('movimiento_show', { 'id': ctlMovimiento.id }) }}">Ver </a>-<a href="{{ path('movimiento_edit', { 'id': ctlMovimiento.id }) }}"> Editar</a>
+                <td>{% if m.fechaMovimiento %}{{ m.fechaMovimiento|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ m.ctlEstablecimientoid }}</td>
+                <td>{{ m.establecimientoOrigen }}</td>
+                <td>{{ m.ctlInsumoid }}</td>
+                <td>{{ m.loteMovimiento }}</td>
+                <td>{{ m.cantidad | number_format(max, '.', ',') }}</td>
+                <td><a href="{{ path('movimiento_edit', { 'id': m.id }) }}"> Editar</a>
                 </td>
             </tr>
         {% endfor %}
                 </tbody>
                 <tfoot>
                 <tr>
-                <th>Tipo de movimiento</th>
-                <th>Fecha de movimiento</th>
+                <th>Fecha</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Producto</th>
+                <th>Lote</th>
                 <th>Cantidad</th>
                 <th>Operaciones</th>
                 </tr>
@@ -54,22 +66,23 @@
 <a href="{{ path('movimiento_new') }}" class="btn  btn-primary">Agregar movimiento</a>
     </section>    
 {% endblock %}
+
 {% block footer_js %}
 <!-- DataTables -->
-<script src="{{ asset('assets/') }}core/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{ asset('assets/') }}core/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
 <!-- page script -->
 <script>
   $(function () {
-    $("#tabla").DataTable();
-    $('#e').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
+    $('#tabla').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
 </script>
 {% endblock %}

@@ -5,6 +5,8 @@ namespace Minsal\CoreBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CtlMovimientoType extends AbstractType
 {
@@ -13,7 +15,17 @@ class CtlMovimientoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('fechaMovimiento')->add('tipoMovimiento')->add('cantidad')->add('ctlEstablecimientoid')->add('establecimientoOrigen')->add('ctlTipoMovimientoid')->add('ctlInsumoid');
+		//$entity = $em->getRepository('MinsalCoreBundle:CtlInsumo')->createQueryBuilder('i')->select('i.id', 'i.nombreLargoInsumo')->join('i.ctlEstablecimientoid', 'c')->groupBy('i.id','i.nombreLargoInsumo')
+        $builder
+			->add('fechaMovimiento', 'text', array('label'  => 'Fecha: ', 'attr' => array('data' => 'YYYY-mm-dd' )))
+			->add('cantidad')->add('almacenFarmacia')
+			->add('loteMovimiento', 'text', array('label'  => 'Lote: ', 'attr' => array('data' => '' )))
+			->add('ctlInsumoid')
+			->add('ctlInsumoid', EntityType::class, array('label'  => 'Producto:', 'class' => 'MinsalCoreBundle:CtlInsumo',
+			'query_builder' => function (EntityRepository $er) { 
+				return $er->createQueryBuilder('i');},
+				'choice_label' => 'nombreLargoInsumo', 'required' => true, 'multiple' => false))
+			->add('ctlEstablecimientoid')->add('establecimientoOrigen');
     }
     
     /**
