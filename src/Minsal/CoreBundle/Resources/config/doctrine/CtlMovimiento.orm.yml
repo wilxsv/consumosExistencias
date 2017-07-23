@@ -45,6 +45,10 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
             nullable: true
             unsigned: false
             column: lote_movimiento
+        almacenFarmaciaOrigen:
+            type: boolean
+            nullable: true
+            column: almacen_farmacia_origen
     manyToOne:
         ctlInsumoid:
             targetEntity: CtlInsumo

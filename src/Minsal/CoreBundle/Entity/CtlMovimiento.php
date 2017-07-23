@@ -305,4 +305,32 @@ class CtlMovimiento
     {
         return $this->loteMovimiento;
     }
+    /**
+     * @var boolean
+     */
+    private $almacenFarmaciaOrigen;
+
+
+    /**
+     * Set almacenFarmaciaOrigen
+     *
+     * @param boolean $almacenFarmaciaOrigen
+     * @return CtlMovimiento
+     */
+    public function setAlmacenFarmaciaOrigen($almacenFarmaciaOrigen)
+    {
+        $this->almacenFarmaciaOrigen = $almacenFarmaciaOrigen;
+
+        return $this;
+    }
+
+    /**
+     * Get almacenFarmaciaOrigen
+     *
+     * @return boolean 
+     */
+    public function getAlmacenFarmaciaOrigen()
+    {
+        return $this->almacenFarmaciaOrigen;
+    }
 }

@@ -15,17 +15,18 @@ class CtlMovimientoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		//$entity = $em->getRepository('MinsalCoreBundle:CtlInsumo')->createQueryBuilder('i')->select('i.id', 'i.nombreLargoInsumo')->join('i.ctlEstablecimientoid', 'c')->groupBy('i.id','i.nombreLargoInsumo')
         $builder
-			->add('fechaMovimiento', 'text', array('label'  => 'Fecha: ', 'attr' => array('data' => 'YYYY-mm-dd' )))
-			->add('cantidad')->add('almacenFarmacia')
-			->add('loteMovimiento', 'text', array('label'  => 'Lote: ', 'attr' => array('data' => '' )))
-			->add('ctlInsumoid')
+			->add('fechaMovimiento', 'date', array('label'  => 'Fecha ', 'widget' => 'single_text', 'format' => 'yyyy-MM-dd',))
+			->add('cantidad', 'number', array('label'  => 'Cantidad', 'attr' => array('onkeypress' => 'return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) || (event.keyCode === 37) || (event.keyCode === 39)')))
+			->add('almacenFarmacia')
+			->add('loteMovimiento')
+			->add('fechaRegistroMovimiento', 'date', array('label'  => 'Fecha ', 'widget' => 'single_text', 'format' => 'yyyy-MM-dd',))
+			->add('almacenFarmaciaOrigen')
 			->add('ctlInsumoid', EntityType::class, array('label'  => 'Producto:', 'class' => 'MinsalCoreBundle:CtlInsumo',
-			'query_builder' => function (EntityRepository $er) { 
-				return $er->createQueryBuilder('i');},
-				'choice_label' => 'nombreLargoInsumo', 'required' => true, 'multiple' => false))
-			->add('ctlEstablecimientoid')->add('establecimientoOrigen');
+			'query_builder' => function (EntityRepository $er) { return $er->createQueryBuilder('i')->join('i.ctlEstablecimientoid', '3', 'WITH', 'i.id > 0');}, 
+			'choice_label' => 'nombreLargoInsumo','required' => true, 'multiple' => false, 'attr' => array('class' => 'form-control select2', 'style' => 'width: 90%', "data-placeholder"=>"Select a State")))
+			->add('ctlEstablecimientoid', 'entity',array('label'  => 'Destino :', 'class' => 'MinsalCoreBundle:CtlEstablecimiento', 'required' => true, 'multiple' => false, 'attr' => array('class' => 'form-control select2', 'style' => 'width: 90%')))
+			->add('establecimientoOrigen', 'entity',array('label'  => 'Destino :', 'class' => 'MinsalCoreBundle:CtlEstablecimiento', 'required' => true, 'multiple' => false, 'attr' => array('class' => 'form-control select2', 'style' => 'width: 90%')));
     }
     
     /**

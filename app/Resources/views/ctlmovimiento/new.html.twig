@@ -2,72 +2,61 @@
 {% block title %}Registro de movimientos entre almacenes{% endblock %}
 {% block subtitle %}Detalle de transferencias u otros movimientos entre almacenes del ministerio{% endblock %}
 {% block body %}
-    <!-- Main content -->
-    <section class="content">
-	 {{ form_start(form) }}
-	 <div class="row">
-      <div class="col-xs-2">
-       Fecha: {{ form_widget(form.fechaMovimiento) }}
-      </div>
-      <div class="col-xs-4">
-       Producto: {{ form_widget(form.ctlInsumoid) }}
-      </div>
-      <div class="col-xs-2">
-       Almacen / farmacia: {{ form_widget(form.almacenFarmacia) }}
-      </div>
-      <div class="col-xs-2">
-       Lote: {{ form_widget(form.loteMovimiento) }}
-      </div>
-      <div class="col-xs-2">
-       Cantidad: {{ form_widget(form.cantidad) }}
-      </div>
-     </div>
-	 <div class="row">
-      <div class="col-xs-6">
-       Origen: {{ form_widget(form.establecimientoOrigen) }}
-      </div>
-      <div class="col-xs-6">
-       Destino: {{ form_widget(form.ctlEstablecimientoid) }}
-      </div>
-     </div>
-    <input type="submit" value="Crear" />
-     {{ form_end(form) }}
-    <div class="box-body">
-     
-     <div class="row">
-      <div class="box"></div>
-     </div>
-    </div>
-      <a href="{{ path('movimiento_index') }}" class="btn  btn-primary">Regresar</a>
-    </section>    
+<section class="content">
+ <div class="col-md-12">
+  {{ form_start(form) }}
+  <div class="box box-primary">
+   <div class="box-header with-border">
+    <h3 class="box-title">Detalle de transferencias u otros movimientos entre almacenes / farmacias del ministerio</h3>
+   </div>
+   <div class="box-body">
+    <div class="form-group"><label >Producto</label>{{ form_errors(form.ctlInsumoid) }}{{ form_widget(form.ctlInsumoid) }}</div>
+    <div class="form-group"><label >Fecha caducidad</label>{{ form_errors(form.fechaMovimiento) }}{{ form_widget(form.fechaMovimiento) }}</div>
+    <div class="form-group"><label >Cantidad</label>{{ form_errors(form.cantidad) }}{{ form_widget(form.cantidad) }}</div>
+    <div class="form-group"><label >Lote</label>{{ form_errors(form.loteMovimiento) }}{{ form_widget(form.loteMovimiento) }}</div>
+    <div class="form-group"><label >Fecha del movimiento</label>{{ form_errors(form.fechaRegistroMovimiento) }}{{ form_widget(form.fechaRegistroMovimiento) }}</div>
+    <div class="form-group"><label >Origen</label>{{ form_errors(form.establecimientoOrigen) }}{{ form_widget(form.establecimientoOrigen) }}</div>
+    <div class="form-group"><label >Es farmacia o almacen el origen</label>{{ form_errors(form.almacenFarmaciaOrigen) }}{{ form_widget(form.almacenFarmaciaOrigen) }}</div>
+    <div class="form-group"><label >Destino</label>{{ form_errors(form.ctlEstablecimientoid) }}{{ form_widget(form.ctlEstablecimientoid) }}</div>
+    <div class="form-group"><label >Es farmacia o almacen El destino</label>{{ form_errors(form.almacenFarmacia) }}{{ form_widget(form.almacenFarmacia) }}</div>
+    {{ form_widget(form) }}
+   </div>
+   
+  <script src="{{ asset('assets/') }}core/plugins/select2/select2.full.min.js"></script>
+  <script type="text/javascript">$(function () { $("#minsal_corebundle_ctlmovimiento_ctlInsumoid").select2(); }); </script>
+  <script type="text/javascript">$(function () { $("#minsal_corebundle_ctlmovimiento_establecimientoOrigen").select2(); }); </script>
+  <script type="text/javascript">$(function () { $("#minsal_corebundle_ctlmovimiento_ctlEstablecimientoid").select2(); }); </script>
+   <div class="box-footer">
+    <button type="submit" class="btn btn-primary">Procesar movimiento</button>
+   </div>
+  </div>
+  {{ form_end(form) }}
+ </div>
+ <a href="{{ path('movimiento_index') }}" class="btn  btn-primary">Regresar</a>
+</section>    
 {% endblock %}
 {% block head_css %}
   <link rel="stylesheet" href="{{ asset('assets/') }}core/plugins/datepicker/datepicker3.css">
-  <link rel="stylesheet" href="{{ asset('assets/') }}css/jquery-ui/jquery-ui.css">
-<!-- jQuery 2.2.3 -->
-<script src="{{ asset('assets/') }}core/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="{{ asset('assets/') }}core/bootstrap/js/bootstrap.min.js"></script>
-  <script>
-  $(function($) {
-    $( "#minsal_corebundle_ctlmovimiento_ctlInsumoid" ).autocomplete({
-      source: 'jsonmedicamentos',
-      minLength: 4,
-      highlight: false,
-      width: 320,
-      scroll: true,
-      scrollHeight: 300
-    });
-  });
-  </script>
 {% endblock %}
 {% block footer_js %}
   <script src="{{ asset('assets/') }}core/plugins/datepicker/bootstrap-datepicker.js"></script>
-  <script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{{ asset('assets/') }}core/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ asset('assets/') }}core/bootstrap/js/datetimepicker.es.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/select2/dist/js/select2.full.min.js"></script>
+  <script type="text/javascript">
+  $('minsal_corebundle_ctlmovimiento_ctlInsumoid').select2();
+  
   $(function () {
-    $("#minsal_corebundle_ctlmovimiento_fechaMovimiento").datepicker({ 
-    format: 'yy-mm-dd',
-    startDate: '-3d' });
+    $("#minsal_corebundle_ctlmovimiento_fechaRegistroMovimiento").datepicker({ 
+    format: 'yyyy-mm-dd',
+    language: 'es',
+    endDate: '1d' });
+    $(".minsal_corebundle_ctlmovimiento_ctlInsumoid").select2();
+  });
+  $("#minsal_corebundle_ctlmovimiento_fechaMovimiento").datepicker({ 
+  format: 'yyyy-mm-dd',
+  language: 'es'
   });
 </script>
 {% endblock %}
