@@ -18,7 +18,29 @@ class DefaultController extends Controller
     }
     public function registroAction()
     {
-        return $this->render('MinsalCoreBundle:Default:registro.html.twig');
+		$em = $this->getDoctrine()->getManager();
+        $id = $this->getUser()->getId();
+		$dql = "SELECT e.id, e.nombre FROM  MinsalCoreBundle:FosUser u JOIN u.establecimiento e WHERE u.id = $id";
+		$persona = $em->createQuery( $dql )->getResult();
+		$e = 0;
+		//Encabezado
+		foreach ($persona as $i) {
+			$e = $i['id'];
+			$ee = $i['nombre'];
+        }
+					$registro = false;
+			foreach ($this->getUser()->getRoles() as $role){
+				if ($role != 'ROLE_USER'){//, ee.nombre 
+					$dql = "SELECT e.cantidadExistencia, e.loteExistencia, e.almacenFarmacia, i.nombreLargoInsumo
+					FROM MinsalCoreBundle:CtlExistencias e JOIN e.ctlInsumoid i
+					WHERE e.ctlEstablecimientoid = $e AND e.almacenFarmacia = FALSE
+					ORDER BY e.id";
+					$query = $em->createQuery($dql);
+					if ($query->getResult() )
+						$registro = $query->getResult();
+				}
+			}
+        return $this->render('MinsalCoreBundle:Default:registro.html.twig', array('insumo' => $registro ));
     }
     public function manualAction(Request $request)
     {
@@ -60,8 +82,36 @@ class DefaultController extends Controller
 				}
 			}
 		}
+		////////////////////////////////////
+		$em = $this->getDoctrine()->getManager();
+        $id = $this->getUser()->getId();
+		$dql = "SELECT e.id, e.nombre FROM  MinsalCoreBundle:FosUser u JOIN u.establecimiento e WHERE u.id = $id";
+		$persona = $em->createQuery( $dql )->getResult();
+		$e = 0;
+		//Encabezado
+		foreach ($persona as $i) {
+			$e = $i['id'];
+			$ee = $i['nombre'];
+        }
+        //Producros por establecimiento del usuario
+		foreach ($this->getUser()->getRoles() as $role){
+			if ($role != 'ROLE_USER'){
+				$dql = "SELECT i.id, i.codigoSinab, i.nombreLargoInsumo
+					FROM MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
+					WHERE r.nombreRol = '$role' AND e.id = $e
+					ORDER BY e.id";
+				$persona = $em->createQuery( $dql )->getResult();
+			}
+		}
+		$dql = "SELECT i.id, i.codigoSinab, i.nombreLargoInsumo, e.loteExistencia, e.fechaCaducidad, e.cantidadExistencia
+					FROM MinsalCoreBundle:CtlExistencias e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
+					WHERE r.nombreRol = 'ROLE_REGISTRO_LOCAL' AND e.ctlEstablecimientoid = $e
+					ORDER BY e.id";
+				$insumo = $em->createQuery( $dql )->getResult();
+				
+				
         return $this->render('MinsalCoreBundle:Default:archivo.html.twig', array(
-            'suministro' => $suministro,
+            'suministro' => $suministro,'insumo' => $insumo,
         ));
     }    
     

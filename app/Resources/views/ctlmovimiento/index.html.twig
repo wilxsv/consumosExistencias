@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Registro de movimientos entre almacenes y farmacias{% endblock %}
-{% block subtitle %}Detalle de transferencias u otros movimientos entre almacenes del ministerio{% endblock %}
+{% block subtitle %}Detalle de transferencias u otros movimientos entre almacenes del ministerio | <a href="{{ path('movimiento_new') }}" > Agregar movimientos en el inventario <span class="glyphicon glyphicon-plus-sign"></span></a>{% endblock %}
 {% block body %}
     <!-- Main content -->
     <section class="content">
@@ -62,8 +62,6 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
-      
-<a href="{{ path('movimiento_new') }}" class="btn  btn-primary">Agregar movimiento</a>
     </section>    
 {% endblock %}
 

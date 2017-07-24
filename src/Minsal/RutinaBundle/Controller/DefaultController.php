@@ -101,15 +101,30 @@ class DefaultController extends Controller
 					FROM MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
 					WHERE r.nombreRol = '$role' AND e.id = $e
 					ORDER BY e.id";
-				$insumo = $em->createQuery( $dql )->getResult();
+				$persona = $em->createQuery( $dql )->getResult();
+				$dql = "SELECT i.id, i.codigoSinab, i.nombreLargoInsumo, e.loteExistencia, e.fechaCaducidad, e.cantidadExistencia
+					FROM MinsalCoreBundle:CtlExistencias e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
+					WHERE r.nombreRol = '$role' AND e.ctlEstablecimientoid = $e
+					ORDER BY e.id";
 			}
 		}
+				$insumo = $em->createQuery( $dql )->getResult();
 		//set datos personales
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C2', $ee);
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C3', date('Y-m-d'));
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C4', $this->container->get('security.context')->getToken()->getUser());
 		$i = 6;
 		foreach ($insumo as $item) {
+            $phpExcelObject->setActiveSheetIndex(0)
+                ->setCellValue('A'.$i, $item['id'])
+                ->setCellValue('B'.$i, $item['codigoSinab'])
+                ->setCellValue('C'.$i, $item['nombreLargoInsumo'])
+                ->setCellValue('D'.$i, $item['loteExistencia'])
+                ->setCellValue('E'.$i, $item['fechaCaducidad'])
+                ->setCellValue('F'.$i, $item['cantidadExistencia']);
+            $i++;
+         }
+		foreach ($persona as $item) {
             $phpExcelObject->setActiveSheetIndex(0)
                 ->setCellValue('A'.$i, $item['id'])
                 ->setCellValue('B'.$i, $item['codigoSinab'])
@@ -122,6 +137,9 @@ class DefaultController extends Controller
         //salida
         $phpExcelObject->getActiveSheet()->setTitle('Datos');
         $phpExcelObject->setActiveSheetIndex(0);
+        $phpExcelObject->getSecurity()->setLockWindows(true);
+        $phpExcelObject->getSecurity()->setLockStructure(true);
+        $phpExcelObject->getSecurity()->setWorkbookPassword('passwd');
         $writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
         $response = $this->get('phpexcel')->createStreamedResponse($writer);
         $dispositionHeader = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,date("Ymd").".xls");
