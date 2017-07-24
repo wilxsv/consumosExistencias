@@ -77,6 +77,7 @@ class DefaultController extends Controller
     
     public function xlsAction()
     {   
+		$clave = "minsal";
         $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject( $this->container->getParameter('kernel.root_dir').'/../web/files/registro.xlsx' );
 
         $phpExcelObject->getProperties()->setCreator("Ministerio de Salud - Republica de El Salvador, C. A.")
@@ -120,8 +121,9 @@ class DefaultController extends Controller
                 ->setCellValue('B'.$i, $item['codigoSinab'])
                 ->setCellValue('C'.$i, $item['nombreLargoInsumo'])
                 ->setCellValue('D'.$i, $item['loteExistencia'])
-                ->setCellValue('E'.$i, $item['fechaCaducidad'])
+                ->setCellValue('E'.$i, date_format( $item['fechaCaducidad'] , 'Y-m-d') )
                 ->setCellValue('F'.$i, $item['cantidadExistencia']);
+            $phpExcelObject->getActiveSheet()->protectCells('A'.$i.':'.'F'.$i, $clave);
             $i++;
          }
 		foreach ($persona as $item) {
@@ -131,7 +133,7 @@ class DefaultController extends Controller
                 ->setCellValue('C'.$i, $item['nombreLargoInsumo']);
             $i++;
          }
-        $phpExcelObject->getActiveSheet()->protectCells('A1:C'.$i, 'minsal');
+        $phpExcelObject->getActiveSheet()->protectCells('A1:C'.$i, $clave);
         $phpExcelObject->getActiveSheet()->getProtection()->setSheet(true);
         //Validacion de campos
         //salida
@@ -139,7 +141,7 @@ class DefaultController extends Controller
         $phpExcelObject->setActiveSheetIndex(0);
         $phpExcelObject->getSecurity()->setLockWindows(true);
         $phpExcelObject->getSecurity()->setLockStructure(true);
-        $phpExcelObject->getSecurity()->setWorkbookPassword('passwd');
+        $phpExcelObject->getSecurity()->setWorkbookPassword($clave);
         $writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
         $response = $this->get('phpexcel')->createStreamedResponse($writer);
         $dispositionHeader = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,date("Ymd").".xls");
