@@ -107,17 +107,16 @@ class DefaultController extends Controller
 					FROM MinsalCoreBundle:CtlExistencias e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
 					WHERE r.nombreRol = '$role' AND e.ctlEstablecimientoid = $e
 					ORDER BY e.id";
+				$insumo = $em->createQuery( $dql )->getResult();
 			}
 		}
-				$insumo = $em->createQuery( $dql )->getResult();
 		//set datos personales
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C2', $ee);
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C3', date('Y-m-d'));
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C4', $this->container->get('security.context')->getToken()->getUser());
 		$i = 6;
 		foreach ($insumo as $item) {
-            $phpExcelObject->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, $item['id'])
+                $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$i, $item['id'])
                 ->setCellValue('B'.$i, $item['codigoSinab'])
                 ->setCellValue('C'.$i, $item['nombreLargoInsumo'])
                 ->setCellValue('D'.$i, $item['loteExistencia'])
@@ -127,8 +126,7 @@ class DefaultController extends Controller
             $i++;
          }
 		foreach ($persona as $item) {
-            $phpExcelObject->setActiveSheetIndex(0)
-                ->setCellValue('A'.$i, $item['id'])
+                $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$i, $item['id'])
                 ->setCellValue('B'.$i, $item['codigoSinab'])
                 ->setCellValue('C'.$i, $item['nombreLargoInsumo']);
             $i++;
@@ -138,7 +136,6 @@ class DefaultController extends Controller
         //Validacion de campos
         //salida
         $phpExcelObject->getActiveSheet()->setTitle('Datos');
-        $phpExcelObject->setActiveSheetIndex(0);
         $phpExcelObject->getSecurity()->setLockWindows(true);
         $phpExcelObject->getSecurity()->setLockStructure(true);
         $phpExcelObject->getSecurity()->setWorkbookPassword($clave);
@@ -152,6 +149,22 @@ class DefaultController extends Controller
 
         return $response;
     }
+    
+    public function validarCelda( $objetoExcell, $celda, $max ){
+		$objValidation = $objetoExcell->getActiveSheet()->getCell( $celda )->getDataValidation();
+		$objValidation->setType( \PHPExcel_Cell_DataValidation::TYPE_WHOLE );
+		$objValidation->setErrorStyle( \PHPExcel_Cell_DataValidation::STYLE_STOP );
+		$objValidation->setAllowBlank(true);
+		$objValidation->setShowInputMessage(false);
+		$objValidation->setShowErrorMessage(true);
+		$objValidation->setErrorTitle('Cantidad erronea');
+		$objValidation->setError('Cantidad no permitida!');
+		$objValidation->setPromptTitle('Allowed input');
+		$objValidation->setPrompt(" Solo se permiten cantidades entre 0 y $max");
+		$objValidation->setFormula1(0);
+		$objValidation->setFormula2( $max );
+		return $objValidation;
+	}
     
     private function setMenu( $rol ){
 		$em = $this->getDoctrine()->getManager();
