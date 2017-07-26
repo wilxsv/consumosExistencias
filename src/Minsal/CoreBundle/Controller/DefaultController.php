@@ -114,19 +114,24 @@ class DefaultController extends Controller
           //Recuperar archivo
           $file = $req->files->get('file');
           $docEnc = chunk_split(base64_decode(file_get_contents($file)));
-          $uri ="/..";
+          $uri ="<DOMINIO>/v1/consumos/?tocken=eccbc87e4b5ce2fe28308fd9f2a7baf3";
           $fields= array('documento' => $docEnc);
           $ch = curl_init();
           $args['file'] = new \CURLFile($docEnc, 'application/octet-stream ', 'signature');
           curl_setopt_array($ch, array(
-            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => $uri,
             CURLOPT_USERPWD => "123",
             CURLOPT_POST => 1,
             CURLOPT_HTTPHEADER => array("Content-Type:multipart/form-data"),
             CURLOPT_POSTFIELDS => $args
           ));
-          
+
+          //Habilitar para mandar la peticion
+          //$server_output = curl_exec ($ch);
+
+          //curl_close ($ch); 
+
           return $file->getMimeType();
 
           //Hacer peticion con curl al endpoint de la API.
