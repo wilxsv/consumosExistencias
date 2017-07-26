@@ -30,7 +30,7 @@ class DefaultController extends Controller
         }
 					$registro = false;
 			foreach ($this->getUser()->getRoles() as $role){
-				if ($role != 'ROLE_USER'){//, ee.nombre 
+				if ($role != 'ROLE_USER'){//, ee.nombre
 					$dql = "SELECT e.cantidadExistencia, e.loteExistencia, e.almacenFarmacia, i.nombreLargoInsumo
 					FROM MinsalCoreBundle:CtlExistencias e JOIN e.ctlInsumoid i
 					WHERE e.ctlEstablecimientoid = $e AND e.almacenFarmacia = FALSE
@@ -45,9 +45,9 @@ class DefaultController extends Controller
     public function manualAction(Request $request)
     {
 		if ($request->isXmlHttpRequest()) {
-            
+
         }
-		
+
         $em = $this->getDoctrine()->getManager();
         $id = $this->getUser()->getId();
 		$dql = "SELECT e.id, e.nombre FROM  MinsalCoreBundle:FosUser u JOIN u.establecimiento e WHERE u.id = $id";
@@ -64,12 +64,13 @@ class DefaultController extends Controller
         FROM  MinsalCoreBundle:CtlExistencias e JOIN e.ctlEstablecimientoid ee  JOIN e.ctlInsumoid i
         WHERE ee.id = $e";
 		$insumo = $em->createQuery( $dql )->getResult();
-		
+
         return $this->render('MinsalCoreBundle:Default:manual.html.twig', array('insumo' => $insumo, 'establecimiento' => $ee, ));
     }
-    
-    public function archivoAction()
+
+    public function archivoAction(Request $req)
     {
+
 		$suministro = false;
 		$em = $this->getDoctrine()->getManager();
         $auth_checker = $this->get('security.authorization_checker');
@@ -97,24 +98,37 @@ class DefaultController extends Controller
 		foreach ($this->getUser()->getRoles() as $role){
 			if ($role != 'ROLE_USER'){
 				$dql = "SELECT i.id, i.codigoSinab, i.nombreLargoInsumo
-					FROM MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
+					FROM MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r
 					WHERE r.nombreRol = '$role' AND e.id = $e
 					ORDER BY e.id";
 				$persona = $em->createQuery( $dql )->getResult();
 			}
 		}
 		$dql = "SELECT i.id, i.codigoSinab, i.nombreLargoInsumo, e.loteExistencia, e.fechaCaducidad, e.cantidadExistencia
-					FROM MinsalCoreBundle:CtlExistencias e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r 
+					FROM MinsalCoreBundle:CtlExistencias e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s JOIN s.roleRegistra r
 					WHERE r.nombreRol = 'ROLE_REGISTRO_LOCAL' AND e.ctlEstablecimientoid = $e
 					ORDER BY e.id";
 				$insumo = $em->createQuery( $dql )->getResult();
-				
-				
+
+        if( $this->getRequest()->isMethod('POST')){
+          //Recuperar archivo
+          $file = $req->files->get('file');
+          $docEnc = chunk_split(base64_decode(file_get_contents($file)));
+          return $file->getMimeType();
+          //Encriptar archivo
+          //Hacer peticion con curl al endpoint de la API.
+          //return flash...
+          //$postData = $request->request->get('test');
+          // return $this->render('MinsalCoreBundle:Default:archivo.html.twig', array(
+          //     'suministro' => $suministro,'insumo' => $insumo,
+          // ));
+        }
+
         return $this->render('MinsalCoreBundle:Default:archivo.html.twig', array(
             'suministro' => $suministro,'insumo' => $insumo,
         ));
-    }    
-    
+    }
+
     public function cuadroAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -126,15 +140,15 @@ class DefaultController extends Controller
         }
         return $this->render('MinsalCoreBundle:Default:cuadro.html.twig', array('form' => $form->createView(), 'establecimientos' => $establecimientos));
     }
-    
+
     public function getRest(){
 		$service_url = 'http://localhost:8080/v1/sinab/procesoscompras?tocken=eccbc87e4b5ce2fe28308fd9f2a7baf3';
        $curl = curl_init($service_url);
        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
        $curl_response = curl_exec($curl);
        curl_close($curl);
-		
-		
+
+
 	return $curl_response;
 	}
 }
