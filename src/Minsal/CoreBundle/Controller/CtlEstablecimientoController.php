@@ -68,8 +68,8 @@ class CtlEstablecimientoController extends Controller
     public function showAction(CtlEstablecimiento $ctlEstablecimiento)
     {
 		$em = $this->getDoctrine()->getManager();
-		$dql = "SELECT e, i FROM  MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i WHERE e.id = ".$ctlEstablecimiento->getId();
-		$actual = $em->createQuery( $dql )->getResult();
+		$dql = "SELECT e.id, i.nombreLargoInsumo, g.nombreGrupo, gg.nombreGrupo, s.nombreSuministro FROM  MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s WHERE e.id = ".$ctlEstablecimiento->getId();
+		$insumo = $em->createQuery( $dql )->getResult();
 		$id = $ctlEstablecimiento->getId();
 		//Para la parte publica
 		$sql = "SELECT * from (
@@ -89,8 +89,9 @@ class CtlEstablecimientoController extends Controller
 		$nq = $this->getDoctrine()->getManager()->createNativeQuery($sql, $rsm);
 
         return $this->render('ctlestablecimiento/show.html.twig', array(
+            'nombre' => $ctlEstablecimiento->getNombre(),
             'actual' => $nq->getArrayResult(),
-            'ctlEstablecimiento' => $ctlEstablecimiento,
+            'ctlEstablecimiento' => $insumo,
         ));
     }
 
