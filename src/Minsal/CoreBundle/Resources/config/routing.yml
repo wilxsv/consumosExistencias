@@ -56,3 +56,10 @@ minsal_core_configuracion_cuadro:
     path:     /configuracion/cuadrosbasicos
     defaults: { _controller: MinsalCoreBundle:Default:cuadro }
     methods:  [GET, POST]
+
+minsal_core_configuracion_cuadro_del:
+    path:     /configuracion/delcuadrosbasicos
+    defaults: { _controller: MinsalCoreBundle:CtlEstablecimiento:delcuadro }
+    methods:  [GET|HEAD|POST]
+    requirements:
+        _method: POST|GET

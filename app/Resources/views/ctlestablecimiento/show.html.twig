@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
-{% block title %}Establecimiento {{ ctlEstablecimiento.nombre }}{% endblock %}
+{% block title %}Establecimiento :: [ {{ ctlEstablecimiento.nombre }} ]{% endblock %}
 {% block body %}
 <div class="row">
  <div class="col-xs-12">
   <div class="box">
    <div class="box-header with-border">
-    <h4>Datos</h4>
+    <h4>Cuadro básico actual e historico</h4>
     <div class="box-tools pull-right">
      <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Ocultar">
      <i class="fa fa-minus"></i></button>
@@ -13,23 +13,52 @@
      <i class="fa fa-times"></i></button>
     </div>
    </div>
-   <div class="box-body" style="">
-    <table>
+   <div class="box-body">
+    <div class="col-xs-6">
+     <table id="tabla" class="table table-bordered table-striped">
         <tbody>
             <tr>
                 <th>Nombre</th>
                 <td>{{ ctlEstablecimiento.nombre }}</td>
             </tr>
             <tr>
-                <th>Cuadro basico</th>
-                <td></td>
+                <th colspan="2">Cuadro básico actual</th>
             </tr>
             <tr>
                 <th></th>
-                <td>{{ ctlEstablecimiento.ctlInsumoid | join(' <br/> ') | raw }}</td>
+                <td>+ {{ ctlEstablecimiento.ctlInsumoid | sort | join(' <br/> + ') | lower |  raw }}</td>
             </tr>
         </tbody>
-    </table>
+     </table>
+    </div>
+    <div class="col-xs-6">
+     <ul class="timeline">
+        {% for i in actual %}
+         {% if i.direccion == i.telefono %}
+           <li class="time-label">
+            <span class="bg-green">{{ i.telefono | date('Y-m-d') }}</span>
+            <div class="timeline-item"><span class="time"><i class="fa fa-clock-o"></i> {{ i.telefono | date('h:i:s a') }}</span>
+             <h3 class="timeline-header">{{ i.nombre }}</h3>
+             <div class="timeline-body">Actualmente presente en el cuadro básico</div>
+            </div>
+           </li>
+         {% else %}
+           <li class="time-label">
+            <span class="bg-red">{{ i.direccion | date('Y-m-d') }}</span>
+            <div class="timeline-item"><span class="time"><i class="fa fa-clock-o"></i> {{ i.direccion | date('h:i:s a') }}</span>
+             <h3 class="timeline-header">{{ i.nombre }}</h3>
+            <div class="timeline-footer">Agregado al cuadro basico desde: [{{ i.telefono }}]</div>
+            </div>
+           </li>
+         {% endif %}
+        {% endfor %}
+     </ul>
+
+    
+    
+
+    
+    </div>
    </div>
    <div class="box-footer" style="">
     <a href="{{ path('configuracion_establecimientos_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"></span> Listar </a>
@@ -37,4 +66,26 @@
   </div>
  </div>
 </div>
+{% endblock %}
+
+{% block footer_js %}
+<!-- DataTables -->
+<script src="{{ asset('assets/') }}core/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- page script -->
+<script>
+  $(function () {
+    $('#tabla').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : false
+    })
+  })
+</script>
+{% endblock %}
+{% block head_js %}
 {% endblock %}

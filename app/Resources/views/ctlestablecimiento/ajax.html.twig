@@ -54,9 +54,18 @@
        <div class="box-body no-padding">
         <table class="table table-striped">
         <tbody>
-         <tr><th >Municipio</th><th >Establecimientos</th></tr>
+         <tr><th >Municipio</th><th >Establecimientos</th><th >Operaciones</th></tr>
          {% for e in establecimiento %}
-          <tr><td>{{ e.idMunicipio }}</td><td>{{ e.nombre }}</td></tr>
+          <tr>
+           <td>{{ e.idMunicipio }}</td>
+           <td>
+            <a href="{{ path('configuracion_establecimientos_edit', { 'id': e.id }) }}">{{ e.nombre }}</a>
+           </td>
+           <td>
+            <a href="{{ path('configuracion_establecimientos_edit', { 'id': e.id }) }}"><i class="fa fa-fw fa-pencil"></i>Editar</a> - <a href="{{ path('configuracion_establecimientos_show', { 'id': e.id }) }}"><i class="fa fa-fw fa-database"></i>Historico</a>
+            
+           </td>
+          </tr>
          {% endfor %}
         </tbody></table>
        </div>

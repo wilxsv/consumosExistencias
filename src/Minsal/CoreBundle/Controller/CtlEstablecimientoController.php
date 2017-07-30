@@ -5,6 +5,13 @@ namespace Minsal\CoreBundle\Controller;
 use Minsal\CoreBundle\Entity\CtlEstablecimiento;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Doctrine\ORM\Query\ResultSetMapping;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Ctlestablecimiento controller.
@@ -60,8 +67,29 @@ class CtlEstablecimientoController extends Controller
      */
     public function showAction(CtlEstablecimiento $ctlEstablecimiento)
     {
+		$em = $this->getDoctrine()->getManager();
+		$dql = "SELECT e, i FROM  MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i WHERE e.id = ".$ctlEstablecimiento->getId();
+		$actual = $em->createQuery( $dql )->getResult();
+		$id = $ctlEstablecimiento->getId();
+		//Para la parte publica
+		$sql = "SELECT * from (
+			SELECT i.nombre_largo_insumo, c.fecha_cuadro_basico, c.fecha_cuadro_basico AS fecha_inicio_cuadro_basico 
+			FROM ctl_establecimiento e INNER JOIN cuadro_basico c ON e.id = c.ctl_establecimientoid INNER JOIN ctl_insumo i ON i.id = c.ctl_insumoid 
+			WHERE e.id = $id
+				UNION
+			SELECT i.nombre_largo_insumo, c.fecha_cuadro_basico, c.fecha_inicio_cuadro_basico 
+			FROM ctl_establecimiento e INNER JOIN historico_cuadro_basico c ON e.id = c.establecimiento_id INNER JOIN ctl_insumo i ON i.id = c.insumo_id 
+			WHERE e.id = $id
+			) AS t ORDER BY 2 DESC";
+		$rsm = new ResultSetMapping;
+		$rsm->addEntityResult('MinsalCoreBundle:CtlEstablecimiento', 'e');
+		$rsm->addFieldResult('e','nombre_largo_insumo','nombre');
+		$rsm->addFieldResult('e','fecha_cuadro_basico','direccion');
+		$rsm->addFieldResult('e','fecha_inicio_cuadro_basico','telefono');
+		$nq = $this->getDoctrine()->getManager()->createNativeQuery($sql, $rsm);
 
         return $this->render('ctlestablecimiento/show.html.twig', array(
+            'actual' => $nq->getArrayResult(),
             'ctlEstablecimiento' => $ctlEstablecimiento,
         ));
     }
@@ -78,7 +106,8 @@ class CtlEstablecimientoController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('configuracion_establecimientos_edit', array('id' => $ctlEstablecimiento->getId()));
+            return $this->redirectToRoute('configuracion_establecimientos_show', array('id' => $ctlEstablecimiento->getId()));
+            //return $this->redirectToRoute('configuracion_establecimientos_edit', array('id' => $ctlEstablecimiento->getId()));
         }
 
         return $this->render('ctlestablecimiento/edit.html.twig', array(
@@ -177,4 +206,29 @@ class CtlEstablecimientoController extends Controller
           return $this->render('ctlestablecimiento/ajax.html.twig', array( 'rest'=> FALSE ));
 		}
     }
+    
+        
+    public function delcuadroAction(Request $request)
+    {
+        if (! $request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+        }
+        if ($request->query->get('cuadro') != NULL && is_numeric($request->query->get('cuadro')) ){
+			$id = $request->query->get('cuadro');
+			$em = $this->getDoctrine()->getManager();
+			$em->getConnection()->exec( "select * from delcuadrobasico( $id );" );
+	        return new Response( '<div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="info-box">
+           <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Cuadro basico para el tipo de establecimiento ha sido eliminado. </span>
+            </div>
+			</div>
+			</div>' );
+		}
+		else{
+			return new Response( 'Error en los datos enviados !!!' );
+		}
+    }
+    
 }

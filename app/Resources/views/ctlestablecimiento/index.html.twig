@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Listado de Establecimientos{% endblock %}
+{% block title %}Cuadro básico por establecimientos{% endblock %}
 {% block subtitle %}<a href="{{ path('configuracion_establecimientos_cuadro') }}" > Definir cuadro basico <span class="glyphicon glyphicon-plus-sign"></span></a>{% endblock %}
 {% block body %}
 <div class="row">
@@ -10,11 +10,36 @@
      <option value="{{t.id}}"><i class="fa fa-fw fa-database"></i> {{ t.nombre }}</option>
     {% endfor %}
    </select>
-   <button type="button" class="btn btn-danger btn-sm">Eliminar cuadro basico</button>
+   <button type="button" class="btn btn-danger btn-sm" onclick="delCuadro()">Eliminar cuadro basico</button>
   </div>
  </div>
 </div>
-<div id="respuesta"></div>
+<div class="row">
+ <div class="box" id="respuesta">
+ <div class="col-md-2">
+ </div>
+<div class="col-md-8">
+          <div class="box box-widget widget-user-2">
+            <div class="widget-user-header bg-yellow">
+              <div class="widget-user-image">
+                <img class="img-circle" src="{{ asset('assets/') }}img.png" alt="User Avatar">
+              </div>
+              <h3 class="widget-user-username">Cuadro basico de establecimientos</h3>
+              <h5 class="widget-user-desc">Aqui podra realizar las siguientes actividades</h5>
+            </div>
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">Definir cuadro basicos por tipo de establecimiento</a></li>
+                <li><a href="#">Personalizar el cuadro basico de un establecimiento especifico</a></li>
+                <li><a href="#">Ver el control de cambios o cuadro básico historico</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+
+ </div>
+</div>
 
 {% endblock %}
 
@@ -25,6 +50,16 @@
 	$.ajax({
 	  type: "POST",
 	  url: "{{ url('configuracion_establecimientos_ajax') }}?cuadro="+ document.getElementById("establecimiento").value,
+	  success: function(data) {
+		$('#respuesta').html(data);
+      }
+    });
+  } 
+  function delCuadro(){
+    $('#respuesta').html('');
+	$.ajax({
+	  type: "POST",
+	  url: "{{ url('minsal_core_configuracion_cuadro_del') }}?cuadro="+ document.getElementById("establecimiento").value,
 	  success: function(data) {
 		$('#respuesta').html(data);
       }

@@ -13,9 +13,9 @@ class CtlEstablecimientoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('idTipoEstablecimiento')->add('nombre')->add('direccion')->add('telefono')->add('fax')->add('latitud')->add('longitud')->add('idInstitucion')->add('anioApertura')->add('idCatNivelMinsal')->add('registroSchema')->add('enableSchema')->add('idEstablecimientoPadre')->add('idMunicipio')->add('insumo')->add('ctlInsumoid');
+        $builder->add('idTipoEstablecimiento')->add('nombre')->add('ctlInsumoid');
     }
-    
+    //'attr' => array('data-placeholder' => 'Seleccione los productos', 'style' => 'width: 90%')
     /**
      * {@inheritdoc}
      */

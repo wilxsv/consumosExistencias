@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Error en la operación</h1>
+
+    <p>
+        Es posible que el registro que necesita modificar tenga aun relación con otros datos, por favor notifique a la Unidad de Abastecimiento para verificar su operación
+        Regresar al inicio <a href="{{ path('homepage') }}">return to the homepage</a>.
+    </p>
+{% endblock %}

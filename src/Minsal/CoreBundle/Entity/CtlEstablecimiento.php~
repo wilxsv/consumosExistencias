@@ -91,6 +91,16 @@ class CtlEstablecimiento
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="CtlInsumo", inversedBy="CtlEstablecimiento")
+     * @ORM\JoinTable(name="cuadro_basico",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="ctl_establecimientoid", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="ctl_insumoid", referencedColumnName="id")
+     *   }
+     * )
      */
     private $ctlInsumoid;
 

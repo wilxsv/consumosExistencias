@@ -68,29 +68,6 @@ Minsal\CoreBundle\Entity\CtlInsumo:
                     referencedColumnName: id
             orphanRemoval: false
     manyToMany:
-        establecimiento:
-            targetEntity: CtlEstablecimiento
-            cascade: {  }
-            mappedBy: null
-            inversedBy: insumo
-            joinTable:
-                name: historico_cuadro_basico
-                joinColumns:
-                    -
-                        name: insumo_id
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    -
-                        name: establecimiento_id
-                        referencedColumnName: id
-            orderBy: null
-        componente:
-            targetEntity: CtlComponente
-            cascade: {  }
-            mappedBy: insumo
-            inversedBy: null
-            joinTable: null
-            orderBy: null
         ctlEstablecimientoid:
             targetEntity: CtlEstablecimiento
             cascade: {  }
@@ -106,5 +83,12 @@ Minsal\CoreBundle\Entity\CtlInsumo:
                     -
                         name: ctl_establecimientoid
                         referencedColumnName: id
+            orderBy: null
+        componente:
+            targetEntity: CtlComponente
+            cascade: {  }
+            mappedBy: insumo
+            inversedBy: null
+            joinTable: null
             orderBy: null
     lifecycleCallbacks: {  }
