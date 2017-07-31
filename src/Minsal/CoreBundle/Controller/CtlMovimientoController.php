@@ -6,6 +6,11 @@ use Minsal\CoreBundle\Entity\CtlMovimiento;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Doctrine\ORM\Query\ResultSetMapping;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * Ctlmovimiento controller.
  *
@@ -47,6 +52,17 @@ class CtlMovimientoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $id = $this->getUser()->getId();
+		$dql = "SELECT e.id, e.nombre FROM  MinsalCoreBundle:FosUser u JOIN u.establecimiento e WHERE u.id = $id";
+		$persona = $em->createQuery( $dql )->getResult();
+		$e = 0;
+		//Encabezado
+		foreach ($persona as $i) {
+			$e = $i['id'];
+			$ee = $i['nombre'];
+        }
+        
         $ctlMovimiento = new Ctlmovimiento();
         $form = $this->createForm('Minsal\CoreBundle\Form\CtlMovimientoType', $ctlMovimiento);
         $form->handleRequest($request);
@@ -58,11 +74,11 @@ class CtlMovimientoController extends Controller
             $em->persist($ctlMovimiento);
             $em->flush();
 
-            return $this->redirectToRoute('movimiento_show', array('id' => $ctlMovimiento->getId()));
+            return $this->redirectToRoute('movimiento_show', array('id' => $ctlMovimiento->getId(), 'e' => $id ));
         }
 
         return $this->render('ctlmovimiento/new.html.twig', array(
-            'ctlMovimiento' => $ctlMovimiento,
+            'ctlMovimiento' => $ctlMovimiento, 'e' => $e ,
             'form' => $form->createView(),
         ));
     }
@@ -136,5 +152,23 @@ class CtlMovimientoController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    
+    public function cierreAction(Request $request)
+    {
+		if (! $request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+        }
+        if ($request->query->get('establecimiento') != NULL && is_numeric($request->query->get('establecimiento')) ){
+			$id = $request->query->get('establecimiento');
+			$em = $this->getDoctrine()->getManager();
+			//$em->getConnection()->exec( "select * from delcuadrobasico( $id );" );
+	        return new Response( '<div class="info-box"><span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+			 <div class="info-box-content"><span class="info-box-text">Cierre realizado con exito. </span></div>
+			</div>' );
+		}
+		else{
+			return new Response( 'Error en los datos enviados !!!' );
+		}
     }
 }

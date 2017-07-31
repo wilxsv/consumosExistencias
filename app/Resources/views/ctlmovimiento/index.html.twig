@@ -2,6 +2,17 @@
 {% block title %}Registro de movimientos entre almacenes y farmacias{% endblock %}
 {% block subtitle %}Detalle de transferencias u otros movimientos entre almacenes del ministerio | <a href="{{ path('movimiento_new') }}" > Agregar movimientos en el inventario <span class="glyphicon glyphicon-plus-sign"></span></a>{% endblock %}
 {% block body %}
+<div class="col-md-12 col-sm-6 col-xs-12" id="respuesta" >
+ <div class="info-box">
+  <span class="info-box-icon bg-aqua"><i class="fa fa-calendar"></i></span>
+  <div class="info-box-content">
+   <span class="info-box-text">Cierre.</span>
+   <span class="info-box-number">Realice esta operación unicamente si ha finalizado de realizar el registro de todos los consumos de los productos</span>
+   <button type="button" class="btn btn-danger btn-sm" onclick="cierre()">Eliminar cuadro basico</button>
+   
+  </div>
+ </div>
+</div>
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -66,6 +77,17 @@
 {% endblock %}
 
 {% block footer_js %}
+ <script>
+  function cierre(){
+	$.ajax({
+	  type: "POST",
+	  url: "{{ url('minsal_core_configuracion_cierre') }}?establecimiento="+{{ id }},
+	  success: function(data) {
+		$('#respuesta').html(data);
+      }
+    });
+  }
+  </script>
 <!-- DataTables -->
 <script src="{{ asset('assets/') }}core/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('assets/') }}core/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

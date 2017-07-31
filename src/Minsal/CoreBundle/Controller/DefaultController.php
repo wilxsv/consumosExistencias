@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -45,7 +46,18 @@ class DefaultController extends Controller
     public function manualAction(Request $request)
     {
 		if ($request->isXmlHttpRequest()) {
-            
+			$id = $this->getUser()->getId();
+			$em = $this->getDoctrine()->getManager();
+			$em->getConnection()->exec( "INSERT INTO ctl_consumo(fecha_consumo, cantidad_consumo, registro_schema, ctl_mecanismoid, ctl_existencia, user_id_schema)
+			VALUES ('".$request->query->get('fecha')."', ".$request->query->get('cantidad').",now(), 1, ".$request->query->get('id').", $id)" );			
+            return new Response( '<div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="info-box">
+           <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">. </span>
+            </div>
+			</div>
+			</div>' );
         }
 		
         $em = $this->getDoctrine()->getManager();
@@ -60,12 +72,13 @@ class DefaultController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT e.id, i.nombreLargoInsumo, e.loteExistencia, e.fechaCaducidad
+        $dql = "SELECT e.id, i.nombreLargoInsumo, e.loteExistencia, e.fechaCaducidad, e.cantidadExistencia
         FROM  MinsalCoreBundle:CtlExistencias e JOIN e.ctlEstablecimientoid ee  JOIN e.ctlInsumoid i
         WHERE ee.id = $e";
 		$insumo = $em->createQuery( $dql )->getResult();
+		$establecimientos = $em->createQuery( "SELECT e.id, e.nombre FROM  MinsalCoreBundle:CtlEstablecimiento e WHERE e.enableSchema = 1" )->getResult();
 		
-        return $this->render('MinsalCoreBundle:Default:manual.html.twig', array('insumo' => $insumo, 'establecimiento' => $ee, ));
+        return $this->render('MinsalCoreBundle:Default:manual.html.twig', array('insumo' => $insumo, 'establecimiento' => $ee, 'establecimientos' => $establecimientos, ));
     }
     
     public function archivoAction()

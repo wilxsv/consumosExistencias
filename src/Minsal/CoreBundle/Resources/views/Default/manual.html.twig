@@ -13,7 +13,6 @@
     <div class="row">
      <div class="col-xs-4">Fecha: <input class="form-control" placeholder="yyyy-mm-dd" type="text" id="datepicker"></div>
      <div class="col-xs-7">Establecimiento: <input class="form-control" placeholder="" type="text" disabled="true" value="{{establecimiento}}"></div>
-     <div class="col-xs-1"><br/><button type="submit" class="btn btn-primary pull-right" onclick="fijar()">Fijar</button></div>
     </div>
    </div>
   </div>
@@ -32,30 +31,52 @@
       <tr>
        <th>Producto</th>
        <th>Lote</th>
+       <th>Existencia</th>
        <th>Caducidad</th>
-       <th>Consumo F</th>
-       <th>Existencia F</th>
-       <th>Consumo A</th>
-       <th>Existencia A</th>
-       <th>Dias</th>
+       <th>Consumo</th>
        <th>Ingresos</th>
+       <th>AF</th>
+       <th>Caducidad</th>
+       <th>Origen</th>
        <th>Egresos</th>
+       <th>AF</th>
+       <th>Destino</th>
        <th>Accion</th>
       </tr>
      </thead>
      <tbody>
+  <script src="{{ asset('assets/') }}core/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{{ asset('assets/') }}core/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ asset('assets/') }}core/bootstrap/js/datetimepicker.es.js"></script>
         {% for i in insumo %}
       <tr id="tr{{ i.id }}">
        <td>{{ i.nombreLargoInsumo }}</td>
        <td>{{ i.loteExistencia }}</td>
+       <td>{{ i.cantidadExistencia |number_format(max, '.', ',') }}</td>
        <td>{% if i.fechaCaducidad %}{{ i.fechaCaducidad|date('Y-m-d') }}{% endif %}</td>
-       <td><input  class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
+       <td><input id="cn{{ i.id }}" class="form-control input-sm" min="0" max="{{ i.cantidadExistencia }}" placeholder="0" type="number" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
+       <td>
+        <input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)">
+        </td>
+       <td>
+        <input type="checkbox" id="i{{ i.id }}" value="1" checked><br>
+       </td>
+       <td>
+        <input id="cl{{ i.id }}" class="form-control input-sm" type="tex">
+        <script>
+  $(function () {
+    $("#cl{{ i.id }}").datepicker({ 
+    format: 'yyyy-mm-dd',
+    language: 'es'});
+    });</script>
+       </td>
        <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
        <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
-       <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
-       <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
-       <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
-       <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
+       <td>
+        <input type="checkbox" id="e{{ i.id }}" value="1" checked><br>
+       </td>
+      <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
       <td> <button class="btn btn-block btn-primary btn-xs" onclick="procesar({{ i.id }})">Procesar</button> </td>
       </tr>
         {% endfor %}
@@ -86,20 +107,25 @@
 {% endblock %}
 {% block footer_js %}
   <script src="{{ asset('assets/') }}core/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{{ asset('assets/') }}core/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ asset('assets/') }}core/bootstrap/js/datetimepicker.es.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/select2/dist/js/select2.full.min.js"></script>
   <script>
   $(function () {
-	//$('#datepicker').datepicker({
-	// dateFormat: "yy-mm-dd"
-    //});
-    $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
-  });
+    $("#datepicker").datepicker({ 
+    format: 'yyyy-mm-dd',
+    language: 'es',
+    endDate: '1d' });
+    });
   
   function procesar(value){
 	if ($('#datepicker').val() != '' ){
 	  $.ajax({
 	  type: "POST",
-	  url: "{{ url('minsal_core_registro_manual') }}?fecha="+ $('#datepicker').val() +"&existencia="+$('#rt').val()+"&cantidad="+$('#datepicker').val(),
+	  url: "{{ url('minsal_core_registro_manual') }}?fecha="+ $('#datepicker').val() +"&existencia="+$('#cn'+value).val()+"&cantidad="+$('#cn'+value).val()+"&id="+value,
 	  success: function(data) {
+		$('#resultado').html(data);
 		 document.getElementById('tr'+value).style.display = 'none';
       }
      });

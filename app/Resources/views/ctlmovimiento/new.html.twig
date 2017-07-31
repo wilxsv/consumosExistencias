@@ -10,22 +10,40 @@
     <h3 class="box-title">Detalle de transferencias u otros movimientos entre almacenes / farmacias del ministerio</h3>
    </div>
    <div class="box-body">
-    <div class="form-group"><label >Producto</label>{{ form_errors(form.ctlInsumoid) }}{{ form_widget(form.ctlInsumoid) }}</div>
-    <div class="form-group"><label >Fecha caducidad</label>{{ form_errors(form.fechaMovimiento) }}{{ form_widget(form.fechaMovimiento) }}</div>
-    <div class="form-group"><label >Cantidad</label>{{ form_errors(form.cantidad) }}{{ form_widget(form.cantidad) }}</div>
-    <div class="form-group"><label >Lote</label>{{ form_errors(form.loteMovimiento) }}{{ form_widget(form.loteMovimiento) }}</div>
-    <div class="form-group"><label >Fecha del movimiento</label>{{ form_errors(form.fechaRegistroMovimiento) }}{{ form_widget(form.fechaRegistroMovimiento) }}</div>
-    <div class="form-group"><label >Origen</label>{{ form_errors(form.establecimientoOrigen) }}{{ form_widget(form.establecimientoOrigen) }}</div>
-    <div class="form-group"><label >Es farmacia o almacen el origen</label>{{ form_errors(form.almacenFarmaciaOrigen) }}{{ form_widget(form.almacenFarmaciaOrigen) }}</div>
-    <div class="form-group"><label >Destino</label>{{ form_errors(form.ctlEstablecimientoid) }}{{ form_widget(form.ctlEstablecimientoid) }}</div>
-    <div class="form-group"><label >Es farmacia o almacen El destino</label>{{ form_errors(form.almacenFarmacia) }}{{ form_widget(form.almacenFarmacia) }}</div>
+    <div class="form-group"><label class="col-sm-2 control-label">Tipo movimiento</label>
+     <div class="col-sm-10">{{ form_widget(form.ctlTipoMovimientoid) }}{{ form_errors(form.ctlTipoMovimientoid) }}</div>
+    </div>
+    <div class="form-group"><label class="col-sm-2 control-label">Producto</label>
+     <div class="col-sm-10">{{ form_widget(form.ctlInsumoid) }}{{ form_errors(form.ctlInsumoid) }}</div>
+    </div>
+    <div class="form-group"><label class="col-sm-2 control-label">Fecha caducidad</label>
+     <div class="col-sm-10">{{ form_widget(form.fechaMovimiento) }}{{ form_errors(form.fechaMovimiento) }}</div>
+    </div>
+    <div class="form-group"><label class="col-sm-2 control-label">Cantidad</label>
+     <div class="col-sm-10">{{ form_widget(form.cantidad) }}{{ form_errors(form.cantidad) }}</div>
+    </div>
+    <div class="form-group"><label class="col-sm-2 control-label">Lote</label>
+     <div class="col-sm-10">{{ form_widget(form.loteMovimiento) }}{{ form_errors(form.loteMovimiento) }}</div>
+    </div>
+    <div class="form-group"><label class="col-sm-2 control-label">Fecha del movimiento</label>
+     <div class="col-sm-10">{{ form_widget(form.fechaRegistroMovimiento) }}{{ form_errors(form.fechaRegistroMovimiento) }}</div>
+    </div>
+    <div class="form-group"><label class="col-sm-2 control-label">Origen</label>
+     <div class="col-sm-10">{{ form_widget(form.establecimientoOrigen) }}{{ form_errors(form.establecimientoOrigen) }}</div>
+    </div>
+    <div class="form-group"><label class="col-sm-2 control-label">Es almacen o farmacia el origen</label>
+     <div class="col-sm-10">{{ form_widget(form.almacenFarmaciaOrigen) }}{{ form_errors(form.almacenFarmaciaOrigen) }}</div>
+    </div><div class="col-sm-12"><div/>
+    <div class="form-group"><label class="col-sm-2 control-label">Destino</label>
+     <div class="col-sm-10">{{ form_widget(form.ctlEstablecimientoid) }}{{ form_errors(form.ctlEstablecimientoid) }}</div>
+    </div>
+    <div class="form-group"><label class="col-sm-2 control-label">Es almacen o farmacia el destino</label>
+     <div class="col-sm-10">{{ form_widget(form.almacenFarmacia) }}{{ form_errors(form.almacenFarmacia) }}</div>
+    </div>
     {{ form_widget(form) }}
    </div>
    
   <script src="{{ asset('assets/') }}core/plugins/select2/select2.full.min.js"></script>
-  <script type="text/javascript">$(function () { $("#minsal_corebundle_ctlmovimiento_ctlInsumoid").select2(); }); </script>
-  <script type="text/javascript">$(function () { $("#minsal_corebundle_ctlmovimiento_establecimientoOrigen").select2(); }); </script>
-  <script type="text/javascript">$(function () { $("#minsal_corebundle_ctlmovimiento_ctlEstablecimientoid").select2(); }); </script>
    <div class="box-footer">
     <button type="submit" class="btn btn-primary">Procesar movimiento</button>
    </div>
@@ -45,7 +63,7 @@
   <script src="{{ asset('assets/') }}core/bootstrap/js/datetimepicker.es.js"></script>
 <script src="{{ asset('assets/') }}core/bower_components/select2/dist/js/select2.full.min.js"></script>
   <script type="text/javascript">
-  $('minsal_corebundle_ctlmovimiento_ctlInsumoid').select2();
+  $('#minsal_corebundle_ctlmovimiento_ctlInsumoid').select2();
   
   $(function () {
     $("#minsal_corebundle_ctlmovimiento_fechaRegistroMovimiento").datepicker({ 
@@ -58,5 +76,27 @@
   format: 'yyyy-mm-dd',
   language: 'es'
   });
+
+  function cargar(valor) {
+   if (valor == 1){
+    document.getElementById("minsal_corebundle_ctlmovimiento_ctlEstablecimientoid").value = "{{e}}";
+    $("#minsal_corebundle_ctlmovimiento_establecimientoOrigen").select2();
+    document.getElementById("minsal_corebundle_ctlmovimiento_almacenFarmaciaOrigen").checked = true;
+    document.getElementById("minsal_corebundle_ctlmovimiento_almacenFarmacia").checked = true;
+   }
+   if (valor == 2){
+    document.getElementById("minsal_corebundle_ctlmovimiento_establecimientoOrigen").value = "{{e}}";
+    $("#minsal_corebundle_ctlmovimiento_ctlEstablecimientoid").select2();
+    document.getElementById("minsal_corebundle_ctlmovimiento_almacenFarmaciaOrigen").checked = true;
+   }
+   if (valor == 3){
+    document.getElementById("minsal_corebundle_ctlmovimiento_ctlEstablecimientoid").value = "{{e}}";
+    document.getElementById("minsal_corebundle_ctlmovimiento_establecimientoOrigen").value = "{{e}}";
+    document.getElementById("minsal_corebundle_ctlmovimiento_almacenFarmaciaOrigen").checked = true;
+   }
+   if (valor == 4){
+    document.getElementById("minsal_corebundle_ctlmovimiento_ctlEstablecimientoid").value = "{{e}}";
+   }
+  }
 </script>
 {% endblock %}

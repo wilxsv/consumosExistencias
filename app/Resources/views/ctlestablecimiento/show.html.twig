@@ -22,18 +22,11 @@
              
             <tr>
              <td>{{ i.nombreSuministro }}</td>
-             <td></td>
-             <td></td>
+             <td>{{ i.nombreGrupo }}</td>
+             <td>{{ i.detalleInsumo }}</td>
              <td>{{ i.nombreLargoInsumo }}</td>
             </tr>
             {% endfor %}
-            <tr>
-                <th colspan="2">Cuadro básico actual</th>
-            </tr>
-            <tr>
-                <th></th>
-                <td>+ {{ ctlEstablecimiento.ctlInsumoid | sort | join(' <br/> + ') | lower |  raw }}</td>
-            </tr>
         </tbody>
      </table>
     </div>

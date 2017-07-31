@@ -68,7 +68,7 @@ class CtlEstablecimientoController extends Controller
     public function showAction(CtlEstablecimiento $ctlEstablecimiento)
     {
 		$em = $this->getDoctrine()->getManager();
-		$dql = "SELECT e.id, i.nombreLargoInsumo, g.nombreGrupo, gg.nombreGrupo, s.nombreSuministro FROM  MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s WHERE e.id = ".$ctlEstablecimiento->getId();
+		$dql = "SELECT e.id, i.nombreLargoInsumo, g.nombreGrupo, gg.nombreGrupo AS detalleInsumo, s.nombreSuministro FROM  MinsalCoreBundle:CtlEstablecimiento e JOIN e.ctlInsumoid i JOIN i.grupoid gg JOIN gg.grupo g JOIN g.suministro s WHERE e.id = ".$ctlEstablecimiento->getId();
 		$insumo = $em->createQuery( $dql )->getResult();
 		$id = $ctlEstablecimiento->getId();
 		//Para la parte publica

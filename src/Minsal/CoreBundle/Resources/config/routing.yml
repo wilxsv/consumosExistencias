@@ -63,3 +63,10 @@ minsal_core_configuracion_cuadro_del:
     methods:  [GET|HEAD|POST]
     requirements:
         _method: POST|GET
+
+minsal_core_configuracion_cierre:
+    path:     /configuracion/movimientos_cierre
+    defaults: { _controller: MinsalCoreBundle:CtlMovimiento:cierre }
+    methods:  [GET|HEAD|POST]
+    requirements:
+        _method: POST|GET

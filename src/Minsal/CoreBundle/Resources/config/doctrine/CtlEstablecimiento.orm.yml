@@ -113,13 +113,6 @@ Minsal\CoreBundle\Entity\CtlEstablecimiento:
                     referencedColumnName: id
             orphanRemoval: false
     manyToMany:
-        insumo:
-            targetEntity: CtlInsumo
-            cascade: {  }
-            mappedBy: establecimiento
-            inversedBy: null
-            joinTable: null
-            orderBy: null
         ctlInsumoid:
             targetEntity: CtlInsumo
             cascade: {  }
