@@ -333,4 +333,32 @@ class CtlMovimiento
     {
         return $this->almacenFarmaciaOrigen;
     }
+    /**
+     * @var \DateTime
+     */
+    private $fechaCaducidad;
+
+
+    /**
+     * Set fechaCaducidad
+     *
+     * @param \DateTime $fechaCaducidad
+     * @return CtlMovimiento
+     */
+    public function setFechaCaducidad($fechaCaducidad)
+    {
+        $this->fechaCaducidad = $fechaCaducidad;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaCaducidad
+     *
+     * @return \DateTime 
+     */
+    public function getFechaCaducidad()
+    {
+        return $this->fechaCaducidad;
+    }
 }

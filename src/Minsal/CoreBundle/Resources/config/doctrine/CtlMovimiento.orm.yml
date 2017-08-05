@@ -2,12 +2,12 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
     type: entity
     table: ctl_movimiento
     indexes:
-        IDX_B621B540D05C792B:
-            columns:
-                - ctl_insumoid
         IDX_B621B5407B62918:
             columns:
                 - ctl_establecimientoid
+        IDX_B621B540D05C792B:
+            columns:
+                - ctl_insumoid
         IDX_B621B5403CEA1C61:
             columns:
                 - ctl_tipo_movimientoid
@@ -41,24 +41,20 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
             nullable: true
             column: almacen_farmacia
         loteMovimiento:
-            type: integer
+            type: string
             nullable: true
-            unsigned: false
+            length: 255
+            fixed: false
             column: lote_movimiento
         almacenFarmaciaOrigen:
             type: boolean
             nullable: true
             column: almacen_farmacia_origen
+        fechaCaducidad:
+            type: date
+            nullable: true
+            column: fecha_caducidad
     manyToOne:
-        ctlInsumoid:
-            targetEntity: CtlInsumo
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                ctl_insumoid:
-                    referencedColumnName: id
-            orphanRemoval: false
         ctlEstablecimientoid:
             targetEntity: CtlEstablecimiento
             cascade: {  }
@@ -66,6 +62,15 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
             inversedBy: null
             joinColumns:
                 ctl_establecimientoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ctlInsumoid:
+            targetEntity: CtlInsumo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_insumoid:
                     referencedColumnName: id
             orphanRemoval: false
         ctlTipoMovimientoid:

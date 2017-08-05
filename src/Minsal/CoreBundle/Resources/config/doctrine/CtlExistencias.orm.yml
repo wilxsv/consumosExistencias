@@ -32,9 +32,10 @@ Minsal\CoreBundle\Entity\CtlExistencias:
             nullable: true
             column: fecha_caducidad
         loteExistencia:
-            type: bigint
+            type: string
             nullable: true
-            unsigned: false
+            length: 255
+            fixed: false
             column: lote_existencia
         fechaExistencia:
             type: date
@@ -48,7 +49,7 @@ Minsal\CoreBundle\Entity\CtlExistencias:
             type: bigint
             nullable: false
             unsigned: false
-            default: '1::bigint'
+            default: '(1)::bigint'
             column: user_id_schema
         ipUserSchema:
             type: string

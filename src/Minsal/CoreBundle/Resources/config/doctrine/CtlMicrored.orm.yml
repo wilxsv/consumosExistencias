@@ -1,6 +1,10 @@
 Minsal\CoreBundle\Entity\CtlMicrored:
     type: entity
     table: ctl_microred
+    indexes:
+        IDX_320520705E5EEFA9:
+            columns:
+                - sibasi_id
     id:
         id:
             type: integer
@@ -16,9 +20,47 @@ Minsal\CoreBundle\Entity\CtlMicrored:
             length: 150
             fixed: false
             comment: 'Descripción nombre de la microred'
+        activo:
+            type: boolean
+            nullable: true
+            comment: 'Identificador estado activo o inactivo de la microred true o false'
+        idUsuarioReg:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: 'Auditoría usuario ingreso el registro'
+            column: id_usuario_reg
+        fechaHoraReg:
+            type: datetime
+            nullable: true
+            comment: 'Auditoría fecha y hora ingreso de registro'
+            column: fecha_hora_reg
+        idUsuarioMod:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: 'Auditoría usuario modificó el registro'
+            column: id_usuario_mod
+        fechaHoraMod:
+            type: datetime
+            nullable: true
+            comment: 'Auditoría fecha y hora modificación del registro'
+            column: fecha_hora_mod
         codigoc3:
             type: integer
             nullable: false
             unsigned: false
             comment: 'Número correlativo para cada cabeza de microred de las Unidades Comunitarias de Salud Familiar, asociándolas a su respectivo Sistema Básico de Salud Integral (SIBASI) en forma ascendente'
+    manyToOne:
+        sibasi:
+            targetEntity: CtlEstablecimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                sibasi_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

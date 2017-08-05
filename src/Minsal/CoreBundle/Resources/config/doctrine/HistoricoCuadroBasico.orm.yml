@@ -2,12 +2,12 @@ Minsal\CoreBundle\Entity\HistoricoCuadroBasico:
     type: entity
     table: historico_cuadro_basico
     indexes:
-        IDX_C2960F83CE208F97:
-            columns:
-                - insumo_id
         IDX_C2960F8371B61351:
             columns:
                 - establecimiento_id
+        IDX_C2960F83CE208F97:
+            columns:
+                - insumo_id
     id:
         fechaCuadroBasico:
             type: datetime
@@ -21,15 +21,6 @@ Minsal\CoreBundle\Entity\HistoricoCuadroBasico:
             default: now
             column: fecha_inicio_cuadro_basico
     oneToOne:
-        insumo:
-            targetEntity: CtlInsumo
-            cascade: {  }
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                insumo_id:
-                    referencedColumnName: id
-            orphanRemoval: false
         establecimiento:
             targetEntity: CtlEstablecimiento
             cascade: {  }
@@ -37,6 +28,15 @@ Minsal\CoreBundle\Entity\HistoricoCuadroBasico:
             inversedBy: null
             joinColumns:
                 establecimiento_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        insumo:
+            targetEntity: CtlInsumo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                insumo_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

@@ -378,4 +378,487 @@ class CtlInsumo
         return $this->getNombreLargoInsumo();
     }
 
+    /**
+     * @var integer
+     */
+    private $ctlProductoid;
+
+    /**
+     * @var integer
+     */
+    private $ctlNivelUsoid;
+
+    /**
+     * @var integer
+     */
+    private $ctlFormaFarmaceuticaId;
+
+    /**
+     * @var integer
+     */
+    private $ctlPresentacionid;
+
+    /**
+     * @var integer
+     */
+    private $ctlProgramaid;
+
+    /**
+     * @var string
+     */
+    private $codificacionInsumo;
+
+    /**
+     * @var integer
+     */
+    private $codigoSinabExt;
+
+    /**
+     * @var string
+     */
+    private $detalleSchema;
+
+    /**
+     * @var integer
+     */
+    private $userIdSchema;
+
+    /**
+     * @var string
+     */
+    private $ipUserSchema;
+
+    /**
+     * @var integer
+     */
+    private $estadoSchema;
+
+    /**
+     * @var integer
+     */
+    private $venInsumo;
+
+    /**
+     * @var float
+     */
+    private $costoInsumo;
+
+    /**
+     * @var boolean
+     */
+    private $procesadoInsumo;
+
+    /**
+     * @var string
+     */
+    private $especificoGastoInsumo;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlUnidadMedida
+     */
+    private $ctlUnidadMedidaid;
+
+
+    /**
+     * Set ctlProductoid
+     *
+     * @param integer $ctlProductoid
+     * @return CtlInsumo
+     */
+    public function setCtlProductoid($ctlProductoid)
+    {
+        $this->ctlProductoid = $ctlProductoid;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlProductoid
+     *
+     * @return integer 
+     */
+    public function getCtlProductoid()
+    {
+        return $this->ctlProductoid;
+    }
+
+    /**
+     * Set ctlNivelUsoid
+     *
+     * @param integer $ctlNivelUsoid
+     * @return CtlInsumo
+     */
+    public function setCtlNivelUsoid($ctlNivelUsoid)
+    {
+        $this->ctlNivelUsoid = $ctlNivelUsoid;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlNivelUsoid
+     *
+     * @return integer 
+     */
+    public function getCtlNivelUsoid()
+    {
+        return $this->ctlNivelUsoid;
+    }
+
+    /**
+     * Set ctlFormaFarmaceuticaId
+     *
+     * @param integer $ctlFormaFarmaceuticaId
+     * @return CtlInsumo
+     */
+    public function setCtlFormaFarmaceuticaId($ctlFormaFarmaceuticaId)
+    {
+        $this->ctlFormaFarmaceuticaId = $ctlFormaFarmaceuticaId;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlFormaFarmaceuticaId
+     *
+     * @return integer 
+     */
+    public function getCtlFormaFarmaceuticaId()
+    {
+        return $this->ctlFormaFarmaceuticaId;
+    }
+
+    /**
+     * Set ctlPresentacionid
+     *
+     * @param integer $ctlPresentacionid
+     * @return CtlInsumo
+     */
+    public function setCtlPresentacionid($ctlPresentacionid)
+    {
+        $this->ctlPresentacionid = $ctlPresentacionid;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlPresentacionid
+     *
+     * @return integer 
+     */
+    public function getCtlPresentacionid()
+    {
+        return $this->ctlPresentacionid;
+    }
+
+    /**
+     * Set ctlProgramaid
+     *
+     * @param integer $ctlProgramaid
+     * @return CtlInsumo
+     */
+    public function setCtlProgramaid($ctlProgramaid)
+    {
+        $this->ctlProgramaid = $ctlProgramaid;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlProgramaid
+     *
+     * @return integer 
+     */
+    public function getCtlProgramaid()
+    {
+        return $this->ctlProgramaid;
+    }
+
+    /**
+     * Set codificacionInsumo
+     *
+     * @param string $codificacionInsumo
+     * @return CtlInsumo
+     */
+    public function setCodificacionInsumo($codificacionInsumo)
+    {
+        $this->codificacionInsumo = $codificacionInsumo;
+
+        return $this;
+    }
+
+    /**
+     * Get codificacionInsumo
+     *
+     * @return string 
+     */
+    public function getCodificacionInsumo()
+    {
+        return $this->codificacionInsumo;
+    }
+
+    /**
+     * Set codigoSinabExt
+     *
+     * @param integer $codigoSinabExt
+     * @return CtlInsumo
+     */
+    public function setCodigoSinabExt($codigoSinabExt)
+    {
+        $this->codigoSinabExt = $codigoSinabExt;
+
+        return $this;
+    }
+
+    /**
+     * Get codigoSinabExt
+     *
+     * @return integer 
+     */
+    public function getCodigoSinabExt()
+    {
+        return $this->codigoSinabExt;
+    }
+
+    /**
+     * Set detalleSchema
+     *
+     * @param string $detalleSchema
+     * @return CtlInsumo
+     */
+    public function setDetalleSchema($detalleSchema)
+    {
+        $this->detalleSchema = $detalleSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get detalleSchema
+     *
+     * @return string 
+     */
+    public function getDetalleSchema()
+    {
+        return $this->detalleSchema;
+    }
+
+    /**
+     * Set userIdSchema
+     *
+     * @param integer $userIdSchema
+     * @return CtlInsumo
+     */
+    public function setUserIdSchema($userIdSchema)
+    {
+        $this->userIdSchema = $userIdSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get userIdSchema
+     *
+     * @return integer 
+     */
+    public function getUserIdSchema()
+    {
+        return $this->userIdSchema;
+    }
+
+    /**
+     * Set ipUserSchema
+     *
+     * @param string $ipUserSchema
+     * @return CtlInsumo
+     */
+    public function setIpUserSchema($ipUserSchema)
+    {
+        $this->ipUserSchema = $ipUserSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get ipUserSchema
+     *
+     * @return string 
+     */
+    public function getIpUserSchema()
+    {
+        return $this->ipUserSchema;
+    }
+
+    /**
+     * Set estadoSchema
+     *
+     * @param integer $estadoSchema
+     * @return CtlInsumo
+     */
+    public function setEstadoSchema($estadoSchema)
+    {
+        $this->estadoSchema = $estadoSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoSchema
+     *
+     * @return integer 
+     */
+    public function getEstadoSchema()
+    {
+        return $this->estadoSchema;
+    }
+
+    /**
+     * Set venInsumo
+     *
+     * @param integer $venInsumo
+     * @return CtlInsumo
+     */
+    public function setVenInsumo($venInsumo)
+    {
+        $this->venInsumo = $venInsumo;
+
+        return $this;
+    }
+
+    /**
+     * Get venInsumo
+     *
+     * @return integer 
+     */
+    public function getVenInsumo()
+    {
+        return $this->venInsumo;
+    }
+
+    /**
+     * Set costoInsumo
+     *
+     * @param float $costoInsumo
+     * @return CtlInsumo
+     */
+    public function setCostoInsumo($costoInsumo)
+    {
+        $this->costoInsumo = $costoInsumo;
+
+        return $this;
+    }
+
+    /**
+     * Get costoInsumo
+     *
+     * @return float 
+     */
+    public function getCostoInsumo()
+    {
+        return $this->costoInsumo;
+    }
+
+    /**
+     * Set procesadoInsumo
+     *
+     * @param boolean $procesadoInsumo
+     * @return CtlInsumo
+     */
+    public function setProcesadoInsumo($procesadoInsumo)
+    {
+        $this->procesadoInsumo = $procesadoInsumo;
+
+        return $this;
+    }
+
+    /**
+     * Get procesadoInsumo
+     *
+     * @return boolean 
+     */
+    public function getProcesadoInsumo()
+    {
+        return $this->procesadoInsumo;
+    }
+
+    /**
+     * Set especificoGastoInsumo
+     *
+     * @param string $especificoGastoInsumo
+     * @return CtlInsumo
+     */
+    public function setEspecificoGastoInsumo($especificoGastoInsumo)
+    {
+        $this->especificoGastoInsumo = $especificoGastoInsumo;
+
+        return $this;
+    }
+
+    /**
+     * Get especificoGastoInsumo
+     *
+     * @return string 
+     */
+    public function getEspecificoGastoInsumo()
+    {
+        return $this->especificoGastoInsumo;
+    }
+
+    /**
+     * Set ctlUnidadMedidaid
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlUnidadMedida $ctlUnidadMedidaid
+     * @return CtlInsumo
+     */
+    public function setCtlUnidadMedidaid(\Minsal\CoreBundle\Entity\CtlUnidadMedida $ctlUnidadMedidaid = null)
+    {
+        $this->ctlUnidadMedidaid = $ctlUnidadMedidaid;
+
+        return $this;
+    }
+
+    /**
+     * Get ctlUnidadMedidaid
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlUnidadMedida 
+     */
+    public function getCtlUnidadMedidaid()
+    {
+        return $this->ctlUnidadMedidaid;
+    }
+    
+    
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlUnidadMedida
+     */
+    private $unidadMedida;
+
+
+    /**
+     * Set unidadMedida
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlUnidadMedida $unidadMedida
+     * @return CtlInsumo
+     */
+    public function setUnidadMedida(\Minsal\CoreBundle\Entity\CtlUnidadMedida $unidadMedida = null)
+    {
+        $this->unidadMedida = $unidadMedida;
+
+        return $this;
+    }
+
+    /**
+     * Get unidadMedida
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlUnidadMedida 
+     */
+    public function getUnidadMedida()
+    {
+        return $this->unidadMedida;
+    }
+    
+    public function getLargo()
+    {
+        return sprintf( '%08d', $this->codigoSinab ).' '.$this->nombreLargoInsumo;
+    }
 }

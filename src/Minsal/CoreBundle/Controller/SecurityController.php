@@ -59,7 +59,6 @@ class SecurityController extends Controller
             'csrf_token' => $csrfToken,
         ));
     }
-
     /**
      * Renders the login template with the given parameters. Overwrite this function in
      * an extended controller to provide additional data for the login template.

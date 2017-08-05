@@ -30,9 +30,26 @@ class DefaultController extends Controller
 			foreach ($persona as $i) {
 				$e = $i['id'];
             }
+            
+            if ( $this->allIdRoles() != '0' ){
+				$dql = "SELECT c.fechaConsumo, c.cantidadConsumo , e.cantidadExistencia, i.nombreLargoInsumo, i.id, i.codigoSinab, u.nombreUnidad
+					FROM MinsalCoreBundle:CtlConsumo c JOIN c.ctlExistencia e JOIN e.ctlInsumoid i JOIN i.ctlEstablecimientoid ee JOIN i.unidadMedida u
+					WHERE ee.id = $e
+					ORDER BY e.id";
+					$query = $em->createQuery($dql);
+					if ($query->getResult() )
+						$registro = $query->getResult();
+				$dql = "SELECT m.fechaMovimiento, m.cantidad, e.nombre, i.nombreLargoInsumo, i.id, i.codigoSinab
+					FROM MinsalCoreBundle:CtlMovimiento m JOIN m.ctlEstablecimientoid e JOIN m.ctlInsumoid i
+					WHERE e.id = $e
+					ORDER BY e.id";
+					$query = $em->createQuery($dql);
+					if ($query->getResult() )
+						$movimiento = $query->getResult();
+			}
 			
 			foreach ($this->getUser()->getRoles() as $role){
-				if ($role != 'ROLE_USER'){
+				if ($role != 'ROLE_USER'){/*
 					$dql = "SELECT c.fechaConsumo, c.cantidadConsumo , e.cantidadExistencia, e.almacenFarmacia, ee.nombre, i.nombreLargoInsumo, e.loteExistencia
 					FROM MinsalCoreBundle:CtlConsumo c JOIN c.ctlExistencia e JOIN e.ctlInsumoid i JOIN i.ctlEstablecimientoid ee
 					WHERE ee.id = $e
@@ -46,7 +63,8 @@ class DefaultController extends Controller
 					ORDER BY e.id";
 					$query = $em->createQuery($dql);
 					if ($query->getResult() )
-						$movimiento = $query->getResult();
+						$movimiento = $query->getResult();*/
+					
 				}
 			}
 		}
@@ -55,6 +73,7 @@ class DefaultController extends Controller
             'ctlExistencias' => $registro,
             'movimiento' => $movimiento,
             'registro' => $registro,
+            'region' => false,
         ));
     }
     
@@ -200,5 +219,19 @@ class DefaultController extends Controller
 		$this->get('session')->set('rol', $this->getUser()->getRoles() );
 		$this->get('session')->set('menu', $list);
 		$this->get('session')->set('pass', $pass);
+	}
+	
+	public function allIdRoles(){
+		$em = $this->getDoctrine()->getManager();
+		$all ="0";
+		foreach ($this->getUser()->getRoles() as $role){
+			//$roles = $em->getRepository('MinsalCoreBundle:CtlRol')->findByNombreRol($role);
+			$dql = "SELECT r.id, r.nombreRol FROM MinsalCoreBundle:CtlRol r WHERE r.nombreRol = '$role' ORDER BY r.id";
+			$roles = $em->createQuery( $dql )->getArrayResult();
+			foreach($roles as $rolt) {
+				$all.=",".$rolt['id'];
+			}
+		}
+		return $all;
 	}
 }

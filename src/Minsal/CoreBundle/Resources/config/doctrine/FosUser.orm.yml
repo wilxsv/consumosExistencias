@@ -6,12 +6,12 @@ Minsal\CoreBundle\Entity\FosUser:
             columns:
                 - establecimiento_id
     uniqueConstraints:
-        uniq_957a6479a0d96fbf:
-            columns:
-                - email_canonical
         uniq_957a647992fc23a8:
             columns:
                 - username_canonical
+        uniq_957a6479a0d96fbf:
+            columns:
+                - email_canonical
     id:
         id:
             type: integer

@@ -1,6 +1,3 @@
-<div class="row">
- <a href="{{ path('minsal_core_registro_index') }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Registrar consumos</a>
-</div>
 <div class="col-xs-12">
  <div class="box">
   <div class="nav-tabs-custom">
@@ -16,25 +13,27 @@
       <tr>
        <th>Año</th>
        <th>Mes</th>
-       <th>Establecimiento</th>
+       <th>N°</th>
+       <th>Codigo</th>
        <th>Producto</th>
+       <th>UM</th>
        <th>Consumo</th>
        <th>Existencia</th>
-       <th>Lote</th>
-       <th>Total</th>
+       <th>Dia</th>
       </tr>
      </thead>
      <tbody>
-        {% for e in ctlExistencias %}
+        {% for e in registro %}
          <tr>
           <td>{% if e.fechaConsumo %}{{ e.fechaConsumo|date('Y') }}{% endif %}</td>
           <td>{% if e.fechaConsumo %}{{ e.fechaConsumo|date('m') }}{% endif %}</td>
-          <td>{{ e.nombre }}</td>
+          <td>{{ e.id }}</td>
+          <td>{{ "%08d"|format(e.codigoSinab) }}</td>
           <td>{{ e.nombreLargoInsumo }}</td>
+          <td>{{ e.nombreUnidad }}</td>
           <td>{{ e.cantidadConsumo | round(3, 'floor') }}</td>
-          <td>{% if e.almacenFarmacia %}{{e.cantidadExistencia  | round(3, 'floor')}} A{% else %}{{e.cantidadExistencia | round(3, 'floor')}} F{% endif %} </td>
-          <td>{{ e.loteExistencia }} </td>
           <td>{{ (e.cantidadExistencia - e.cantidadConsumo) | round(3, 'floor') }}</td>
+          <td>{% if e.fechaConsumo %}{{ e.fechaConsumo|date('d') }}{% endif %}</td>
          </tr>
         {% endfor %}
      </tbody>
@@ -42,12 +41,13 @@
       <tr>
        <th>Año</th>
        <th>Mes</th>
-       <th>Establecimiento</th>
+       <th>N°</th>
+       <th>Codigo</th>
        <th>Producto</th>
+       <th>UM</th>
        <th>Consumo</th>
-       <th>Existencia A</th>
-       <th>Existencia F</th>
-       <th>Total</th>
+       <th>Existencia</th>
+       <th>Dia</th>
       </tr>
      </tfoot>
     </table>
@@ -59,11 +59,13 @@
       <tr>
        <th>Año</th>
        <th>Mes</th>
-       <th>Origen</th>
-       <th>Destino</th>
+       <th>N°</th>
+       <th>Codigo</th>
        <th>Producto</th>
-       <th>Cantidad</th>
-       <th>Tipo</th>
+       <th>Inicio</th>
+       <th>Ingresos</th>
+       <th>Egresos</th>
+       <th>Existencia</th>
       </tr>
      </thead>
      <tbody>
@@ -71,9 +73,12 @@
          <tr>
           <td>{% if e.fechaMovimiento %}{{ e.fechaMovimiento|date('Y') }}{% endif %}</td>
           <td>{% if e.fechaMovimiento %}{{ e.fechaMovimiento|date('m') }}{% endif %}</td>
-          <td>{{ e.nombre }}</td>
-          <td>{{ e.nombre }}</td>
+          <td>{{ e.id }}</td>
+          <td>{{ "%08d"|format(e.codigoSinab) }}</td>
           <td>{{ e.nombreLargoInsumo }}</td>
+          <td>{{ e.cantidad | round(3, 'floor') }}</td>
+          <td>{{ e.cantidad | round(3, 'floor') }}</td>
+          <td>{{ e.cantidad | round(3, 'floor') }}</td>
           <td>{{ e.cantidad | round(3, 'floor') }}</td>
          </tr>
         {% endfor %}
@@ -82,10 +87,13 @@
       <tr>
        <th>Año</th>
        <th>Mes</th>
-       <th>Establecimiento</th>
+       <th>N°</th>
+       <th>Codigo</th>
        <th>Producto</th>
-       <th>Cantidad</th>
-       <th>Tipo</th>
+       <th>Inicio</th>
+       <th>Ingresos</th>
+       <th>Egresos</th>
+       <th>Existencia</th>
       </tr>
      </tfoot>
     </table>

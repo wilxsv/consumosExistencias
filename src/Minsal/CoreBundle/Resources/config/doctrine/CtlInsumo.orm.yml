@@ -8,6 +8,9 @@ Minsal\CoreBundle\Entity\CtlInsumo:
         IDX_9DB322272F1374E:
             columns:
                 - grupoid
+        IDX_9DB32222E003F4:
+            columns:
+                - unidad_medida_id
     id:
         id:
             type: bigint
@@ -23,27 +26,93 @@ Minsal\CoreBundle\Entity\CtlInsumo:
             length: 255
             fixed: false
             column: codigo_nu
+        ctlProductoid:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: ctl_productoid
+        ctlNivelUsoid:
+            type: integer
+            nullable: false
+            unsigned: false
+            column: ctl_nivel_usoid
+        ctlFormaFarmaceuticaId:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: ctl_forma_farmaceutica_id
+        ctlPresentacionid:
+            type: integer
+            nullable: false
+            unsigned: false
+            default: '1080'
+            column: ctl_presentacionid
+        ctlProgramaid:
+            type: integer
+            nullable: true
+            unsigned: false
+            column: ctl_programaid
         codigoSinab:
+            type: string
+            nullable: false
+            length: 8
+            fixed: false
+            column: codigo_sinab
+        codificacionInsumo:
             type: string
             nullable: false
             length: 10
             fixed: false
-            column: codigo_sinab
+            default: '0'
+            column: codificacion_insumo
+        codigoSinabExt:
+            type: bigint
+            nullable: false
+            unsigned: false
+            default: '0'
+            column: codigo_sinab_ext
         listadoOficial:
             type: boolean
-            nullable: true
+            nullable: false
             default: false
             column: listado_oficial
         nombreLargoInsumo:
             type: text
-            nullable: true
+            nullable: false
             length: null
             fixed: false
             column: nombre_largo_insumo
         registroSchema:
             type: datetime
             nullable: true
+            default: '(now())::timestamp(0) without time zone'
             column: registro_schema
+        detalleSchema:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            default: 'Agregado antes de gestor de maestros'
+            column: detalle_schema
+        userIdSchema:
+            type: bigint
+            nullable: true
+            unsigned: false
+            default: '1'
+            column: user_id_schema
+        ipUserSchema:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: 0.0.0.0
+            column: ip_user_schema
+        estadoSchema:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+            column: estado_schema
         enableSchema:
             type: integer
             nullable: true
@@ -57,6 +126,31 @@ Minsal\CoreBundle\Entity\CtlInsumo:
             fixed: false
             default: na
             column: detalle_insumo
+        venInsumo:
+            type: smallint
+            nullable: true
+            unsigned: false
+            comment: 'Vital, Escencial, No escencial'
+            column: ven_insumo
+        costoInsumo:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            comment: 'Costo del ultimo valor resgistrado'
+            default: '(0)::double precision'
+            column: costo_insumo
+        procesadoInsumo:
+            type: boolean
+            nullable: false
+            default: false
+            column: procesado_insumo
+        especificoGastoInsumo:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            column: especifico_gasto_insumo
     manyToOne:
         grupoid:
             targetEntity: CtlGrupo
@@ -65,6 +159,15 @@ Minsal\CoreBundle\Entity\CtlInsumo:
             inversedBy: null
             joinColumns:
                 grupoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        unidadMedida:
+            targetEntity: CtlUnidadMedida
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                unidad_medida_id:
                     referencedColumnName: id
             orphanRemoval: false
     manyToMany:

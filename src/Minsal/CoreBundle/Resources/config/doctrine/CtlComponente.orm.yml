@@ -24,6 +24,12 @@ Minsal\CoreBundle\Entity\CtlComponente:
             length: 255
             fixed: false
             column: nombre_componente
+        presicionComponente:
+            type: smallint
+            nullable: false
+            unsigned: false
+            default: '3'
+            column: presicion_componente
     manyToOne:
         roleRegistraComponente:
             targetEntity: CtlRol

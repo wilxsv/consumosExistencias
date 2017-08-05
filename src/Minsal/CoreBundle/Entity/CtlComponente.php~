@@ -125,4 +125,32 @@ class CtlComponente
     {
         return $this->roleRegistraComponente;
     }
+    /**
+     * @var integer
+     */
+    private $presicionComponente;
+
+
+    /**
+     * Set presicionComponente
+     *
+     * @param integer $presicionComponente
+     * @return CtlComponente
+     */
+    public function setPresicionComponente($presicionComponente)
+    {
+        $this->presicionComponente = $presicionComponente;
+
+        return $this;
+    }
+
+    /**
+     * Get presicionComponente
+     *
+     * @return integer 
+     */
+    public function getPresicionComponente()
+    {
+        return $this->presicionComponente;
+    }
 }

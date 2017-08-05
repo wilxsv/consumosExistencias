@@ -1,0 +1,81 @@
+Minsal\CoreBundle\Entity\CtlUnidadMedida:
+    type: entity
+    table: ctl_unidad_medida
+    indexes:
+        IDX_E644C424D2D8661B:
+            columns:
+                - ctl_unidad_medidaid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        unidadesUnidad:
+            type: bigint
+            nullable: true
+            unsigned: false
+            column: unidades_unidad
+        registroSchema:
+            type: datetime
+            nullable: true
+            default: '(now())::timestamp(0) without time zone'
+            column: registro_schema
+        detalleSchema:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            default: 'Agregado antes de gestor de maestros'
+            column: detalle_schema
+        userIdSchema:
+            type: bigint
+            nullable: true
+            unsigned: false
+            default: '1'
+            column: user_id_schema
+        ipUserSchema:
+            type: string
+            nullable: true
+            length: null
+            fixed: false
+            default: 0.0.0.0
+            column: ip_user_schema
+        estadoSchema:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+            column: estado_schema
+        enableSchema:
+            type: integer
+            nullable: true
+            unsigned: false
+            default: '0'
+            column: enable_schema
+        nombreUnidad:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            column: nombre_unidad
+        detalleUnidadMedida:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            column: detalle_unidad_medida
+    manyToOne:
+        ctlUnidadMedidaid:
+            targetEntity: CtlUnidadMedida
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_unidad_medidaid:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
