@@ -2,6 +2,10 @@
 {% block title %}Registro manual de consumo y existencias{% endblock %}
 {% block subtitle %}llenar los datos de acuerdo a la informacion que posea{% endblock %}
 {% block body %}
+  <script src="{{ asset('assets/') }}core/plugins/datepicker/bootstrap-datepicker.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{{ asset('assets/') }}core/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ asset('assets/') }}core/bootstrap/js/datetimepicker.es.js"></script>
 <div id="mensaje"></div>
 <section id="mensual">
 <div class="row">
@@ -29,71 +33,99 @@
     <table id="tabla" class="table table-bordered table-striped">
      <thead>
       <tr>
+       <th>N°</th>
+       <th>Codigo</th>
        <th>Producto</th>
        <th>Lote</th>
        <th>Existencia</th>
        <th>Caducidad</th>
        <th>Consumo</th>
-       <th>Ingresos</th>
-       <th>AF</th>
+       <th>Ingresos Farmacia</th>
+       <th>Inicio mensual</th>
+       <th>Ingreso Almacen</th>
        <th>Caducidad</th>
-       <th>Origen</th>
-       <th>Egresos</th>
-       <th>AF</th>
-       <th>Destino</th>
-       <th>Accion</th>
+       <th>Consumo Almacen</th>
+       <th>Guardar</th>
       </tr>
      </thead>
      <tbody>
-  <script src="{{ asset('assets/') }}core/plugins/datepicker/bootstrap-datepicker.js"></script>
-  <!-- Bootstrap 3.3.6 -->
-  <script src="{{ asset('assets/') }}core/bootstrap/js/bootstrap.min.js"></script>
-  <script src="{{ asset('assets/') }}core/bootstrap/js/datetimepicker.es.js"></script>
         {% for i in insumo %}
       <tr id="tr{{ i.id }}">
+       <td>{{ i.codigoNu }}</td>
+       <td>{{ i.codigoSinab }}</td>
        <td>{{ i.nombreLargoInsumo }}</td>
        <td>{{ i.loteExistencia }}</td>
        <td>{{ i.cantidadExistencia |number_format(max, '.', ',') }}</td>
        <td>{% if i.fechaCaducidad %}{{ i.fechaCaducidad|date('Y-m-d') }}{% endif %}</td>
-       <td><input id="cn{{ i.id }}" class="form-control input-sm" min="0" max="{{ i.cantidadExistencia }}" placeholder="0" type="number" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
+       <td><input id="cf{{ i.id }}" class="form-control input-sm" min="0" max="{{ i.cantidadExistencia }}" placeholder="0" type="number" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
        <td>
-        <input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)">
+        <input id="cn{{ i.id }}" class="form-control input-sm" placeholder="0" type="number" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)">
         </td>
        <td>
-        <input type="checkbox" id="i{{ i.id }}" value="1" checked><br>
        </td>
        <td>
-        <input id="cl{{ i.id }}" class="form-control input-sm" type="tex">
+        <input id="ia{{ i.id }}" class="form-control input-sm" min="0" placeholder="0" type="number">
+       </td>
+       <td>
+        <input id="ca{{ i.id }}" class="form-control input-sm" type="tex">
         <script>
   $(function () {
-    $("#cl{{ i.id }}").datepicker({ 
+    $("#ca{{ i.id }}").datepicker({ 
     format: 'yyyy-mm-dd',
     language: 'es'});
     });</script>
        </td>
-       <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
-       <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
-       <td>
-        <input type="checkbox" id="e{{ i.id }}" value="1" checked><br>
-       </td>
-      <td><input class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
-      <td> <button class="btn btn-block btn-primary btn-xs" onclick="procesar({{ i.id }})">Guardar</button> </td>
+       <td><input id="ea{{ i.id }}" class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
+       <td> <button class="btn btn-block btn-primary btn-xs" onclick="procesar({{ i.id }})">Guardar</button> </td>
       </tr>
+        {% endfor %}
+        {% for i in cuadro %}
+      <tr id="ltr{{ i.id }}">
+       <td>{{ i.id }}</td>
+       <td>{{ i.codigoSinab }}</td>
+       <td>{{ i.nombreLargoInsumo }}</td>
+       <td></td>
+       <td></td>
+       <td></td>
+       <td><input id="lcf{{ i.id }}" class="form-control input-sm" min="0" placeholder="0" type="number" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
+       <td>
+        <input id="lcn{{ i.id }}" class="form-control input-sm" placeholder="0" type="number" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)">
+        </td>
+       <td>
+       </td>
+       <td>
+        <input id="lia{{ i.id }}" class="form-control input-sm" min="0" placeholder="0" type="number">
+       </td>
+       <td>
+        <input id="lca{{ i.id }}" class="form-control input-sm" type="tex">
+        <script>
+  $(function () {
+    $("#lca{{ i.id }}").datepicker({ 
+    format: 'yyyy-mm-dd',
+    language: 'es'});
+    });</script>
+       </td>
+       <td><input id="lea{{ i.id }}" class="form-control input-sm" placeholder="0" type="tex" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode === 8) || (event.keyCode === 46) ||  (event.keyCode === 9) || (event.keyCode === 37) || (event.keyCode === 39)"></td>
+       <td> <button class="btn btn-block btn-primary btn-xs" onclick="lprocesar({{ i.id }})">Guardar</button> </td>
+      </tr>
+            </tr>
         {% endfor %}
      </tbody>
      <tfoot>
       <tr>
+       <th>N°</th>
+       <th>Codigo</th>
        <th>Producto</th>
        <th>Lote</th>
+       <th>Existencia</th>
        <th>Caducidad</th>
-       <th>Consumo F</th>
-       <th>Existencia F</th>
-       <th>Consumo A</th>
-       <th>Existencia A</th>
-       <th>Dias</th>
-       <th>Ingresos</th>
-       <th>Egresos</th>
-       <th>Procesar</th>
+       <th>Consumo</th>
+       <th>Ingresos Farmacia</th>
+       <th>Inicio mensual</th>
+       <th>Ingreso Almacen</th>
+       <th>Caducidad</th>
+       <th>Consumo Almacen</th>
+       <th>Guardar</th>
       </tr>
      </tfoot>
     </table>
@@ -110,7 +142,7 @@
   <!-- Bootstrap 3.3.6 -->
   <script src="{{ asset('assets/') }}core/bootstrap/js/bootstrap.min.js"></script>
   <script src="{{ asset('assets/') }}core/bootstrap/js/datetimepicker.es.js"></script>
-<script src="{{ asset('assets/') }}core/bower_components/select2/dist/js/select2.full.min.js"></script>
+  <script src="{{ asset('assets/') }}core/bower_components/select2/dist/js/select2.full.min.js"></script>
   <script>
   $(function () {
     $("#datepicker").datepicker({ 
@@ -118,20 +150,24 @@
     language: 'es',
     endDate: '1d' });
     });
-  
+  </script>
+  <script>
   function procesar(value){
 	if ($('#datepicker').val() != '' ){
 	  $.ajax({
-	  type: "POST",
-	  url: "{{ url('minsal_core_registro_manual') }}?fecha="+ $('#datepicker').val() +"&existencia="+$('#cn'+value).val()+"&cantidad="+$('#cn'+value).val()+"&id="+value,
-	  success: function(data) {
-		$('#resultado').html(data);
-		 document.getElementById('tr'+value).style.display = 'none';
-      }
+	     type: "POST",
+		 url: "{{ url('minsal_core_registro_manual') }}?fecha="+ $('#datepicker').val() +"&existencia="+$('#cn'+value).val()+"&cantidad="+$('#cf'+value).val()+"&id="+value+"&almacen="+$('#ea'+value).val(),
+	     success: function(data) {
+	      $('#mensaje').html('<div class="callout callout-success"><h4>Registro ingresado con exito!</h4></div>');
+	      document.getElementById('tr'+value).style.display = 'none';
+         },
+    error: function(XMLHttpRequest, textStatus, errorThrown) { 
+        //alert("Status: " + textStatus); alert("Error: " + errorThrown);
+        $('#mensaje').html('<div class="callout callout-danger"><h4>Registro con valores no permitidos!</h4></div>'); 
+    } 
      });
-     return false;
 	} else {
-		alert('Recuerda ingresar la fecha, este dato es importante para el registro de los consumos')
+		alert('Recuerda ingresar la fecha, este dato es importante para el registro de los consumos');
 	}
   }
   </script>

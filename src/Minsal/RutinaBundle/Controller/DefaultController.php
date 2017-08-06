@@ -129,6 +129,8 @@ class DefaultController extends Controller
 				$insumo = $em->createQuery( $dql )->getResult();
 			}
 		}
+		$cuadro = $em->createQuery("SELECT i.id, i.codigoSinab, i.nombreLargoInsumo FROM MinsalCoreBundle:CtlInsumo i JOIN i.ctlEstablecimientoid ee WHERE ee.id = $e")->getResult();
+		
 		//set datos personales
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C2', $ee);
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C3', date('Y-m-d'));
@@ -144,8 +146,9 @@ class DefaultController extends Controller
             $phpExcelObject->getActiveSheet()->protectCells('A'.$i.':'.'F'.$i, $clave);
             $i++;
          }
-		foreach ($persona as $item) {
-                $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$i, $item['id'])
+		foreach ($cuadro as $item) {
+                $phpExcelObject->setActiveSheetIndex(0)
+                ->setCellValue('A'.$i, $item['id'])
                 ->setCellValue('B'.$i, $item['codigoSinab'])
                 ->setCellValue('C'.$i, $item['nombreLargoInsumo']);
             $i++;

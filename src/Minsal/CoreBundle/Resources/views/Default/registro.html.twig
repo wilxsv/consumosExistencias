@@ -4,7 +4,6 @@
 {% block body %}
 
 <section id="download">
-           
         <div class="row">
           <div class="col-sm-6">
             <div class="box box-primary">
@@ -36,4 +35,93 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
       </section>
+
+    <section class="content">
+      <div class="row">
+       <div class="col-xs-12">
+        <div class="box">
+         
+        </div>
+       </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="tabla" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                <th>Fecha</th>
+                <th>Id</th>
+                <th>Codigo</th>
+                <th>Producto</th>
+                <th>Caducidad</th>
+                <th>Consumo</th>
+                <th>Tipo</th>
+                </tr>
+                </thead>
+                <tbody>
+        {% for r in registro %}
+            <tr>
+             <td>{% if r.fechaConsumo %}{{ r.fechaConsumo|date('Y-m-d') }}{% endif %}</td>
+             <td>{{ r.codigoNu }}</td>
+             <td>{{ r.codigoSinab }}</td>
+             <td>{{ r.nombreLargoInsumo }}</td>
+             <td>{% if r.fechaCaducidad %}{{ r.fechaCaducidad|date('Y-m-d') }}{% endif %}</td>
+             <td>{{ r.cantidadConsumo }}</td>
+             <td>{{ r.nombreMecanismo }}</td>
+            </tr>
+        {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                <th>Fecha</th>
+                <th>Id</th>
+                <th>Codigo</th>
+                <th>Producto</th>
+                <th>Caducidad</th>
+                <th>Consumo</th>
+                <th>Tipo</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>    
 {% endblock %}
+{% block head_css %}
+  <link rel="stylesheet" href="{{ asset('assets/') }}core/bower_components/DataTables/media/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="{{ asset('assets/') }}core/bower_components/DataTables/extensions/Buttons/css/buttons.dataTables.min.css">
+{% endblock %}
+{% block footer_js %}
+<script src="{{ asset('assets/') }}core/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/DataTables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+<script>
+$(document).ready(function() {
+    $('#tabla').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf'
+        ],
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true
+    } );
+} );
+</script>
+{% endblock %}
+

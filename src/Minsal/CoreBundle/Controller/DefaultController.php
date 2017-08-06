@@ -15,7 +15,25 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('MinsalCoreBundle:Default:index.html.twig');
+		$em = $this->getDoctrine()->getManager();
+        $id = $this->getUser()->getId();
+        
+        $id = $this->getUser()->getId();
+ 	    $dql = "SELECT e.id, e.nombre FROM  MinsalCoreBundle:FosUser u JOIN u.establecimiento e WHERE u.id = $id";
+		$persona = $em->createQuery( $dql )->getResult();
+		$e = 0;
+		//Encabezado
+		foreach ($persona as $i) {
+			$e = $i['id'];
+			$ee = $i['nombre'];
+        }
+        $registro = false;
+		$dql = "SELECT c.fechaConsumo, c.cantidadConsumo, i.id AS codigoNu, i.codigoSinab, i.nombreLargoInsumo, e.fechaCaducidad
+		FROM  MinsalCoreBundle:CtlConsumo c JOIN c.ctlExistencia e JOIN e.ctlInsumoid i JOIN e.ctlEstablecimientoid ee 
+		WHERE ee.id = $e";
+		$registro = $em->createQuery( $dql )->getResult();
+		
+        return $this->render('MinsalCoreBundle:Default:index.html.twig', array('registro' => $registro ));
     }
     public function registroAction()
     {
@@ -32,23 +50,33 @@ class DefaultController extends Controller
 					$registro = false;
 			foreach ($this->getUser()->getRoles() as $role){
 				if ($role != 'ROLE_USER'){//, ee.nombre 
-					$dql = "SELECT e.cantidadExistencia, e.loteExistencia, e.almacenFarmacia, i.nombreLargoInsumo
-					FROM MinsalCoreBundle:CtlExistencias e JOIN e.ctlInsumoid i
-					WHERE e.ctlEstablecimientoid = $e AND e.almacenFarmacia = FALSE
-					ORDER BY e.id";
+					$dql = "SELECT c.fechaConsumo, c.cantidadConsumo, i.id AS codigoNu, i.codigoSinab, i.nombreLargoInsumo, e.fechaCaducidad, t.nombreMecanismo
+		FROM  MinsalCoreBundle:CtlConsumo c JOIN c.ctlExistencia e JOIN e.ctlInsumoid i JOIN e.ctlEstablecimientoid ee JOIN c.ctlMecanismoid t
+		WHERE ee.id = $e";
 					$query = $em->createQuery($dql);
 					if ($query->getResult() )
 						$registro = $query->getResult();
 				}
 			}
-        return $this->render('MinsalCoreBundle:Default:registro.html.twig', array('insumo' => $registro ));
+		
+        return $this->render('MinsalCoreBundle:Default:registro.html.twig', array('registro' => $registro ));
     }
     public function manualAction(Request $request)
     {
 		if ($request->isXmlHttpRequest()) {
 			$id = $this->getUser()->getId();
 			$em = $this->getDoctrine()->getManager();
-			$em->getConnection()->exec( "INSERT INTO ctl_consumo(fecha_consumo, cantidad_consumo, registro_schema, ctl_mecanismoid, ctl_existencia, user_id_schema)
+			$fecha = $request->query->get('fecha');
+			$cantidad = $request->query->get('cantidad');
+			$r = date('Y-m-d H:i:s');
+			$mecanismo = 4;
+			$user = $this->getUser()->getId();
+			$ip = $request->getClientIp();
+			$existencia = $request->query->get('id');
+			$sql = "INSERT INTO ctl_consumo (fecha_consumo, cantidad_consumo, registro_schema, ctl_mecanismoid, user_id_schema, ip_user_schema, ctl_existencia)VALUES ('$fecha', $cantidad, '$r', 4, $user, '$ip', $existencia)";
+			$em->getConnection()->exec( $sql );
+			/*
+			"INSERT INTO ctl_consumo(fecha_consumo, cantidad_consumo, registro_schema, ctl_mecanismoid, ctl_existencia, user_id_schema)
 			VALUES ('".$request->query->get('fecha')."', ".$request->query->get('cantidad').",now(), 1, ".$request->query->get('id').", $id)" );			
             return new Response( '<div class="col-md-12 col-sm-12 col-xs-12">
           <div class="info-box">
@@ -57,7 +85,10 @@ class DefaultController extends Controller
               <span class="info-box-text">. </span>
             </div>
 			</div>
-			</div>' );
+			</div>' );*/
+			//INSERT INTO "ctl_consumo" ("fecha_consumo", "cantidad_consumo", "registro_schema", "ctl_mecanismoid", "user_id_schema", "ip_user_schema", "ctl_existencia")
+//VALUES ('', '', '', NULL, '', '::1', '');
+			return new Response( '' );
         }
 		
         $em = $this->getDoctrine()->getManager();
@@ -72,13 +103,13 @@ class DefaultController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT e.id, i.nombreLargoInsumo, e.loteExistencia, e.fechaCaducidad, e.cantidadExistencia
+        $dql = "SELECT e.id, i.id AS codigoNu, i.codigoSinab, i.nombreLargoInsumo, e.loteExistencia, e.fechaCaducidad, e.cantidadExistencia
         FROM  MinsalCoreBundle:CtlExistencias e JOIN e.ctlEstablecimientoid ee  JOIN e.ctlInsumoid i
         WHERE ee.id = $e";
 		$insumo = $em->createQuery( $dql )->getResult();
-		$establecimientos = $em->createQuery( "SELECT e.id, e.nombre FROM  MinsalCoreBundle:CtlEstablecimiento e WHERE e.enableSchema = 1" )->getResult();
+		$cuadro = $em->createQuery("SELECT i.id, i.codigoSinab, i.nombreLargoInsumo FROM MinsalCoreBundle:CtlInsumo i JOIN i.ctlEstablecimientoid ee WHERE ee.id = $e")->getResult();
 		
-        return $this->render('MinsalCoreBundle:Default:manual.html.twig', array('insumo' => $insumo, 'establecimiento' => $ee, 'establecimientos' => $establecimientos, ));
+        return $this->render('MinsalCoreBundle:Default:manual.html.twig', array('insumo' => $insumo, 'establecimiento' => $ee, 'cuadro' => $cuadro ));
     }
     
     public function archivoAction()
