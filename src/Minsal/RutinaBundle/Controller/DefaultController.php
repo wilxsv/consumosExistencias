@@ -157,14 +157,14 @@ class DefaultController extends Controller
         $phpExcelObject->getActiveSheet()->getProtection()->setSheet(true);
         //Validacion de campos
         //salida
-        /*
+        $i = 3;
 		foreach ($cuadro as $item) {
                 $phpExcelObject->setActiveSheetIndex(1)
                 ->setCellValue('A'.$i, $item['id'])
                 ->setCellValue('B'.$i, $item['codigoSinab'])
                 ->setCellValue('C'.$i, $item['nombreLargoInsumo']);
             $i++;
-         }*/
+         }
         $phpExcelObject->getActiveSheet()->protectCells('A1:C'.$i, $clave);
         $phpExcelObject->getActiveSheet()->getProtection()->setSheet(true);
         $phpExcelObject->setActiveSheetIndex(0)->setTitle('Datos');
