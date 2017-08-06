@@ -135,17 +135,17 @@ class DefaultController extends Controller
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C2', $ee);
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C3', date('Y-m-d'));
 		$phpExcelObject->setActiveSheetIndex(0)->setCellValue('C4', $this->container->get('security.context')->getToken()->getUser());
-		$i = 6;
+		$i = 6;/*
 		foreach ($insumo as $item) {
                 $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$i, $item['id'])
                 ->setCellValue('B'.$i, $item['codigoSinab'])
-                ->setCellValue('C'.$i, $item['nombreLargoInsumo'])
-                ->setCellValue('D'.$i, $item['loteExistencia'])
-                ->setCellValue('E'.$i, date_format( $item['fechaCaducidad'] , 'Y-m-d') )
-                ->setCellValue('F'.$i, $item['cantidadExistencia']);
-            $phpExcelObject->getActiveSheet()->protectCells('A'.$i.':'.'F'.$i, $clave);
+                ->setCellValue('C'.$i, $item['nombreLargoInsumo']);
+                //->setCellValue('D'.$i, $item['loteExistencia'])
+                //->setCellValue('E'.$i, date_format( $item['fechaCaducidad'] , 'Y-m-d') )
+                //->setCellValue('F'.$i, $item['cantidadExistencia']);
+            $phpExcelObject->getActiveSheet()->protectCells('A'.$i.':'.'C'.$i, $clave);
             $i++;
-         }
+         }*/
 		foreach ($cuadro as $item) {
                 $phpExcelObject->setActiveSheetIndex(0)
                 ->setCellValue('A'.$i, $item['id'])
@@ -157,7 +157,18 @@ class DefaultController extends Controller
         $phpExcelObject->getActiveSheet()->getProtection()->setSheet(true);
         //Validacion de campos
         //salida
-        $phpExcelObject->getActiveSheet()->setTitle('Datos');
+        /*
+		foreach ($cuadro as $item) {
+                $phpExcelObject->setActiveSheetIndex(1)
+                ->setCellValue('A'.$i, $item['id'])
+                ->setCellValue('B'.$i, $item['codigoSinab'])
+                ->setCellValue('C'.$i, $item['nombreLargoInsumo']);
+            $i++;
+         }*/
+        $phpExcelObject->getActiveSheet()->protectCells('A1:C'.$i, $clave);
+        $phpExcelObject->getActiveSheet()->getProtection()->setSheet(true);
+        $phpExcelObject->setActiveSheetIndex(0)->setTitle('Datos');
+        //$phpExcelObject->setActiveSheetIndex(1)->setTitle('Mensual.');
         $phpExcelObject->getSecurity()->setLockWindows(true);
         $phpExcelObject->getSecurity()->setLockStructure(true);
         $phpExcelObject->getSecurity()->setWorkbookPassword($clave);
