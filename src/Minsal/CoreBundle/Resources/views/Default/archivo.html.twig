@@ -27,15 +27,18 @@
                 <h3 class="box-title">Subir archivo de consumos mensuales</h3>
               </div><!-- /.box-header -->
               <div class="box-body">
-				<div class="form-group">
-                  <label for="exampleInputFile">Seleccionar archivo</label>
-                  <input id="exampleInputFile" type="file">
-
-                  <p class="help-block">Solo se admiten archivos xls.</p>
-                </div>
-                <a href="#" class="btn btn-info">
-					<i class="fa fa-cloud-upload"></i> Registro de consumo por colector diario
-				</a>
+				
+				<form enctype="multipart/form-data" method="post" name="fileinfo" action="{{ url('minsal_core_registro_archivo') }}">
+                  <div class="form-group">
+                    <label for="exampleInputFile">Seleccionar archivo</label>
+                     <input id="file" type="file" name="file" accept=".xlsx, .xls, .XLSX, .XLS, .ods, .ODS |application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/*">
+                     
+                   <p class="help-block">Solo se admiten hojas de calculo generadas por el sistema.</p>
+                  </div>
+                          <button class="btn btn-info" type="submit">
+          					<i class="fa fa-cloud-upload" ></i> Registro de consumo por colector diario
+          				      </button>
+          		</form>
               </div><!-- /.box-body -->
             </div><!-- /.box -->
           </div><!-- /.col -->

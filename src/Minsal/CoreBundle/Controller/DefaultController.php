@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DefaultController extends Controller
 {
@@ -112,7 +113,7 @@ class DefaultController extends Controller
         return $this->render('MinsalCoreBundle:Default:manual.html.twig', array('insumo' => $insumo, 'establecimiento' => $ee, 'cuadro' => $cuadro ));
     }
     
-    public function archivoAction()
+    public function archivoAction(Request $request, UploadedFile $file = null)
     {
 		$suministro = false;
 		$em = $this->getDoctrine()->getManager();
@@ -152,7 +153,14 @@ class DefaultController extends Controller
 					WHERE r.nombreRol = 'ROLE_REGISTRO_LOCAL' AND e.ctlEstablecimientoid = $e
 					ORDER BY e.id";
 				$insumo = $em->createQuery( $dql )->getResult();
-				
+		
+		if( $this->getRequest()->isMethod('POST')){
+			foreach($request->files as $uploadedFile) {
+				$name = uniqid().".xls";
+				$file = $uploadedFile->move($this->container->getParameter('kernel.root_dir')."/../web/files/loaded/", $name);
+			}			
+			$request->getSession()->getFlashBag()->add('success', 'Archivo procesado sin problemas');
+		}
 				
         return $this->render('MinsalCoreBundle:Default:archivo.html.twig', array(
             'suministro' => $suministro,'insumo' => $insumo,
@@ -180,5 +188,34 @@ class DefaultController extends Controller
 		
 		
 	return $curl_response;
+	}
+	
+	public function registraArchivo(){
+		    
+          //Recuperar archivo
+          $file = $req->files->get('file');
+          $docEnc = chunk_split(base64_decode(file_get_contents($file)));
+          $uri ="<DOMINIO>/v1/consumos/?tocken=eccbc87e4b5ce2fe28308fd9f2a7baf3";
+          $fields= array('documento' => $docEnc);
+          $ch = curl_init();
+          $args['file'] = new \CURLFile($docEnc, 'application/octet-stream ', 'signature');
+          curl_setopt_array($ch, array(
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_URL => $uri,
+            CURLOPT_USERPWD => "123",
+            CURLOPT_POST => 1,
+            CURLOPT_HTTPHEADER => array("Content-Type:multipart/form-data"),
+            CURLOPT_POSTFIELDS => $args
+          ));
+          //Habilitar para mandar la peticion
+          //$server_output = curl_exec ($ch);
+          //curl_close ($ch); 
+          return $file->getMimeType();
+          //Hacer peticion con curl al endpoint de la API.
+          //return flash...
+          //$postData = $request->request->get('test');
+          // return $this->render('MinsalCoreBundle:Default:archivo.html.twig', array(
+          //     'suministro' => $suministro,'insumo' => $insumo,
+          // ));
 	}
 }
