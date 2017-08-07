@@ -70,3 +70,10 @@ minsal_core_configuracion_cierre:
     methods:  [GET|HEAD|POST]
     requirements:
         _method: POST|GET
+
+minsal_core_reporte:
+    path:     /admin/reportes
+    defaults: { _controller: MinsalCoreBundle:Reporte:index }
+    methods:  [GET|HEAD|POST]
+    requirements:
+        _method: POST|GET
