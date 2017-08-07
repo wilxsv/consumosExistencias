@@ -2,6 +2,18 @@
 {% block body %}
 {%  if is_granted('IS_AUTHENTICATED_FULLY') %}
   {% if registro %}
+  
+<div class="col-md-12 col-sm-6 col-xs-12" id="respuesta" >
+ <div class="info-box">
+  <span class="info-box-icon bg-aqua"><i class="fa fa-calendar"></i></span>
+  <div class="info-box-content">
+   <span class="info-box-text">Cierre.</span>
+   <span class="info-box-number">Realice esta operación unicamente si ha finalizado de realizar el registro de todos los consumos de los productos</span>
+   <button type="button" class="btn btn-danger btn-sm" onclick="cierre()">Eliminar cuadro basico</button>
+   
+  </div>
+ </div>
+</div>
 	{% include 'MinsalRutinaBundle::Default/registro.html.twig' %}
   {%  endif %}
   {% if region %}
