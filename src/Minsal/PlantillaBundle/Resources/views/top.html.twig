@@ -38,7 +38,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="" class="navbar-brand"><b>Reportes</b> SCE</a>
+          <a href="" class="navbar-brand"><b>Consumos y existencias</b> SCE</a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -47,29 +47,60 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#parametros"><i class="fa fa-fw fa-check-square-o"></i> Parametros</a></li>
-            <li><a href="#"> <i class="fa fa-fw fa-reply"></i> Regresar</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-fw fa-copy"></i> Reportes <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Coberturas</a></li>
-                <li><a href="#">Costos</a></li>
-                <li><a href="#">Cuadros basicos</a></li>
-                <li><a href="#">Existencias</a></li>
-                <li><a href="#">Mapa de conbertura</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
-            </div>
-          </form>
-          <ul class="nav navbar-nav">
-            <li><a href="{{ path('fos_user_security_logout') }}"> <i class="fa fa-fw fa-unlock-alt"></i> Salir</a></li>
+			{% include 'MinsalPlantillaBundle::Default/menu.html.twig' %}
           </ul>
         </div>
         <!-- /.navbar-collapse -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- User Account: style can be found in dropdown.less -->
+           {%  if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% if is_granted('ROLE_ADMIN') %}
+			<!-- Messages: style can be found in dropdown.less-->
+			<!-- Notifications: style can be found in dropdown.less -->
+			<li class="dropdown notifications-menu" class="active">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				<i class="fa fa-bell-o"></i><b>Administracion y seguridad</b>
+				</a>
+				<ul class="dropdown-menu">
+				<li>
+					<ul class="menu">
+						<li><a href="{{ path('admin_personas_index') }}">Usuarias del sistema</a></li>
+						<li><a href="{{ path('admin_rol_index') }}">Roles de usuaria</a></li>
+						<li><a href="{{ path('admin_accesos_index') }}">Accesos a enlaces (url)</a></li>
+					</ul>
+				</li>
+				</ul>
+			</li>
+            {% endif %}
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs">{{ app.session.get('nombre') | raw }}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <p>
+                  {{ app.session.get('establecimiento') | raw }}
+                  <small>Establecimiento</small>
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-warning btn-flat">Editar perfil</a>
+                </div>
+                <div class="pull-right">
+                  <a href="{{ path('fos_user_security_logout') }}" class="btn btn-warning btn-flat">Salir</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          {% else %}
+			<li class="active"><a href="{{ path('fos_user_security_login') }}"> <i class="icon-off"></i> Entrar al sistema.</a></li>
+		  {% endif %}
+        </ul>
+      </div>
       </div>
       <!-- /.container-fluid -->
     </nav>
@@ -95,22 +126,17 @@
 								<strong>{% for msg in app.session.flashBag.get('warning') %}<i class="icon-bullhorn"></i>{{ msg }}</br>{% endfor %}</strong>
 							</div>
 							{% endif %}
-        <h1>
-          {% block title %}Reportes {% endblock %}
-          <small>Personalizar consultas</small>
+		<h1>{% block title %}{% endblock %}
+        <small>{% block subtitle %}{% endblock %}</small>
         </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Cuadros basicos</a></li>
-          <li><a href="#">Existencias</a></li>
-          <li><a href="#">Coberturas</a></li>
-          <li><a href="#">Costos</a></li>
-        </ol>
+        {% include 'MinsalPlantillaBundle::Default/breadcrumb.html.twig' %}
       </section>
-
       <!-- Main content -->
       <section class="content" id="marco">
       {% block body %}
       {% endblock %}
+      {% block fos_user_content %}
+      {% endblock fos_user_content %}
       </section>
     </div>
   </div>

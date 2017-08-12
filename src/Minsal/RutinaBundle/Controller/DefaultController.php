@@ -233,6 +233,20 @@ class DefaultController extends Controller
 		$this->get('session')->set('rol', $this->getUser()->getRoles() );
 		$this->get('session')->set('menu', $list);
 		$this->get('session')->set('pass', $pass);
+		
+		
+        $em = $this->getDoctrine()->getManager();
+        $id = $this->getUser()->getId();
+		$dql = "SELECT e.id, e.nombre, u.fullname FROM  MinsalCoreBundle:FosUser u JOIN u.establecimiento e WHERE u.id = $id";
+		$persona = $em->createQuery( $dql )->getResult();
+		$e = 0;
+		//Encabezado
+		foreach ($persona as $i) {
+			$e = $i['fullname'];
+			$ee = $i['nombre'];
+        }
+		$this->get('session')->set('nombre', $e);
+		$this->get('session')->set('establecimiento', $ee);
 	}
 	
 	public function allIdRoles(){

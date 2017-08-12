@@ -158,7 +158,31 @@ class DefaultController extends Controller
 			foreach($request->files as $uploadedFile) {
 				$name = uniqid().".xls";
 				$file = $uploadedFile->move($this->container->getParameter('kernel.root_dir')."/../web/files/loaded/", $name);
-			}			
+			}
+	/*		
+			  try {
+    $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+    $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+    $objPHPExcel = $objReader->load($inputFileName);
+  } catch (Exception $e) {
+    die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . 
+        $e->getMessage());
+  }
+
+  $sheet = $objPHPExcel->getSheet(0);
+  $highestRow = $sheet->getHighestRow();
+  $highestColumn = $sheet->getHighestColumn();
+
+  for ($row = 1; $row <= $highestRow; $row++) { 
+    $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, 
+                                    null, true, false);
+
+    //Prints out data in each row.
+    //Replace this with whatever you want to do with the data.
+    echo '<pre>';
+      print_r($rowData);
+    echo '</pre>';
+  }*/	
 			$request->getSession()->getFlashBag()->add('success', 'Archivo procesado sin problemas');
 		}
 				

@@ -1,46 +1,9 @@
 {%  if is_granted('IS_AUTHENTICATED_FULLY') %}
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-	<section class="sidebar">
-	 <ul class="sidebar-menu">
-  	  <li><a href="{{ path('minsal_rutina_homepage') }}"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
-	 {{ app.session.get('menu') | raw }}
-  {% if is_granted('ROLE_ADMIN_REGION') %}
-	  <li><a href="{{ path('configuracion_establecimientos_index') }}"><i class="fa fa-clone"></i> <span>Establecimientos</span></a></li>
-	  <li><a href="{{ path('configuracion_mecanismos_index') }}"><i class="fa fa-refresh"></i> <span>Mecanismo de transferencia</span></a></li>
-	  <li><a href="{{ path('configuracion_programas_index') }}"><i class="fa fa-linux"></i> <span>Programas especiales</span></a></li>
-	  <li><a href="{{ path('configuracion_productos_index') }}"><i class="fa fa-dropbox"></i> <span>Productos</span></a></li>
-	  <li><a href="{{ path('configuracion_suministros_index') }}"><i class="fa fa-cubes"></i> <span>Suministros</span></a></li>
-  {%  endif %}
-  {% if is_granted('ROLE_REGISTRO_LOCAL') %}
-        <li><a href="{{ path('minsal_core_registro_index') }}"><i class="fa fa-edit"></i> <span>Registrar consumo</span></a></li>
-  {%  endif %}
-  {% if is_granted('ROLE_REGISTRO_REGIONAL') %}
-      <li><a href="{{ path('minsal_core_registro_index') }}"><i class="fa fa-database"></i> <span>Registrar consumo</span></a></li>
-  {%  endif %}
-	 </ul>  
-    </section>
-  </aside>
+  <li><a href="{{ path('minsal_rutina_homepage') }}"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
+  <li class="dropdown">
+   <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-fw fa-cogs"></i> Opciones <span class="caret"></span></a>
+   <ul class="dropdown-menu" role="menu">
+    {{ app.session.get('menu') | raw }}
+   </ul>
+  </li>
 {%  endif %}
-
-
-
-<!-- 
-        <li><a href="{{ path('minsal_core_registro_archivo') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Archivo</span></a></li>
-        <li><a href=""><i class="fa fa-circle-o text-grey"></i> <span>Movimientos</span></a></li>
-        <li><a href=""><i class="fa fa-circle-o text-aqua"></i> <span>Consumos</span></a></li>
-        <li><a href=""><i class="fa fa-circle-o text-aqua"></i> <span>Existencias</span></a></li>
-        <li><a href="{{ path('minsal_reporte_homepage') }}"><i class="fa fa-calendar"></i> <span>Informe</span></a></li>
- -->

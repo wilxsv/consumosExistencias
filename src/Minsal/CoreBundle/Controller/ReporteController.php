@@ -14,8 +14,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ReporteController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render('MinsalCoreBundle:Reporte:index.html.twig' );
+		$form = $this->createForm('Minsal\CoreBundle\Form\ReporteType');
+		
+        return $this->render('MinsalCoreBundle:Reporte:index.html.twig', array('form' => $form->createView(),));
     }
 }

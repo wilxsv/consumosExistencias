@@ -1,3 +1,68 @@
 {% extends 'MinsalPlantillaBundle::reporte.html.twig' %}
 {% block body %}
+<!-- Modal -->
+<div class="modal fade" id="parametros" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Parametros de consultas</h4>
+      </div>
+      <div class="modal-body">
+		  {{ form_start(form) }}
+			<div class="row">
+				<div class="col-xs-2">Periodo</div>
+				<div class="col-xs-5">Inicio: {{ form_widget(form.inicio) }}</div>
+				<div class="col-xs-5">Fin: {{ form_widget(form.fin) }}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">Localidad</div>
+				<div class="col-xs-3">Region: {{ form_widget(form.region) }}</div>
+				<div class="col-xs-3">SIBASI: {{ form_widget(form.sibasi) }}</div>
+				<div class="col-xs-3">Establecimiento: {{ form_widget(form.establecimiento) }}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">Organización</div>
+				<div class="col-xs-5">Tipo establecimiento: {{ form_widget(form.tipo) }}</div>
+				<div class="col-xs-5">Micro red: <br/>{{ form_widget(form.microred) }}</div>
+			</div>
+
+		  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
+{% block head_css %}
+{% endblock %}
+{% block footer_js %}
+  <script src="{{ asset('assets/') }}core/bower_components/select2/dist/js/select2.full.min.js"></script>
+  <script>
+  $(function () {
+    $("#inicio").datepicker({ 
+    format: 'yyyy-mm-dd',
+    language: 'es'});
+    });</script>
+
+  <script>
+  $(function () {
+    $("#fin").datepicker({ 
+    format: 'yyyy-mm-dd',
+    language: 'es'});
+    });</script>
+  <script type="text/javascript">
+  $('#minsal_reporte_region').select2();
+  $('#minsal_reporte_sibasi').select2();
+  $('#minsal_reporte_microred').select2();
+  $('#tipo').select2();
+  $('#minsal_reporte_establecimiento').select2();
+  $('#minsal_corebundle_ctlmovimiento_ctlInsumoid').select2();
+  </script>
+{% endblock %}
+
+
+

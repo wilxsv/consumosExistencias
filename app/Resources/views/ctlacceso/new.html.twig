@@ -16,32 +16,25 @@
    <div class="box-body">
     {{ form_start(form) }}
     <div class="form-group">
-     <label class="col-sm-2 control-label">Nombre del item en menu</label>
-     <div class="col-sm-10">
-      {{ form_widget(form.nombreAcceso) }}
-     </div>
+     <label>Nombre del item de menu</label>
+     {{ form_widget(form.nombreAcceso, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
-     <label class="col-sm-2 control-label">Es visible en el menu</label>
-     <div class="col-sm-10">
-      {{ form_widget(form.visibleAcceso) }}
-     </div>
+     <label>Es visible en el menu</label>
+     {{ form_widget(form.visibleAcceso, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
-     <label class="col-sm-2 control-label">Ruta en router</label>
-     <div class="col-sm-10">
+     <label>Ruta en router</label>
+      <br />
       <select id="minsal_corebundle_ctlacceso_pathAcceso" name="minsal_corebundle_ctlacceso[pathAcceso]" required="required">
        {% for route in routes %}
         <option value="{{ route.name }}">{{ route.name }}</option>
        {% endfor %}
       </select>
-     </div>
     </div>
     <div class="form-group">
-     <label class="col-sm-2 control-label">Roles que tienen acceso</label>
-     <div class="col-sm-10">
+     <label>Roles que tienen acceso</label><br />
       {{ form_widget(form.rol) }}
-     </div>
     </div>
 		{{ form_widget(form._token) }}
         <input type="submit" value="Agregar" class="btn btn-primary" />
@@ -53,4 +46,10 @@
   </div>
  </div>
 </div>
+  <script src="{{ asset('assets/') }}core/plugins/select2/select2.full.min.js"></script>
+  <script type="text/javascript">
+   $('#minsal_corebundle_ctlacceso_visibleAcceso').select2();
+   $('#minsal_corebundle_ctlacceso_pathAcceso').select2();
+   $('#minsal_corebundle_ctlacceso_rol').select2();
+  </script>
 {% endblock %}
