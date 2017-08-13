@@ -16,13 +16,13 @@
    <div class="box-body" style="">
     {{ form_start(form) }}
         {{ form_widget(form) }}
+   </div>
+   <div class="box-footer" style="">
         <input type="submit" value="Agregar" class="btn btn-primary" />
     {{ form_end(form) }}
    </div>
-   <div class="box-footer" style="">
-    <a href="{{ path('admin_rol_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
-   </div>
   </div>
- </div>
+ </div>    <a href="{{ path('admin_rol_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
+
 </div>
 {% endblock %}

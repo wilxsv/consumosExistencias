@@ -108,6 +108,8 @@ class FosUserController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            
+            $request->getSession()->getFlashBag()->add('success', 'Perfil actualizado');
 
             return $this->redirectToRoute('admin_personas_edit', array('id' => $fosUser->getId()));
         }

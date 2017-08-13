@@ -86,6 +86,7 @@ class CtlAccesoController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Acceso actualizado');
 
             return $this->redirectToRoute('admin_accesos_edit', array('id' => $ctlAcceso->getId()));
         }

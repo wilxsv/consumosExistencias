@@ -36,15 +36,15 @@
      <label>Roles que tienen acceso</label><br />
       {{ form_widget(form.rol) }}
     </div>
+   </div>
+   <div class="box-footer" style="">
 		{{ form_widget(form._token) }}
         <input type="submit" value="Agregar" class="btn btn-primary" />
     </form>
    </div>
-   <div class="box-footer" style="">
-    <a href="{{ path('admin_accesos_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
-   </div>
   </div>
- </div>
+ </div>    <a href="{{ path('admin_accesos_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
+
 </div>
   <script src="{{ asset('assets/') }}core/plugins/select2/select2.full.min.js"></script>
   <script type="text/javascript">

@@ -15,8 +15,8 @@ class FosUserType extends AbstractType
     {
         $builder
           ->add('email', 'email', array('label' => 'Correo de usuaria', 'required'  => true,   ))
-          ->add('username', 'text', array('label' => 'Nombre de usuaria', 'required'  => true,   ))
-          ->add('fullname', 'text', array('label' => 'Nombre completo', 'required'  => true ))
+          ->add('username', 'text', array('label' => 'login', 'required'  => true,   ))
+          ->add('fullname', 'text', array('label' => 'Nombre completo de la persona', 'required'  => true ))
           ->add('password', 'password', array('label' => 'Clave', 'required'  => true ))
           ->add('roles', 'entity',array('label'  => 'Roles :', 'class' => 'MinsalCoreBundle:CtlRol', 'choice_label' => 'nombreRol',  'required' => false, 'multiple' => false,))
           ->add('establecimiento', 'entity',array('label'  => 'Establecimiento :', 'class' => 'MinsalCoreBundle:CtlEstablecimiento', 'required' => true, 'multiple' => false))
