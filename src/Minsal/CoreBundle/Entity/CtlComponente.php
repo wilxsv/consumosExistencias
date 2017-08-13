@@ -221,6 +221,7 @@ class CtlComponente
      * @param \Minsal\CoreBundle\Entity\FosUser $userSchema
      * @return CtlComponente
      */
+     //
     public function setUserSchema(\Minsal\CoreBundle\Entity\FosUser $userSchema = null)
     {
         $this->userSchema = $userSchema;

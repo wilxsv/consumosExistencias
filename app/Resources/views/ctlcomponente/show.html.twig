@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <th>Productos</th>
-                <td>{{ ctlComponente.insumo | join(', 	 ') }}</td>
+                <td>{{ ctlComponente.insumo | join(' <br /> ') | raw }}</td>
             </tr>
         </tbody>
     </table>

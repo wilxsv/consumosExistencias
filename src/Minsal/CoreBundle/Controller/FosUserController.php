@@ -107,7 +107,15 @@ class FosUserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+			$user = $em->getRepository('MinsalCoreBundle:FosUser')->findOneById($fosUser->getId() );
+			if (!$user) {
+				throw $this->createNotFoundException( 'Usuario no creado ' );
+			}
+			$user->setEstablecimiento( $editForm->get('establecimiento')->getData() );
+			$user->setFullname( $editForm->get('fullname')->getData() );
+			$em->flush();
+				
             
             $request->getSession()->getFlashBag()->add('success', 'Perfil actualizado');
 

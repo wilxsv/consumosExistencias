@@ -39,8 +39,13 @@ class CtlComponenteController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('MinsalCoreBundle:FosUser')->findOneById($this->getUser()->getId());
+            $ctlComponente->setRegistroSchema(new \DateTime('now'));
+            $ctlComponente->setUserSchema($user);
+            $ctlComponente->setUserIpSchema($request->getClientIp());
             $em->persist($ctlComponente);
             $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Dependencia / Programa agregado');
 
             return $this->redirectToRoute('configuracion_programas_show', array('id' => $ctlComponente->getId()));
         }
@@ -76,7 +81,13 @@ class CtlComponenteController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('MinsalCoreBundle:FosUser')->findOneById($this->getUser()->getId());
+            $ctlComponente->setRegistroSchema(new \DateTime('now'));
+            $ctlComponente->setUserSchema($user);
+            $ctlComponente->setUserIpSchema($request->getClientIp());
             $this->getDoctrine()->getManager()->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Dependencia / Programa actualizado');
 
             return $this->redirectToRoute('configuracion_programas_index');
         }

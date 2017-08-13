@@ -37,16 +37,22 @@
   </div>
  </div>
 </div>
-  <script src="{{ asset('assets/') }}core/plugins/select2/select2.full.min.js"></script>
+{% endblock %}
+
+{% block head_js %}
+  <link rel="stylesheet" href="{{ asset('assets/') }}core/plugins/select2/select2.min.css">
+  <link rel="stylesheet" href="{{ asset('assets/') }}core/plugins/lou-multi-select/css/multi-select.css">
+{% endblock %}
+
+
+{% block footer_js %}
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{{ asset('assets/') }}core/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ asset('assets/') }}core/bower_components/select2/dist/js/select2.full.min.js"></script>
   <script type="text/javascript">
 	$(function () { 
 		$("#minsal_corebundle_ctlestablecimiento_idTipoEstablecimiento").select2(); 
 		$("#minsal_corebundle_ctlestablecimiento_idTipoEstablecimiento").select2(); 
 	}); 
   </script>
-{% endblock %}
-
-{% block head_js %}
-  <link rel="stylesheet" href="{{ asset('assets/') }}core/plugins/select2/select2.min.css">
-  <link rel="stylesheet" href="{{ asset('assets/') }}core/plugins/lou-multi-select/css/multi-select.css">
 {% endblock %}

@@ -17,11 +17,11 @@ minsal_core:
     prefix:   /
 
 
-#minsal_core_login:
-#    pattern: /login
-#    defaults: { _controller: MinsalCoreBundle:Security:login }
-#    requirements:
-#        _method: GET|POST
+minsal_core_ajax_suministros:
+    pattern: /ajax_suministros
+    defaults: { _controller: MinsalCoreBundle:CtlInsumo:ajax }
+    requirements:
+        _method: GET|POST
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 fos_user_profile:

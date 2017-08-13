@@ -16,37 +16,37 @@
    </div>
    <div class="box-body">
     <div class="form-group">
-     <label class="col-sm-2 control-label">Tipo de establecimiento</label>
-     <div class="col-sm-10">{{ form_widget(form.tipo) }}
+     <label >Tipo de establecimiento</label>
+     <div>{{ form_widget(form.tipo) }}
      </div>
     </div>
     <div class="form-group">
-     <label class="col-sm-2 control-label">Suministro</label>
-     <div class="col-sm-10">{{ form_widget(form.suministro) }}
+     <label >Suministro</label>
+     <div >{{ form_widget(form.suministro) }}
      </div>
     </div>
     <div class="form-group">
-     <label class="col-sm-2 control-label">Grupo</label>
-     <div class="col-sm-10" id="grupo"></div>
+     <label >Grupo</label>
+     <div  id="grupo"></div>
     </div>
     <div class="form-group">
-     <label class="col-sm-2 control-label">Sub Grupo</label>
-     <div class="col-sm-10" id="subgrupo"></div>
+     <label >Sub Grupo</label>
+     <div  id="subgrupo"></div>
     </div>
     <div class="form-group">
-     <label class="col-sm-2 control-label">Productos</label>
-     <div class="col-sm-10" id="insumo"></div>
+     <label >Productos</label>
+     <div  id="insumo"></div>
     </div>
    </div>
    <div class="box-footer" style="">
-    <a href="{{ path('configuracion_establecimientos_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
-   </div>
-  </div>
- </div>
-</div>
+
 <div style="display: none;">{{ form_widget(form) }}</div>
 
 {{ form_end(form) }}
+   </div>
+  </div>
+ </div>    <a href="{{ path('configuracion_establecimientos_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar">  </span> Listar </a>
+</div>
 {% endblock %}
 {% block head_js %}
   <link rel="stylesheet" href="{{ asset('assets/') }}core/plugins/select2/select2.min.css">

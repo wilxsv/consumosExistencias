@@ -176,6 +176,7 @@ class CtlEstablecimientoController extends Controller
 				$em->getConnection()->exec( "select * from setCuadroBasico( $id, $selectedOption );" );
 			}
 			return $this->redirectToRoute('configuracion_establecimientos_index');
+			$request->getSession()->getFlashBag()->add('success', 'Cuadro básico creado con exito para todos los establecimientos por tipo de establecimiento');
         }
 
         return $this->render('ctlestablecimiento/new.html.twig', array(

@@ -7,15 +7,15 @@
   <div class="box-body">
     {{ form_row(edit_form.username) }}
     {{ form_row(edit_form.email) }}
-    {{ form_row(edit_form.password, { 'attr' : { 'disabled': true } }) }}
-    {{ form_row(edit_form.roles, { 'attr' : { 'disabled': true } }) }}
-    {{ form_widget(edit_form) }}
+    {{ form_row(edit_form.establecimiento) }}
+    <div style="display:none"></div>
   </div>
   <div class="box-footer">
    <a href="{{ path('admin_personas_index') }}" class="btn btn-success"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"></span> Listar </a>
    <button type="submit" class="btn btn-primary pull-right">Guardar</button>
   </div>
-  {{ form_end(edit_form) }}
+  {{ form_row(edit_form._token) }}
+ </form>
  </div>
 {{ form_start(delete_form) }}
  <input type="submit" value="Eliminar" class="btn btn-danger"/>

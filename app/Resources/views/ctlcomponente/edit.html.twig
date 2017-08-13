@@ -18,15 +18,13 @@
         {{ form_widget(edit_form) }}
    </div>
    <div class="box-footer" style="">
-    <a href="{{ path('configuracion_programas_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
     <input type="submit" value="Guardar" class="btn btn-primary">
    </div>
   {{ form_end(edit_form) }}   
   </div>
+ 
  </div>
-{{ form_start(delete_form) }}
- <input type="submit" value="Eliminar" class="btn btn-danger"/>
-{{ form_end(delete_form) }}
+     <a href="{{ path('configuracion_programas_index') }}" class="btn btn-info"><span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="" data-original-title="Listar"> Listar </span></a>
 </div>
 {% endblock %}
 {% block head_js %}
@@ -34,10 +32,13 @@
 {% endblock %}
 {% block footer_js %}
   <script src="{{ asset('assets/') }}core/plugins/select2/select2.full.min.js"></script>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
-  });
+  <!-- Bootstrap 3.3.6 -->
+  <script src="{{ asset('assets/') }}core/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ asset('assets/') }}core/bower_components/select2/dist/js/select2.full.min.js"></script>
+  <script type="text/javascript">
+   
+  $('#minsal_corebundle_ctlcomponente_insumo').select2(); 
+
 </script>
 {% endblock %}
+
