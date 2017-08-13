@@ -69,12 +69,18 @@ class CtlMovimientoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('MinsalCoreBundle:FosUser')->findOneById($this->getUser()->getId());
+            $ctlMovimiento->setRegistroSchema(new \DateTime('now'));
+            $ctlMovimiento->setUserSchema($user);
+            $ctlMovimiento->setUserIpSchema($request->getClientIp());
             $ctlMovimiento->setFechaMovimiento(new \DateTime($_POST["minsal_corebundle_ctlmovimiento"]["fechaMovimiento"]));
             $ctlMovimiento->setFechaRegistroMovimiento(new \DateTime("now"));
             $em->persist($ctlMovimiento);
             $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Movimiento agregado con exito');
 
-            return $this->redirectToRoute('movimiento_show', array('id' => $ctlMovimiento->getId(), 'e' => $id ));
+            //return $this->redirectToRoute('movimiento_show', array('id' => $ctlMovimiento->getId(), 'e' => $id ));
+            return $this->redirectToRoute('movimiento_index');
         }
 
         return $this->render('ctlmovimiento/new.html.twig', array(

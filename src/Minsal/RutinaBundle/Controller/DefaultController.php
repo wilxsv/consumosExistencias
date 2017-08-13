@@ -48,6 +48,11 @@ class DefaultController extends Controller
 						$movimiento = $query->getResult();
 			}
 			
+			$dql = "SELECT i FROM MinsalCoreBundle:CtlSuministro i
+				WHERE i.roleRegistra IN (".$this->allIdRoles().")";
+			$query = $em->createQuery($dql);
+			$suministros = $query->getResult();
+			
 			foreach ($this->getUser()->getRoles() as $role){
 				if ($role != 'ROLE_USER'){/*
 					$dql = "SELECT c.fechaConsumo, c.cantidadConsumo , e.cantidadExistencia, e.almacenFarmacia, ee.nombre, i.nombreLargoInsumo, e.loteExistencia
@@ -74,6 +79,7 @@ class DefaultController extends Controller
             'movimiento' => $movimiento,
             'registro' => $registro,
             'region' => false,
+            'suministros' => $suministros,
         ));
     }
     
@@ -153,7 +159,7 @@ class DefaultController extends Controller
                 ->setCellValue('C'.$i, $item['nombreLargoInsumo']);
             $i++;
          }
-        $phpExcelObject->getActiveSheet()->protectCells('A1:C'.$i, $clave);
+        $phpExcelObject->getActiveSheet()->protectCells('A1:D'.$i, $clave);
         $phpExcelObject->getActiveSheet()->getProtection()->setSheet(true);
         //Validacion de campos
         //salida
@@ -167,8 +173,8 @@ class DefaultController extends Controller
          }
         $phpExcelObject->getActiveSheet()->protectCells('A1:C'.$i, $clave);
         $phpExcelObject->getActiveSheet()->getProtection()->setSheet(true);
-        $phpExcelObject->setActiveSheetIndex(0)->setTitle('Datos');
-        //$phpExcelObject->setActiveSheetIndex(1)->setTitle('Mensual.');
+        $phpExcelObject->setActiveSheetIndex(0)->setTitle('Mensual');
+        $phpExcelObject->setActiveSheetIndex(1)->setTitle('Diario');
         $phpExcelObject->getSecurity()->setLockWindows(true);
         $phpExcelObject->getSecurity()->setLockStructure(true);
         $phpExcelObject->getSecurity()->setWorkbookPassword($clave);

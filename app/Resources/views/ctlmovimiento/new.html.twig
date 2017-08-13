@@ -10,35 +10,35 @@
     <h3 class="box-title">Detalle de transferencias u otros movimientos entre almacenes / farmacias del ministerio</h3>
    </div>
    <div class="box-body">
-    <div class="form-group"><label class="col-sm-2 control-label">Tipo movimiento</label>
-     <div class="col-sm-10">{{ form_widget(form.ctlTipoMovimientoid) }}{{ form_errors(form.ctlTipoMovimientoid) }}</div>
+    <div class="form-group"><label >Tipo movimiento</label>
+     <br/ >{{ form_widget(form.ctlTipoMovimientoid) }}{{ form_errors(form.ctlTipoMovimientoid) }}
     </div>
-    <div class="form-group"><label class="col-sm-2 control-label">Producto</label>
-     <div class="col-sm-10">{{ form_widget(form.ctlInsumoid) }}{{ form_errors(form.ctlInsumoid) }}</div>
+    <div class="form-group"><label >Producto</label>
+     <br />{{ form_widget(form.ctlInsumoid) }}{{ form_errors(form.ctlInsumoid) }}
     </div>
-    <div class="form-group"><label class="col-sm-2 control-label">Fecha caducidad</label>
-     <div class="col-sm-10">{{ form_widget(form.fechaCaducidad) }}{{ form_errors(form.fechaCaducidad) }}</div>
+    <div class="form-group"><label class="col-sm-2">Fecha caducidad</label>
+    {{ form_widget(form.fechaCaducidad) }}{{ form_errors(form.fechaCaducidad) }}
     </div>
-    <div class="form-group"><label class="col-sm-2 control-label">Cantidad</label>
-     <div class="col-sm-10">{{ form_widget(form.cantidad) }}{{ form_errors(form.cantidad) }}</div>
+    <div class="form-group"><label class="col-sm-2">Cantidad</label>
+     {{ form_widget(form.cantidad) }}{{ form_errors(form.cantidad) }}
     </div>
-    <div class="form-group"><label class="col-sm-2 control-label">Lote</label>
-     <div class="col-sm-10">{{ form_widget(form.loteMovimiento) }}{{ form_errors(form.loteMovimiento) }}</div>
+    <div class="form-group"><label class="col-sm-2">Lote</label>
+     {{ form_widget(form.loteMovimiento) }}{{ form_errors(form.loteMovimiento) }}
     </div>
-    <div class="form-group"><label class="col-sm-2 control-label">Fecha del movimiento</label>
-     <div class="col-sm-10">{{ form_widget(form.fechaMovimiento) }}{{ form_errors(form.fechaMovimiento) }}</div>
+    <div class="form-group"><label class="col-sm-2">Fecha del movimiento</label>
+     {{ form_widget(form.fechaMovimiento) }}{{ form_errors(form.fechaMovimiento) }}
     </div>
-    <div class="form-group"><label class="col-sm-2 control-label">Origen</label>
-     <div class="col-sm-10">{{ form_widget(form.establecimientoOrigen) }}{{ form_errors(form.establecimientoOrigen) }}</div>
+    <div class="form-group col-sm-8" id="origen"><label >Origen</label>
+     <br />{{ form_widget(form.establecimientoOrigen) }}{{ form_errors(form.establecimientoOrigen) }}
     </div>
-    <div class="form-group"><label class="col-sm-2 control-label">Es almacen o farmacia el origen</label>
-     <div class="col-sm-10">{{ form_widget(form.almacenFarmaciaOrigen) }}{{ form_errors(form.almacenFarmaciaOrigen) }}</div>
-    </div><div class="col-sm-12"><div/>
-    <div class="form-group"><label class="col-sm-2 control-label">Destino</label>
-     <div class="col-sm-10">{{ form_widget(form.ctlEstablecimientoid) }}{{ form_errors(form.ctlEstablecimientoid) }}</div>
+    <div class="form-group col-sm-4" id="origen"><label >Es almacen el origen</label>
+     {{ form_widget(form.almacenFarmaciaOrigen) }}{{ form_errors(form.almacenFarmaciaOrigen) }}
     </div>
-    <div class="form-group"><label class="col-sm-2 control-label">Es almacen o farmacia el destino</label>
-     <div class="col-sm-10">{{ form_widget(form.almacenFarmacia) }}{{ form_errors(form.almacenFarmacia) }}</div>
+    <div class="form-group col-sm-8" id="destino"><label >Destino</label>
+     <br />{{ form_widget(form.ctlEstablecimientoid) }}{{ form_errors(form.ctlEstablecimientoid) }}
+    </div>
+    <div class="form-group col-sm-4" id="destino"><label >Es almacen el destino</label>
+     {{ form_widget(form.almacenFarmacia) }}{{ form_errors(form.almacenFarmacia) }}
     </div>
     {{ form_widget(form) }}
    </div>
@@ -72,11 +72,13 @@
     $("#minsal_corebundle_ctlmovimiento_fechaMovimiento").datepicker({ 
     format: 'yyyy-mm-dd',
     language: 'es',
-    endDate: '1d'
+    endDate: '1d',
+    autoclose: true
      }).datepicker("setDate", "0");;
   });
   $("#minsal_corebundle_ctlmovimiento_fechaCaducidad").datepicker({ 
   format: 'yyyy-mm-dd',
+  autoclose: true,
   language: 'es'
   });
 
@@ -99,6 +101,11 @@
    }
    if (valor == 4){
     document.getElementById("minsal_corebundle_ctlmovimiento_ctlEstablecimientoid").value = "{{e}}";
+   }
+   if (valor == 5){
+    document.getElementById("minsal_corebundle_ctlmovimiento_establecimientoOrigen").value = "{{e}}";
+    $("#minsal_corebundle_ctlmovimiento_ctlEstablecimientoid").select2();
+    document.getElementById("minsal_corebundle_ctlmovimiento_almacenFarmaciaOrigen").checked = false;
    }
   }
 </script>
