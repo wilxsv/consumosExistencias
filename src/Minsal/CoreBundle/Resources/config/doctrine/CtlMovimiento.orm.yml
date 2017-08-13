@@ -35,6 +35,7 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
         fechaRegistroMovimiento:
             type: datetime
             nullable: false
+            default: now
             column: fecha_registro_movimiento
         almacenFarmacia:
             type: boolean

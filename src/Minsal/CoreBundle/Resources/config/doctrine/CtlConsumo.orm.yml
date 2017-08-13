@@ -30,6 +30,7 @@ Minsal\CoreBundle\Entity\CtlConsumo:
         registroSchema:
             type: datetime
             nullable: false
+            default: now
             column: registro_schema
         userIdSchema:
             type: bigint

@@ -1,6 +1,16 @@
 Minsal\CoreBundle\Entity\ConsumoAlmacen:
     type: entity
     table: consumo_almacen
+    indexes:
+        IDX_1576410846F39AED:
+            columns:
+                - ctl_mecanismoid
+        IDX_157641082D46D110:
+            columns:
+                - ctl_existencia
+        IDX_157641089E59795B:
+            columns:
+                - user_id_schema
     id:
         id:
             type: bigint
@@ -14,17 +24,6 @@ Minsal\CoreBundle\Entity\ConsumoAlmacen:
             type: date
             nullable: false
             column: fecha_movimiento
-        ctlMecanismoid:
-            type: bigint
-            nullable: false
-            unsigned: false
-            default: '1'
-            column: ctl_mecanismoid
-        ctlExistencia:
-            type: bigint
-            nullable: false
-            unsigned: false
-            column: ctl_existencia
         cantidadConsumoAlmacen:
             type: float
             nullable: false
@@ -32,11 +31,6 @@ Minsal\CoreBundle\Entity\ConsumoAlmacen:
             scale: 0
             default: '0'
             column: cantidad_consumo_almacen
-        userIdSchema:
-            type: bigint
-            nullable: false
-            unsigned: false
-            column: user_id_schema
         userIpSchema:
             type: string
             nullable: false
@@ -49,4 +43,32 @@ Minsal\CoreBundle\Entity\ConsumoAlmacen:
             nullable: false
             default: now
             column: registro_schema
+    manyToOne:
+        ctlMecanismoid:
+            targetEntity: CtlMecanismo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_mecanismoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ctlExistencia:
+            targetEntity: CtlExistencias
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ctl_existencia:
+                    referencedColumnName: id
+            orphanRemoval: false
+        userSchema:
+            targetEntity: FosUser
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id_schema:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

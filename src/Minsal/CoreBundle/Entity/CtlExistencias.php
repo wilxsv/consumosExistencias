@@ -304,4 +304,32 @@ class CtlExistencias
     {
         return $this->ctlEstablecimientoid;
     }
+    /**
+     * @var \Minsal\CoreBundle\Entity\CtlMovimiento
+     */
+    private $movimiento;
+
+
+    /**
+     * Set movimiento
+     *
+     * @param \Minsal\CoreBundle\Entity\CtlMovimiento $movimiento
+     * @return CtlExistencias
+     */
+    public function setMovimiento(\Minsal\CoreBundle\Entity\CtlMovimiento $movimiento = null)
+    {
+        $this->movimiento = $movimiento;
+
+        return $this;
+    }
+
+    /**
+     * Get movimiento
+     *
+     * @return \Minsal\CoreBundle\Entity\CtlMovimiento 
+     */
+    public function getMovimiento()
+    {
+        return $this->movimiento;
+    }
 }

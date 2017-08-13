@@ -8,6 +8,9 @@ Minsal\CoreBundle\Entity\CtlExistencias:
         IDX_69499BE7B62918:
             columns:
                 - ctl_establecimientoid
+        IDX_69499BE58E7D5A2:
+            columns:
+                - movimiento_id
     id:
         id:
             type: integer
@@ -20,6 +23,7 @@ Minsal\CoreBundle\Entity\CtlExistencias:
         fechaRegistro:
             type: datetime
             nullable: false
+            default: now
             column: fecha_registro
         cantidadExistencia:
             type: float
@@ -47,9 +51,8 @@ Minsal\CoreBundle\Entity\CtlExistencias:
             column: almacen_farmacia
         userIdSchema:
             type: bigint
-            nullable: false
+            nullable: true
             unsigned: false
-            default: '(1)::bigint'
             column: user_id_schema
         ipUserSchema:
             type: string
@@ -75,6 +78,15 @@ Minsal\CoreBundle\Entity\CtlExistencias:
             inversedBy: null
             joinColumns:
                 ctl_establecimientoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        movimiento:
+            targetEntity: CtlMovimiento
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                movimiento_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

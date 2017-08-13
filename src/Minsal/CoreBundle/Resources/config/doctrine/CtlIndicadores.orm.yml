@@ -1,0 +1,26 @@
+Minsal\CoreBundle\Entity\CtlIndicadores:
+    type: entity
+    table: ctl_indicadores
+    indexes:
+        IDX_779BFEB8CE208F97:
+            columns:
+                - insumo_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    manyToOne:
+        insumo:
+            targetEntity: CtlInsumo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                insumo_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

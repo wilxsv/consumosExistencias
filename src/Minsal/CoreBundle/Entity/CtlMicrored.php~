@@ -248,4 +248,9 @@ class CtlMicrored
     {
         return $this->sibasi;
     }
+
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
 }
