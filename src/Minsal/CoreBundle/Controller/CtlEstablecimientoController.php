@@ -26,14 +26,11 @@ class CtlEstablecimientoController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm('Minsal\CoreBundle\Form\CuadroType');
-        $form->handleRequest($request);
 
         $ctlEstablecimientos = $em->getRepository('MinsalCoreBundle:CtlTipoEstablecimiento')->findAll();
 
         return $this->render('ctlestablecimiento/index.html.twig', array(
             'ctlEstablecimientos' => $ctlEstablecimientos,
-            'form' => $form->createView(),
         ));
     }
 
