@@ -220,4 +220,60 @@ class CtlConsumo
     {
         return $this->ctlMecanismoid;
     }
+    /**
+     * @var string
+     */
+    private $userIpSchema;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\FosUser
+     */
+    private $userSchema;
+
+
+    /**
+     * Set userIpSchema
+     *
+     * @param string $userIpSchema
+     * @return CtlConsumo
+     */
+    public function setUserIpSchema($userIpSchema)
+    {
+        $this->userIpSchema = $userIpSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get userIpSchema
+     *
+     * @return string 
+     */
+    public function getUserIpSchema()
+    {
+        return $this->userIpSchema;
+    }
+
+    /**
+     * Set userSchema
+     *
+     * @param \Minsal\CoreBundle\Entity\FosUser $userSchema
+     * @return CtlConsumo
+     */
+    public function setUserSchema(\Minsal\CoreBundle\Entity\FosUser $userSchema = null)
+    {
+        $this->userSchema = $userSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get userSchema
+     *
+     * @return \Minsal\CoreBundle\Entity\FosUser 
+     */
+    public function getUserSchema()
+    {
+        return $this->userSchema;
+    }
 }

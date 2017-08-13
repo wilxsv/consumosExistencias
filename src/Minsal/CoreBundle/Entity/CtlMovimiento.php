@@ -361,4 +361,88 @@ class CtlMovimiento
     {
         return $this->fechaCaducidad;
     }
+    /**
+     * @var string
+     */
+    private $userIpSchema;
+
+    /**
+     * @var \DateTime
+     */
+    private $registroSchema;
+
+    /**
+     * @var \Minsal\CoreBundle\Entity\FosUser
+     */
+    private $userSchema;
+
+
+    /**
+     * Set userIpSchema
+     *
+     * @param string $userIpSchema
+     * @return CtlMovimiento
+     */
+    public function setUserIpSchema($userIpSchema)
+    {
+        $this->userIpSchema = $userIpSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get userIpSchema
+     *
+     * @return string 
+     */
+    public function getUserIpSchema()
+    {
+        return $this->userIpSchema;
+    }
+
+    /**
+     * Set registroSchema
+     *
+     * @param \DateTime $registroSchema
+     * @return CtlMovimiento
+     */
+    public function setRegistroSchema($registroSchema)
+    {
+        $this->registroSchema = $registroSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get registroSchema
+     *
+     * @return \DateTime 
+     */
+    public function getRegistroSchema()
+    {
+        return $this->registroSchema;
+    }
+
+    /**
+     * Set userSchema
+     *
+     * @param \Minsal\CoreBundle\Entity\FosUser $userSchema
+     * @return CtlMovimiento
+     */
+    public function setUserSchema(\Minsal\CoreBundle\Entity\FosUser $userSchema = null)
+    {
+        $this->userSchema = $userSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get userSchema
+     *
+     * @return \Minsal\CoreBundle\Entity\FosUser 
+     */
+    public function getUserSchema()
+    {
+        return $this->userSchema;
+    }
 }

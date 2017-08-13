@@ -11,6 +11,9 @@ Minsal\CoreBundle\Entity\CtlExistencias:
         IDX_69499BE58E7D5A2:
             columns:
                 - movimiento_id
+        IDX_69499BE9E59795B:
+            columns:
+                - user_id_schema
     id:
         id:
             type: integer
@@ -49,18 +52,18 @@ Minsal\CoreBundle\Entity\CtlExistencias:
             type: boolean
             nullable: false
             column: almacen_farmacia
-        userIdSchema:
-            type: bigint
-            nullable: true
-            unsigned: false
-            column: user_id_schema
-        ipUserSchema:
+        userIpSchema:
             type: string
             nullable: false
             length: null
             fixed: false
             default: '::1'
-            column: ip_user_schema
+            column: user_ip_schema
+        registroSchema:
+            type: datetime
+            nullable: false
+            default: now
+            column: registro_schema
     manyToOne:
         ctlInsumoid:
             targetEntity: CtlInsumo
@@ -87,6 +90,15 @@ Minsal\CoreBundle\Entity\CtlExistencias:
             inversedBy: null
             joinColumns:
                 movimiento_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        userSchema:
+            targetEntity: FosUser
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id_schema:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

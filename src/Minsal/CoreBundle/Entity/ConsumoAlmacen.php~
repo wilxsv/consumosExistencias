@@ -220,4 +220,32 @@ class ConsumoAlmacen
     {
         return $this->registroSchema;
     }
+    /**
+     * @var \Minsal\CoreBundle\Entity\FosUser
+     */
+    private $userSchema;
+
+
+    /**
+     * Set userSchema
+     *
+     * @param \Minsal\CoreBundle\Entity\FosUser $userSchema
+     * @return ConsumoAlmacen
+     */
+    public function setUserSchema(\Minsal\CoreBundle\Entity\FosUser $userSchema = null)
+    {
+        $this->userSchema = $userSchema;
+
+        return $this;
+    }
+
+    /**
+     * Get userSchema
+     *
+     * @return \Minsal\CoreBundle\Entity\FosUser 
+     */
+    public function getUserSchema()
+    {
+        return $this->userSchema;
+    }
 }

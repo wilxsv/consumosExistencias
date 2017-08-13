@@ -14,6 +14,9 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
         IDX_B621B540B264D8:
             columns:
                 - establecimiento_origen_id
+        IDX_B621B5409E59795B:
+            columns:
+                - user_id_schema
     id:
         id:
             type: integer
@@ -55,6 +58,18 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
             type: date
             nullable: true
             column: fecha_caducidad
+        userIpSchema:
+            type: string
+            nullable: false
+            length: null
+            fixed: false
+            default: '::1'
+            column: user_ip_schema
+        registroSchema:
+            type: datetime
+            nullable: false
+            default: now
+            column: registro_schema
     manyToOne:
         ctlEstablecimientoid:
             targetEntity: CtlEstablecimiento
@@ -90,6 +105,15 @@ Minsal\CoreBundle\Entity\CtlMovimiento:
             inversedBy: null
             joinColumns:
                 establecimiento_origen_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        userSchema:
+            targetEntity: FosUser
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id_schema:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

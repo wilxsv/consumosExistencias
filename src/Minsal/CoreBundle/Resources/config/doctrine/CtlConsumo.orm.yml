@@ -8,6 +8,9 @@ Minsal\CoreBundle\Entity\CtlConsumo:
         IDX_285219DC46F39AED:
             columns:
                 - ctl_mecanismoid
+        IDX_285219DC9E59795B:
+            columns:
+                - user_id_schema
     id:
         id:
             type: integer
@@ -27,23 +30,18 @@ Minsal\CoreBundle\Entity\CtlConsumo:
             precision: 10
             scale: 0
             column: cantidad_consumo
-        registroSchema:
-            type: datetime
-            nullable: false
-            default: now
-            column: registro_schema
-        userIdSchema:
-            type: bigint
-            nullable: false
-            unsigned: false
-            column: user_id_schema
-        ipUserSchema:
+        userIpSchema:
             type: string
             nullable: false
             length: null
             fixed: false
             default: '::1'
-            column: ip_user_schema
+            column: user_ip_schema
+        registroSchema:
+            type: datetime
+            nullable: false
+            default: now
+            column: registro_schema
     manyToOne:
         ctlExistencia:
             targetEntity: CtlExistencias
@@ -61,6 +59,15 @@ Minsal\CoreBundle\Entity\CtlConsumo:
             inversedBy: null
             joinColumns:
                 ctl_mecanismoid:
+                    referencedColumnName: id
+            orphanRemoval: false
+        userSchema:
+            targetEntity: FosUser
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id_schema:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

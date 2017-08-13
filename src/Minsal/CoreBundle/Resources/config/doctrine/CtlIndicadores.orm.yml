@@ -5,6 +5,9 @@ Minsal\CoreBundle\Entity\CtlIndicadores:
         IDX_779BFEB8CE208F97:
             columns:
                 - insumo_id
+        IDX_779BFEB89E59795B:
+            columns:
+                - user_id_schema
     id:
         id:
             type: bigint
@@ -13,6 +16,19 @@ Minsal\CoreBundle\Entity\CtlIndicadores:
             id: true
             generator:
                 strategy: SEQUENCE
+    fields:
+        userIpSchema:
+            type: string
+            nullable: false
+            length: null
+            fixed: false
+            default: '::1'
+            column: user_ip_schema
+        registroSchema:
+            type: datetime
+            nullable: false
+            default: now
+            column: registro_schema
     manyToOne:
         insumo:
             targetEntity: CtlInsumo
@@ -21,6 +37,15 @@ Minsal\CoreBundle\Entity\CtlIndicadores:
             inversedBy: null
             joinColumns:
                 insumo_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        userSchema:
+            targetEntity: FosUser
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id_schema:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

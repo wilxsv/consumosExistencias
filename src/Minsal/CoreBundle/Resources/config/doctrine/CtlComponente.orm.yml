@@ -5,6 +5,9 @@ Minsal\CoreBundle\Entity\CtlComponente:
         FKI_componente_rol:
             columns:
                 - role_registra_componente
+        IDX_6442E5969E59795B:
+            columns:
+                - user_id_schema
     uniqueConstraints:
         ctl_componente_nombre_componente_key:
             columns:
@@ -30,6 +33,18 @@ Minsal\CoreBundle\Entity\CtlComponente:
             unsigned: false
             default: '3'
             column: presicion_componente
+        userIpSchema:
+            type: string
+            nullable: false
+            length: null
+            fixed: false
+            default: '::1'
+            column: user_ip_schema
+        registroSchema:
+            type: datetime
+            nullable: false
+            default: now
+            column: registro_schema
     manyToOne:
         roleRegistraComponente:
             targetEntity: CtlRol
@@ -38,6 +53,15 @@ Minsal\CoreBundle\Entity\CtlComponente:
             inversedBy: null
             joinColumns:
                 role_registra_componente:
+                    referencedColumnName: id
+            orphanRemoval: false
+        userSchema:
+            targetEntity: FosUser
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id_schema:
                     referencedColumnName: id
             orphanRemoval: false
     manyToMany:
