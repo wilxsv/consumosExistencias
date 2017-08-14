@@ -165,7 +165,7 @@ class CtlEstablecimientoController extends Controller
         $form = $this->createForm('Minsal\CoreBundle\Form\CuadroType');
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() ) {//&& $form->isValid()
 			$id = $_POST["minsal_cuadro_basico"]["tipo"];
 			$em = $this->getDoctrine()->getManager();
 			foreach ($_POST["minsal_cuadro_basico"]["insumo"] as $selectedOption)
